@@ -1,0 +1,180 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-azure-maps": {
+      "projectType": "library",
+      "root": "projects/ng-azure-maps",
+      "sourceRoot": "projects/ng-azure-maps/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-azure-maps/tsconfig.lib.json",
+            "project": "projects/ng-azure-maps/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-azure-maps/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-azure-maps/src/test.ts",
+            "tsConfig": "projects/ng-azure-maps/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-azure-maps/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-azure-maps/tsconfig.lib.json",
+              "projects/ng-azure-maps/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "samples-ng-azure-maps": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/samples-ng-azure-maps",
+      "sourceRoot": "projects/samples-ng-azure-maps/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/samples-ng-azure-maps",
+            "index": "projects/samples-ng-azure-maps/src/index.html",
+            "main": "projects/samples-ng-azure-maps/src/main.ts",
+            "polyfills": "projects/samples-ng-azure-maps/src/polyfills.ts",
+            "tsConfig": "projects/samples-ng-azure-maps/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/samples-ng-azure-maps/src/favicon.ico",
+              "projects/samples-ng-azure-maps/src/assets"
+            ],
+            "styles": [
+              "projects/samples-ng-azure-maps/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/samples-ng-azure-maps/src/environments/environment.ts",
+                  "with": "projects/samples-ng-azure-maps/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/samples-ng-azure-maps/src/environments/environment.ts",
+                  "with": "projects/samples-ng-azure-maps/src/environments/environment.local.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "samples-ng-azure-maps:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "samples-ng-azure-maps:build:production"
+            },
+            "local": {
+              "browserTarget": "samples-ng-azure-maps:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "samples-ng-azure-maps:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/samples-ng-azure-maps/src/test.ts",
+            "polyfills": "projects/samples-ng-azure-maps/src/polyfills.ts",
+            "tsConfig": "projects/samples-ng-azure-maps/tsconfig.spec.json",
+            "karmaConfig": "projects/samples-ng-azure-maps/karma.conf.js",
+            "assets": [
+              "projects/samples-ng-azure-maps/src/favicon.ico",
+              "projects/samples-ng-azure-maps/src/assets"
+            ],
+            "styles": [
+              "projects/samples-ng-azure-maps/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/samples-ng-azure-maps/tsconfig.app.json",
+              "projects/samples-ng-azure-maps/tsconfig.spec.json",
+              "projects/samples-ng-azure-maps/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/samples-ng-azure-maps/e2e/protractor.conf.js",
+            "devServerTarget": "samples-ng-azure-maps:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "samples-ng-azure-maps:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-azure-maps"
+}

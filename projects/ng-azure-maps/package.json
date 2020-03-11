@@ -1,0 +1,10 @@
+{
+  "name": "ng-azure-maps",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.0.5",
+    "@angular/core": "^9.0.5",
+    "tslib": "^1.10.0",
+    "azure-maps-control": "^2.0.23"
+  }
+}
