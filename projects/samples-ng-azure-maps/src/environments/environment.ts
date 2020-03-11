@@ -1,4 +1,4 @@
 export const environment = {
-  subscriptionKey: '',
+  authOptions: null,
   production: false
 };

@@ -1,5 +1,5 @@
 import { Directive, AfterViewInit, ElementRef, Inject, Input, Output } from '@angular/core';
-import { Map, AuthenticationType } from 'azure-maps-control';
+import { Map } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../configuration';
 import { Subject } from 'rxjs';
 
@@ -18,10 +18,7 @@ export class AzureMapDirective
 
   ngAfterViewInit(): void {
     const map = new Map(this.elementRef.nativeElement, {
-      authOptions: {
-        subscriptionKey: this.azureMapsConfiguration.authOptions.subscriptionKey,
-        authType: AuthenticationType.subscriptionKey
-      },
+      authOptions: this.azureMapsConfiguration.authOptions,
       center: this.center,
       style: this.mapStyle,
       view: this.view,
