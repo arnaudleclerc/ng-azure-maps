@@ -64,4 +64,4 @@ The following examples displays 4 maps, each having a different control attached
 </div>
 ```
 
-![4 Maps sample](./assets/4mapssample.png)
+![4 Maps sample](../../assets/4mapssample.png)
