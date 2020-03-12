@@ -4,7 +4,7 @@ import { Map } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[style-control]'
+  selector: '[style-control], style-control'
 })
 export class StyleControlDirective
   extends ControlDirective {

@@ -17,6 +17,8 @@ This is a WIP of an Angular wrapper around the azure-maps-control package. It ex
   - Adds a style control on the map
 - zoom-control
   - Adds a zoom control on the map
+- html-marker
+  - Adds a HTML Marker on the map
 
 ## How to register the module
 
@@ -53,17 +55,19 @@ AAD and SubscriptionKey authentication are supported.
 The following examples displays 4 maps, each having a different control attached.
 
 ```
-<div azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
-  <div zoom-control position='top-left'></div>
-</div>
-<div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' zoom="2" class="top-right">
-  <div pitch-control position="top-right"></div>
+<azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
+  <zoom-control position='top-left'></zoom-control>
+  <html-marker *ngIf="markerPosition" [position]="markerPosition"></html-marker>
+</azure-map>
+<div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' [zoom]="2" class="top-right">
+  <pitch-control position="top-right"></pitch-control>
+  <html-marker [position]="[11.47, 48.18]"></html-marker>
 </div>
 <div azure-map [center]="[0, 0]" mapStyle='grayscale_light' view='Auto' zoom="2" class="bottom-left">
-  <div compass-control position="bottom-left"></div>
+  <compass-control position="bottom-left"></compass-control>
 </div>
 <div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
-  <div style-control position="bottom-right"></div>
+  <style-control position="bottom-right"></style-control>
 </div>
 ```
 

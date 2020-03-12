@@ -10,7 +10,7 @@ import { StyleControlDirective } from '../controls/style-control.directive';
 import { HtmlMarkerDirective } from '../markers/html-marker.directive';
 
 @Directive({
-  selector: '[azure-map]',
+  selector: '[azure-map], azure-map',
   queries: {
     zoomControl: new ContentChild(ZoomControlDirective),
     pitchControl: new ContentChild(PitchControlDirective),
@@ -20,7 +20,7 @@ import { HtmlMarkerDirective } from '../markers/html-marker.directive';
   }
 })
 export class AzureMapDirective
-  implements AfterViewInit, AfterContentChecked, OnDestroy {
+  implements AfterViewInit, OnDestroy {
 
   private _map: Map;
 
@@ -140,10 +140,6 @@ export class AzureMapDirective
       }
 
     });
-  }
-
-  ngAfterContentChecked() {
-
   }
 
   ngOnDestroy() {

@@ -4,7 +4,7 @@ import { Map } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[compass-control]'
+  selector: '[compass-control], compass-control'
 })
 export class CompassControlDirective
   extends ControlDirective {

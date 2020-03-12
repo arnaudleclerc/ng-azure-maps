@@ -1,13 +1,14 @@
-<div azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
-  <div zoom-control position='top-left'></div>
-  <div *ngIf="markerPosition" html-marker [position]="markerPosition"></div>
-</div>
-<!-- <div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' zoom="2" class="top-right">
-  <div pitch-control position="top-right"></div>
+<azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
+  <zoom-control position='top-left'></zoom-control>
+  <html-marker *ngIf="markerPosition" [position]="markerPosition"></html-marker>
+</azure-map>
+<div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' [zoom]="2" class="top-right">
+  <pitch-control position="top-right"></pitch-control>
+  <html-marker [position]="[11.47, 48.18]"></html-marker>
 </div>
 <div azure-map [center]="[0, 0]" mapStyle='grayscale_light' view='Auto' zoom="2" class="bottom-left">
-  <div compass-control position="bottom-left"></div>
+  <compass-control position="bottom-left"></compass-control>
 </div>
 <div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
-  <div style-control position="bottom-right"></div>
-</div> -->
+  <style-control position="bottom-right"></style-control>
+</div>

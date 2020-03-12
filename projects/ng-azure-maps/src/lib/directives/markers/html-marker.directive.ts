@@ -3,7 +3,7 @@ import { Map, Pixel } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[html-marker]'
+  selector: '[html-marker], html-marker'
 })
 export class HtmlMarkerDirective
   implements OnChanges, OnDestroy {
@@ -22,24 +22,29 @@ export class HtmlMarkerDirective
   @Input() public visible: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
-    this._marker.setOptions({
-      anchor: this.anchor,
-      color: this.color,
-      draggable: this.draggable,
-      htmlContent: this.htmlContent,
-      pixelOffset: this.pixelOffset,
-      position: this.position,
-      secondaryColor: this.secondaryColor,
-      text: this.text,
-      visible: this.visible
-    });
+    if (this._marker) {
+      this._marker.setOptions({
+        anchor: this.anchor,
+        color: this.color,
+        draggable: this.draggable,
+        htmlContent: this.htmlContent,
+        pixelOffset: this.pixelOffset,
+        position: this.position,
+        secondaryColor: this.secondaryColor,
+        text: this.text,
+        visible: this.visible
+      });
+    }
   }
 
   ngOnDestroy() {
-    this._map.markers.remove(this._marker);
+    if (this._map) {
+      this._map.markers.remove(this._marker);
+    }
   }
 
   public addToMap(map: Map) {
+    this._map = map;
     this._marker = new atlas.HtmlMarker({
       anchor: this.anchor,
       color: this.color,
@@ -53,8 +58,6 @@ export class HtmlMarkerDirective
     });
 
     map.markers.add(this._marker);
-
-    this._map = map;
   }
 
 }
