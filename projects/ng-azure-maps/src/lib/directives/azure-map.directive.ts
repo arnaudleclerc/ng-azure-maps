@@ -6,13 +6,15 @@ import * as atlas from 'azure-maps-control';
 import { ZoomControlDirective } from './zoom-control.directive';
 import { PitchControlDirective } from './pitch-control.directive';
 import { CompassControlDirective } from './compass-control.directive';
+import { StyleControlDirective } from './style-control.directive';
 
 @Directive({
   selector: '[azure-map]',
   queries: {
     zoomControl: new ContentChild(ZoomControlDirective),
     pitchControl: new ContentChild(PitchControlDirective),
-    compassControl: new ContentChild(CompassControlDirective)
+    compassControl: new ContentChild(CompassControlDirective),
+    styleControl: new ContentChild(StyleControlDirective)
   }
 })
 export class AzureMapDirective
@@ -60,6 +62,7 @@ export class AzureMapDirective
   public zoomControl: ZoomControlDirective;
   public pitchControl: PitchControlDirective;
   public compassControl: CompassControlDirective;
+  public styleControl: StyleControlDirective;
 
   ngAfterViewInit(): void {
     const map = new Map(this.elementRef.nativeElement, {
@@ -118,6 +121,10 @@ export class AzureMapDirective
 
       if (this.compassControl) {
         this.compassControl.initialize(map);
+      }
+
+      if (this.styleControl) {
+        this.styleControl.initialize(map);
       }
 
     });

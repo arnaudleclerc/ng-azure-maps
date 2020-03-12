@@ -1,19 +1,21 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { AzureMapsConfiguration, AZUREMAPS_CONFIG } from '../configuration';
-import { AzureMapDirective, ZoomControlDirective, PitchControlDirective, CompassControlDirective } from '../directives';
+import { AzureMapDirective, ZoomControlDirective, PitchControlDirective, CompassControlDirective, StyleControlDirective } from '../directives';
 
 @NgModule({
   declarations: [
     AzureMapDirective,
     ZoomControlDirective,
     PitchControlDirective,
-    CompassControlDirective
+    CompassControlDirective,
+    StyleControlDirective
   ],
   exports: [
     AzureMapDirective,
     ZoomControlDirective,
     PitchControlDirective,
-    CompassControlDirective
+    CompassControlDirective,
+    StyleControlDirective
   ]
 })
 export class AzureMapsModule {
