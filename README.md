@@ -1,3 +1,6 @@
+[![Build status](https://dev.azure.com/aleclerc/ng-azure-maps/_apis/build/status/ng-azure-maps)](https://dev.azure.com/aleclerc/ng-azure-maps/_build/latest?definitionId=15) 
+[![NPM Version](https://img.shields.io/npm/v/ng-azure-maps.svg?style=flat)](https://www.npmjs.com/package/ng-azure-maps)
+
 # ng-azure-maps 
 
 This is a WIP of an Angular wrapper around the azure-maps-control package. It exposes some directives making it easy to integrate azure-maps on an Angular application.
@@ -64,4 +67,4 @@ The following examples displays 4 maps, each having a different control attached
 </div>
 ```
 
-![4 Maps sample](./assets/4mapssample.png)
+![4 Maps sample](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/4mapssample.png)
