@@ -9,6 +9,7 @@ export class AppComponent
   implements OnInit {
 
   public markerPosition: [number, number] = [0, 0];
+  public markerPositions: [number, number][] = [];
 
   ngOnInit(): void {
     let i = 0;
@@ -16,6 +17,12 @@ export class AppComponent
       if (this.markerPosition) {
         const newMarker: [number, number] = [this.markerPosition[0] + 5, this.markerPosition[1] + 5];
         this.markerPosition = newMarker;
+
+        if (i <= 10) {
+          this.markerPositions.push([i * i, i * i]);
+          this.markerPositions = this.markerPositions;
+        }
+
         i++;
         if (i === 10) {
           this.markerPosition = null;

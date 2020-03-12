@@ -8,6 +8,8 @@
 </div>
 <div azure-map [center]="[0, 0]" mapStyle='grayscale_light' view='Auto' zoom="2" class="bottom-left">
   <compass-control position="bottom-left"></compass-control>
+  <html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true">
+  </html-marker>
 </div>
 <div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
   <style-control position="bottom-right"></style-control>

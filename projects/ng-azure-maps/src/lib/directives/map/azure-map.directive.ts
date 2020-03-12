@@ -1,4 +1,4 @@
-import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList, AfterContentChecked, ContentChildren } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList, AfterContentChecked, ContentChildren, OnChanges, SimpleChanges } from '@angular/core';
 import { Map, LightOptions, MapEvent, MapErrorEvent } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
@@ -20,7 +20,7 @@ import { HtmlMarkerDirective } from '../markers/html-marker.directive';
   }
 })
 export class AzureMapDirective
-  implements AfterViewInit, OnDestroy {
+  implements AfterViewInit, OnDestroy, AfterContentChecked {
 
   private _map: Map;
 
@@ -132,14 +132,17 @@ export class AzureMapDirective
       if (this.styleControl) {
         this.styleControl.initialize(this._map);
       }
+    });
+  }
 
+  ngAfterContentChecked() {
+    if (this._map) {
       if (this.htmlMarkers) {
-        for (const htmlMarker of this.htmlMarkers) {
-          htmlMarker.addToMap(this._map);
+        for (const marker of this.htmlMarkers.filter(m => !m.hasMap)) {
+          marker.addToMap(this._map);
         }
       }
-
-    });
+    }
   }
 
   ngOnDestroy() {

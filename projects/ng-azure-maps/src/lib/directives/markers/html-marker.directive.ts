@@ -21,6 +21,10 @@ export class HtmlMarkerDirective
   @Input() public text: string;
   @Input() public visible: boolean;
 
+  public get hasMap(): boolean {
+    return !!this._map;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (this._marker) {
       this._marker.setOptions({
