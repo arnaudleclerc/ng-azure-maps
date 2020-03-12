@@ -1,14 +1,18 @@
-import { Directive, AfterViewInit, ElementRef, Inject, Input, Output } from '@angular/core';
-import { Map, LightOptions } from 'azure-maps-control';
+import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList } from '@angular/core';
+import { Map, LightOptions, MapEvent, MapErrorEvent } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
+import { ZoomControlDirective } from './zoom-control.directive';
 
 @Directive({
-  selector: '[azure-map]'
+  selector: '[azure-map]',
+  queries: {
+    zoomControl: new ContentChild(ZoomControlDirective)
+  }
 })
 export class AzureMapDirective
-  implements AfterViewInit {
+  implements AfterViewInit, OnDestroy {
 
   @Input() public autoResize: boolean;
   @Input() public bearing: number;
@@ -46,7 +50,10 @@ export class AzureMapDirective
   @Input() public wheelZoomRate: number;
   @Input() public zoom: number;
 
-  @Output("ready") public ready = new Subject<Map>();
+  @Output() public error = new Subject<MapErrorEvent>();
+  @Output() public ready = new Subject<MapEvent>();
+
+  public zoomControl: ZoomControlDirective;
 
   ngAfterViewInit(): void {
     const map = new Map(this.elementRef.nativeElement, {
@@ -88,9 +95,22 @@ export class AzureMapDirective
       zoom: this.zoom
     });
 
-    map.events.addOnce('ready', () => {
-      this.ready.next(map);
+    map.events.add('error', e => {
+      this.error.next(e);
     });
+
+    map.events.addOnce('ready', e => {
+      this.ready.next(e);
+
+      if (this.zoomControl) {
+        this.zoomControl.initialize(map);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.error.unsubscribe();
+    this.ready.unsubscribe();
   }
 
   constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,

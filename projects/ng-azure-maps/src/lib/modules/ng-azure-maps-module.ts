@@ -1,13 +1,15 @@
 import { NgModule, ModuleWithProviders, APP_INITIALIZER } from "@angular/core";
 import { AzureMapsConfiguration, AZUREMAPS_CONFIG } from '../configuration';
-import { AzureMapDirective } from '../directives';
+import { AzureMapDirective, ZoomControlDirective } from '../directives';
 
 @NgModule({
   declarations: [
-    AzureMapDirective
+    AzureMapDirective,
+    ZoomControlDirective
   ],
   exports: [
-    AzureMapDirective
+    AzureMapDirective,
+    ZoomControlDirective
   ]
 })
 export class AzureMapsModule {
