@@ -1,10 +1,32 @@
 {
   "name": "ng-azure-maps",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arnaudleclerc/ng-azure-maps"
+  },
+  "author": {
+    "name": "Arnaud Leclerc"
+  },
+  "keywords": [
+    "angular",
+    "azure-maps",
+    "azure-maps-control"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "build": "ng build"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.5",
     "@angular/core": "^9.0.5",
+    "azure-maps-control": "^2.0.23"
+  },
+  "devDependencies": {
     "tslib": "^1.10.0",
+    "@angular/common": "^9.0.5",
+    "@angular/core": "^9.0.5",
     "azure-maps-control": "^2.0.23"
   }
 }
