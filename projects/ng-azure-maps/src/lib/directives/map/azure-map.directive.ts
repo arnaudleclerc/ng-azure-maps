@@ -1,12 +1,13 @@
-import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList, AfterContentChecked, ContentChildren } from '@angular/core';
 import { Map, LightOptions, MapEvent, MapErrorEvent } from 'azure-maps-control';
-import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../configuration';
+import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
-import { ZoomControlDirective } from './zoom-control.directive';
-import { PitchControlDirective } from './pitch-control.directive';
-import { CompassControlDirective } from './compass-control.directive';
-import { StyleControlDirective } from './style-control.directive';
+import { ZoomControlDirective } from '../controls/zoom-control.directive';
+import { PitchControlDirective } from '../controls/pitch-control.directive';
+import { CompassControlDirective } from '../controls/compass-control.directive';
+import { StyleControlDirective } from '../controls/style-control.directive';
+import { HtmlMarkerDirective } from '../markers/html-marker.directive';
 
 @Directive({
   selector: '[azure-map]',
@@ -14,11 +15,14 @@ import { StyleControlDirective } from './style-control.directive';
     zoomControl: new ContentChild(ZoomControlDirective),
     pitchControl: new ContentChild(PitchControlDirective),
     compassControl: new ContentChild(CompassControlDirective),
-    styleControl: new ContentChild(StyleControlDirective)
+    styleControl: new ContentChild(StyleControlDirective),
+    htmlMarkers: new ContentChildren(HtmlMarkerDirective)
   }
 })
 export class AzureMapDirective
-  implements AfterViewInit, OnDestroy {
+  implements AfterViewInit, AfterContentChecked, OnDestroy {
+
+  private _map: Map;
 
   @Input() public autoResize: boolean;
   @Input() public bearing: number;
@@ -64,8 +68,10 @@ export class AzureMapDirective
   public compassControl: CompassControlDirective;
   public styleControl: StyleControlDirective;
 
+  public htmlMarkers: QueryList<HtmlMarkerDirective>;
+
   ngAfterViewInit(): void {
-    const map = new Map(this.elementRef.nativeElement, {
+    this._map = new Map(this.elementRef.nativeElement, {
       authOptions: this.azureMapsConfiguration.authOptions,
       autoResize: this.autoResize,
       bearing: this.bearing,
@@ -104,30 +110,40 @@ export class AzureMapDirective
       zoom: this.zoom
     });
 
-    map.events.add('error', e => {
+    this._map.events.add('error', e => {
       this.error.next(e);
     });
 
-    map.events.addOnce('ready', e => {
+    this._map.events.addOnce('ready', e => {
       this.ready.next(e);
 
       if (this.zoomControl) {
-        this.zoomControl.initialize(map);
+        this.zoomControl.initialize(this._map);
       }
 
       if (this.pitchControl) {
-        this.pitchControl.initialize(map);
+        this.pitchControl.initialize(this._map);
       }
 
       if (this.compassControl) {
-        this.compassControl.initialize(map);
+        this.compassControl.initialize(this._map);
       }
 
       if (this.styleControl) {
-        this.styleControl.initialize(map);
+        this.styleControl.initialize(this._map);
+      }
+
+      if (this.htmlMarkers) {
+        for (const htmlMarker of this.htmlMarkers) {
+          htmlMarker.addToMap(this._map);
+        }
       }
 
     });
+  }
+
+  ngAfterContentChecked() {
+
   }
 
   ngOnDestroy() {

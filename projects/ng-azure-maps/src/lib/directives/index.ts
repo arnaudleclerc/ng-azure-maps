@@ -1,5 +1,6 @@
-export { AzureMapDirective } from './azure-map.directive';
-export { ZoomControlDirective } from './zoom-control.directive';
-export { PitchControlDirective } from './pitch-control.directive';
-export { CompassControlDirective } from './compass-control.directive';
-export { StyleControlDirective } from './style-control.directive';
+export { AzureMapDirective } from './map/azure-map.directive';
+export { ZoomControlDirective } from './controls/zoom-control.directive';
+export { PitchControlDirective } from './controls/pitch-control.directive';
+export { CompassControlDirective } from './controls/compass-control.directive';
+export { StyleControlDirective } from './controls/style-control.directive';
+export { HtmlMarkerDirective } from './markers/html-marker.directive';

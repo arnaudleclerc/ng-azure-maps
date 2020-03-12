@@ -107,7 +107,8 @@
                   "replace": "projects/samples-ng-azure-maps/src/environments/environment.ts",
                   "with": "projects/samples-ng-azure-maps/src/environments/environment.local.ts"
                 }
-              ]
+              ],
+              "sourceMap": true
             }
           }
         },
