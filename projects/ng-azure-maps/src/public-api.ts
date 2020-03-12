@@ -3,5 +3,5 @@
  */
 
 export { AzureMapsConfiguration } from './lib/configuration';
-export { AzureMapDirective, ZoomControlDirective } from './lib/directives';
+export { AzureMapDirective, ZoomControlDirective, PitchControlDirective } from './lib/directives';
 export { AzureMapsModule } from './lib/modules';

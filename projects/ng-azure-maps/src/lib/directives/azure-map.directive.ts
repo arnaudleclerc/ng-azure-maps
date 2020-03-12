@@ -4,11 +4,13 @@ import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
 import { ZoomControlDirective } from './zoom-control.directive';
+import { PitchControlDirective } from './pitch-control.directive';
 
 @Directive({
   selector: '[azure-map]',
   queries: {
-    zoomControl: new ContentChild(ZoomControlDirective)
+    zoomControl: new ContentChild(ZoomControlDirective),
+    pitchControl: new ContentChild(PitchControlDirective)
   }
 })
 export class AzureMapDirective
@@ -54,6 +56,7 @@ export class AzureMapDirective
   @Output() public ready = new Subject<MapEvent>();
 
   public zoomControl: ZoomControlDirective;
+  public pitchControl: PitchControlDirective;
 
   ngAfterViewInit(): void {
     const map = new Map(this.elementRef.nativeElement, {
@@ -104,6 +107,10 @@ export class AzureMapDirective
 
       if (this.zoomControl) {
         this.zoomControl.initialize(map);
+      }
+
+      if (this.pitchControl) {
+        this.pitchControl.initialize(map);
       }
     });
   }

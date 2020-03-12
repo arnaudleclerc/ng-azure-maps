@@ -1,16 +1,16 @@
 import { Directive } from '@angular/core';
+import { ControlDirective } from './control.directive';
 import { Map } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
-import { ControlDirective } from './control.directive';
 
 @Directive({
-  selector: '[zoom-control]'
+  selector: '[pitch-control]'
 })
-export class ZoomControlDirective
+export class PitchControlDirective
   extends ControlDirective {
 
   public initialize(map: Map): void {
-    map.controls.add(new atlas.control.ZoomControl(), {
+    map.controls.add(new atlas.control.PitchControl(), {
       position: this.position
     });
   }
