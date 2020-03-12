@@ -1,27 +1,67 @@
-# NgAzureMaps
+# ng-azure-maps 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+This is a WIP of an Angular wrapper around the azure-maps-control package. It exposes some directives making it easy to integrate azure-maps on an Angular application.
 
-## Development server
+## Available directives
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- azure-map
+  - Displays an Azure map on the tag where the directive is applied
+- compass-control
+  - Adds a compass control on the map
+- pitch-control
+  - Adds a pitch control on the map
+- style-control
+  - Adds a style control on the map
+- zoom-control
+  - Adds a zoom control on the map
 
-## Code scaffolding
+## How to register the module
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+An `AzureMapsModule` can be imported from the `ng-azure-maps` namespace. This class exposes a `forRoot` method which can be called by your angular module and where the configuration of the library can be given.
 
-## Build
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+import { AppComponent } from './app.component';
+import { AzureMapsModule } from 'ng-azure-maps';
+import { environment } from '../environments/environment';
 
-## Running unit tests
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AzureMapsModule.forRoot({
+      authOptions: environment.authOptions
+    })
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+AAD and SubscriptionKey authentication are supported.
 
-## Running end-to-end tests
+## Use the directives
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The following examples displays 4 maps, each having a different control attached.
 
-## Further help
+```
+<div azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
+  <div zoom-control position='top-left'></div>
+</div>
+<div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' zoom="2" class="top-right">
+  <div pitch-control position="top-right"></div>
+</div>
+<div azure-map [center]="[0, 0]" mapStyle='grayscale_light' view='Auto' zoom="2" class="bottom-left">
+  <div compass-control position="bottom-left"></div>
+</div>
+<div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
+  <div style-control position="bottom-right"></div>
+</div>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![4 Maps sample](./assets/4mapssample.png)

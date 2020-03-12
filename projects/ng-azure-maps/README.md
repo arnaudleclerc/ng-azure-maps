@@ -1,24 +1,67 @@
-# NgAzureMaps
+# ng-azure-maps 
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
+This is a WIP of an Angular wrapper around the azure-maps-control package. It exposes some directives making it easy to integrate azure-maps on an Angular application.
 
-## Code scaffolding
+## Available directives
 
-Run `ng generate component component-name --project ng-azure-maps` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-azure-maps`.
-> Note: Don't forget to add `--project ng-azure-maps` or else it will be added to the default project in your `angular.json` file. 
+- azure-map
+  - Displays an Azure map on the tag where the directive is applied
+- compass-control
+  - Adds a compass control on the map
+- pitch-control
+  - Adds a pitch control on the map
+- style-control
+  - Adds a style control on the map
+- zoom-control
+  - Adds a zoom control on the map
 
-## Build
+## How to register the module
 
-Run `ng build ng-azure-maps` to build the project. The build artifacts will be stored in the `dist/` directory.
+An `AzureMapsModule` can be imported from the `ng-azure-maps` namespace. This class exposes a `forRoot` method which can be called by your angular module and where the configuration of the library can be given.
 
-## Publishing
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-After building your library with `ng build ng-azure-maps`, go to the dist folder `cd dist/ng-azure-maps` and run `npm publish`.
+import { AppComponent } from './app.component';
+import { AzureMapsModule } from 'ng-azure-maps';
+import { environment } from '../environments/environment';
 
-## Running unit tests
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AzureMapsModule.forRoot({
+      authOptions: environment.authOptions
+    })
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng test ng-azure-maps` to execute the unit tests via [Karma](https://karma-runner.github.io).
+AAD and SubscriptionKey authentication are supported.
 
-## Further help
+## Use the directives
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The following examples displays 4 maps, each having a different control attached.
+
+```
+<div azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
+  <div zoom-control position='top-left'></div>
+</div>
+<div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' zoom="2" class="top-right">
+  <div pitch-control position="top-right"></div>
+</div>
+<div azure-map [center]="[0, 0]" mapStyle='grayscale_light' view='Auto' zoom="2" class="bottom-left">
+  <div compass-control position="bottom-left"></div>
+</div>
+<div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
+  <div style-control position="bottom-right"></div>
+</div>
+```
+
+![4 Maps sample](./assets/4mapssample.png)
