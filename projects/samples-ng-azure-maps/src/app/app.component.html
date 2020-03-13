@@ -1,4 +1,4 @@
-<azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
+<!-- <azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
   <zoom-control position='top-left'></zoom-control>
   <html-marker *ngIf="markerPosition" [position]="markerPosition"></html-marker>
 </azure-map>
@@ -10,7 +10,8 @@
   <compass-control position="bottom-left"></compass-control>
   <html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true">
   </html-marker>
-</div>
+</div> -->
 <div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
   <style-control position="bottom-right"></style-control>
+  <drawing-toolbar position="top-right" style="dark"></drawing-toolbar>
 </div>

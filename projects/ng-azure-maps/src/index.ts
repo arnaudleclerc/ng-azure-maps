@@ -9,6 +9,7 @@ export {
   PitchControlDirective,
   CompassControlDirective,
   StyleControlDirective,
-  HtmlMarkerDirective
+  HtmlMarkerDirective,
+  DrawingToolbarDirective
 } from './lib/directives';
 export { AzureMapsModule } from './lib/modules';

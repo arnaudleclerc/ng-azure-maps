@@ -1,6 +1,6 @@
 {
   "name": "ng-azure-maps",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -21,12 +21,14 @@
   "peerDependencies": {
     "@angular/common": "^9.0.5",
     "@angular/core": "^9.0.5",
-    "azure-maps-control": "^2.0.23"
+    "azure-maps-control": "^2.0.23",
+    "azure-maps-drawing-tools": "^0.1.4"
   },
   "devDependencies": {
-    "tslib": "^1.10.0",
     "@angular/common": "^9.0.5",
     "@angular/core": "^9.0.5",
-    "azure-maps-control": "^2.0.23"
+    "azure-maps-control": "^2.0.23",
+    "azure-maps-drawing-tools": "^0.1.4",
+    "tslib": "^1.10.0"
   }
 }

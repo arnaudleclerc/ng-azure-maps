@@ -8,6 +8,7 @@ import { PitchControlDirective } from '../controls/pitch-control.directive';
 import { CompassControlDirective } from '../controls/compass-control.directive';
 import { StyleControlDirective } from '../controls/style-control.directive';
 import { HtmlMarkerDirective } from '../markers/html-marker.directive';
+import { DrawingToolbarDirective } from '../drawing/drawing-toolbar.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -16,7 +17,8 @@ import { HtmlMarkerDirective } from '../markers/html-marker.directive';
     pitchControl: new ContentChild(PitchControlDirective),
     compassControl: new ContentChild(CompassControlDirective),
     styleControl: new ContentChild(StyleControlDirective),
-    htmlMarkers: new ContentChildren(HtmlMarkerDirective)
+    htmlMarkers: new ContentChildren(HtmlMarkerDirective),
+    drawingToolbar: new ContentChild(DrawingToolbarDirective)
   }
 })
 export class AzureMapDirective
@@ -69,6 +71,8 @@ export class AzureMapDirective
   public styleControl: StyleControlDirective;
 
   public htmlMarkers: QueryList<HtmlMarkerDirective>;
+
+  public drawingToolbar: DrawingToolbarDirective;
 
   ngAfterViewInit(): void {
     this._map = new Map(this.elementRef.nativeElement, {
@@ -131,6 +135,10 @@ export class AzureMapDirective
 
       if (this.styleControl) {
         this.styleControl.initialize(this._map);
+      }
+
+      if (this.drawingToolbar) {
+        this.drawingToolbar.initialize(this._map);
       }
     });
   }

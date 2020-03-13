@@ -6,7 +6,8 @@ import {
   PitchControlDirective,
   CompassControlDirective,
   StyleControlDirective,
-  HtmlMarkerDirective
+  HtmlMarkerDirective,
+  DrawingToolbarDirective
 } from '../directives';
 
 @NgModule({
@@ -16,7 +17,8 @@ import {
     PitchControlDirective,
     CompassControlDirective,
     StyleControlDirective,
-    HtmlMarkerDirective
+    HtmlMarkerDirective,
+    DrawingToolbarDirective
   ],
   exports: [
     AzureMapDirective,
@@ -24,7 +26,8 @@ import {
     PitchControlDirective,
     CompassControlDirective,
     StyleControlDirective,
-    HtmlMarkerDirective
+    HtmlMarkerDirective,
+    DrawingToolbarDirective
   ]
 })
 export class AzureMapsModule {
