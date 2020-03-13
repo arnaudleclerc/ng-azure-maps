@@ -15,9 +15,9 @@ An `AzureMapsModule` can be imported from the `ng-azure-maps` namespace. This cl
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from 'https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/app.component';
+import { AppComponent } from './app.component';
 import { AzureMapsModule } from 'ng-azure-maps';
-import { environment } from '.https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/environments/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -95,7 +95,7 @@ import { Component, OnInit } from '@angular/core';
     '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
     '</html-marker>' +
     '</azure-map>',
-  styleUrls: ['https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/app.component.scss']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent
   implements OnInit {
@@ -156,7 +156,7 @@ import * as atlas from 'azure-maps-control';
   '<symbol-layer dataSourceId="blue"></symbol-layer>' +
   '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
   '</azure-map>`,
-  styleUrls: ['https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/app.component.scss']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent
   implements OnInit {
