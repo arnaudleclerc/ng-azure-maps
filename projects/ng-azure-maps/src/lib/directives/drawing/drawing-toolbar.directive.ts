@@ -24,7 +24,7 @@ export class DrawingToolbarDirective
   @Input() public containerId: string;
   @Input() public numColumns: number;
   @Input() public position: string;
-  @Input() public style: string;
+  @Input() public toolbarStyle: string;
   @Input() public visible: boolean;
 
   @Output() public drawingChanged = new Subject<Shape>();
@@ -40,7 +40,7 @@ export class DrawingToolbarDirective
         containerId: this.containerId,
         numColumns: this.numColumns,
         position: this.position,
-        style: this.style,
+        style: this.toolbarStyle,
         visible: this.visible
       });
     }
@@ -67,7 +67,7 @@ export class DrawingToolbarDirective
       containerId: this.containerId,
       numColumns: this.numColumns,
       position: this.position,
-      style: this.style,
+      style: this.toolbarStyle,
       visible: this.visible
     });
     this._drawingManager = new atlasdrawing.drawing.DrawingManager(map, {

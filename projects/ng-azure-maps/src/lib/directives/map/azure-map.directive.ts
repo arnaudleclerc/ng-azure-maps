@@ -1,5 +1,5 @@
 import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList, AfterContentChecked, ContentChildren, OnChanges, SimpleChanges } from '@angular/core';
-import { Map, LightOptions, MapEvent, MapErrorEvent } from 'azure-maps-control';
+import { Map, LightOptions, MapEvent, MapErrorEvent, CameraOptions, CameraBoundsOptions, AnimationOptions } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
@@ -29,11 +29,13 @@ export class AzureMapDirective
   @Input() public autoResize: boolean;
   @Input() public bearing: number;
   @Input() public bounds: [number, number, number, number];
-  @Input() public boxZoomInteraction: boolean
+  @Input() public boxZoomInteraction: boolean;
+  @Input() public cameraType: "jump" | "ease" | "fly";
   @Input() public center: [number, number];
   @Input() public centerOffset: [number, number];
   @Input() public dblClickZoomInteraction: boolean;
   @Input() public disableTelemetry: boolean;
+  @Input() public duration: number;
   @Input() public domain: string;
   @Input() public dragPanInteraction: boolean;
   @Input() public dragRotateInteraction: boolean;
@@ -46,7 +48,7 @@ export class AzureMapDirective
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
   @Input() public offset: [number, number];
-  @Input() public padding: { top: number, bottom: number, left: number, right: number };
+  @Input() public padding: { top: 0, bottom: 0, left: 0, right: 0 };
   @Input() public preserveDrawingBuffer: boolean;
   @Input() public pitch: number;
   @Input() public refreshExpiredTiles: boolean;
@@ -75,43 +77,12 @@ export class AzureMapDirective
   public drawingToolbar: DrawingToolbarDirective;
 
   ngAfterViewInit(): void {
-    this._map = new Map(this.elementRef.nativeElement, {
+    this._map = new Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
       authOptions: this.azureMapsConfiguration.authOptions,
-      autoResize: this.autoResize,
-      bearing: this.bearing,
-      bounds: this.bounds,
-      boxZoomInteraction: this.boxZoomInteraction,
-      center: this.center,
-      centerOffset: this.centerOffset,
-      dblClickZoomInteraction: this.dblClickZoomInteraction,
       disableTelemetry: this.disableTelemetry,
       domain: this.domain,
-      dragPanInteraction: this.dragPanInteraction,
-      dragRotateInteraction: this.dragRotateInteraction,
       enableAccessibility: this.enableAccessibility,
-      interactive: this.interactive,
-      keyboardInteraction: this.keyboardInteraction,
-      language: this.language,
-      light: this.light,
-      maxBounds: this.maxBounds,
-      maxZoom: this.maxZoom,
-      minZoom: this.minZoom,
-      offset: this.offset,
-      padding: this.padding,
-      pitch: this.pitch,
-      preserveDrawingBuffer: this.preserveDrawingBuffer,
-      refreshExpiredTiles: this.refreshExpiredTiles,
-      renderWorldCopies: this.renderWorldCopies,
-      scrollZoomInteraction: this.scrollZoomInteraction,
-      showBuildingModels: this.showBuildingModels,
-      showFeedbackLink: this.showFeedbackLink,
-      showLogo: this.showLogo,
-      showTileBoundaries: this.showTilesBoundary,
-      touchInteraction: this.touchInteraction,
-      view: this.view,
-      wheelZoomRate: this.wheelZoomRate,
-      style: this.mapStyle,
-      zoom: this.zoom
+      refreshExpiredTiles: this.refreshExpiredTiles
     });
 
     this._map.events.add('error', e => {
@@ -119,6 +90,55 @@ export class AzureMapDirective
     });
 
     this._map.events.addOnce('ready', e => {
+
+      const cameraOptions: (CameraOptions | CameraBoundsOptions) & AnimationOptions = {
+        bearing: this.bearing,
+        centerOffset: this.centerOffset,
+        duration: this.duration,
+        maxZoom: this.maxZoom,
+        minZoom: this.minZoom,
+        pitch: this.pitch,
+        type: this.cameraType
+      };
+
+      if (this.bounds) {
+        cameraOptions.bounds = this.bounds;
+        cameraOptions.maxBounds = this.maxBounds;
+        cameraOptions.offset = this.offset;
+        cameraOptions.padding = this.padding;
+      } else {
+        cameraOptions.center = this.center;
+        cameraOptions.zoom = this.zoom;
+      }
+
+      this._map.setCamera(cameraOptions);
+
+      this._map.setStyle({
+        autoResize: this.autoResize,
+        language: this.language,
+        light: this.light,
+        preserveDrawingBuffer: this.preserveDrawingBuffer,
+        renderWorldCopies: this.renderWorldCopies,
+        showBuildingModels: this.showBuildingModels,
+        showFeedbackLink: this.showFeedbackLink,
+        showLogo: this.showLogo,
+        showTileBoundaries: this.showTilesBoundary,
+        style: this.mapStyle,
+        view: this.view
+      });
+
+      this._map.setUserInteraction({
+        boxZoomInteraction: this.boxZoomInteraction,
+        dblClickZoomInteraction: this.dblClickZoomInteraction,
+        dragPanInteraction: this.dragPanInteraction,
+        dragRotateInteraction: this.dragRotateInteraction,
+        interactive: this.interactive,
+        keyboardInteraction: this.keyboardInteraction,
+        scrollZoomInteraction: this.scrollZoomInteraction,
+        touchInteraction: this.touchInteraction,
+        wheelZoomRate: this.wheelZoomRate
+      });
+
       this.ready.next(e);
 
       if (this.zoomControl) {

@@ -5,22 +5,9 @@
 
 This is a WIP of an Angular wrapper around the azure-maps-control package. It exposes some directives making it easy to integrate azure-maps on an Angular application.
 
-## Available directives
+![4 Maps sample](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/4mapssample.png)
 
-- azure-map
-  - Displays an Azure map on the tag where the directive is applied
-- compass-control
-  - Adds a compass control on the map
-- pitch-control
-  - Adds a pitch control on the map
-- style-control
-  - Adds a style control on the map
-- zoom-control
-  - Adds a zoom control on the map
-- html-marker
-  - Adds a HTML Marker on the map
-
-## How to register the module
+## Register the module
 
 An `AzureMapsModule` can be imported from the `ng-azure-maps` namespace. This class exposes a `forRoot` method which can be called by your angular module and where the configuration of the library can be given.
 
@@ -50,25 +37,97 @@ export class AppModule { }
 
 AAD and SubscriptionKey authentication are supported.
 
-## Use the directives
+## How to
 
-The following examples displays 4 maps, each having a different control attached.
+Please note that all the directives can be used either as html tag or applied to an html element as an attribute tag. For example, the map can be displayed using `<azure-map></azure-map>` or `<div azure-map></div>`.
+
+## Display a map
+
+Use the `azure-map` directive to display a map.
 
 ```
-<azure-map [center]="[0, 0]" mapStyle='grayscale_dark' view='Auto' zoom="2" class="top-left">
+<azure-map></azure-map>
+```
+
+![Azure Map](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/azure-map/azure-map.png) 
+
+You can specific different inputs on the `azure-map` directive to customize your display. Please refer to the [Azure Maps Web SDK Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-create) for more information.
+
+```
+<azure-map [center]="[11.47, 48.18]" mapStyle='grayscale_dark'></azure-map>
+```
+
+NB: To avoid conflict with the `style` html tag, the style to apply to the map can be found under `mapStyle` instead. The same applied to the `type` of camera which has been renamed to `cameraType`.
+
+```
+<azure-map [center]="[11.47, 48.18]" mapStyle='grayscale_dark' [zoom]="10"></azure-map>
+```
+
+![Custom Azure Map](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/azure-map/azure-map-custom.png) 
+
+For now, only the `ready` and `error` events are available as Output of the `azure-map` directive.
+
+## Add controls
+
+Compass, pitch, style and zoom controls have their own directive, each of them accepting a position binding.
+
+```
+<azure-map>
   <zoom-control position='top-left'></zoom-control>
-  <html-marker *ngIf="markerPosition" [position]="markerPosition"></html-marker>
-</azure-map>
-<div azure-map [center]="[0, 0]" mapStyle='road' view='Auto' [zoom]="2" class="top-right">
   <pitch-control position="top-right"></pitch-control>
-  <html-marker [position]="[11.47, 48.18]"></html-marker>
-</div>
-<div azure-map [center]="[0, 0]" mapStyle='grayscale_light' view='Auto' zoom="2" class="bottom-left">
   <compass-control position="bottom-left"></compass-control>
-</div>
-<div azure-map [center]="[0, 0]" mapStyle='road_shaded_relief' view='Auto' zoom="2" class="bottom-right">
   <style-control position="bottom-right"></style-control>
-</div>
+</azure-map>
 ```
 
-![4 Maps sample](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/4mapssample.png)
+![Controls](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/controls/controls.png) 
+
+## HtmlMarkers
+
+You can add HTML Markers to the map using the `html-marker` directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-custom-html) concerning the available options. The map and the HTML Markers listen to the changes on the provided markers and will update them accordingly.
+
+```
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map>' +
+    '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
+    '</html-marker>' +
+    '</azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent
+  implements OnInit {
+
+  public markerPositions: [number, number][] = [];
+
+  ngOnInit(): void {
+    for (let i = 0; i < 10; i++) {
+      this.markerPositions.push([i * 5, i * 5]);
+    }
+
+  }
+}
+```
+
+![HTML Markers](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/markers/html-markers.png) 
+
+## Drawing toolbar
+
+The drawing toolbar can be added using the `drawing-toolbar` directive. 
+
+The `drawingChanged`, `drawingChanging`, `drawingComplete`, `drawingModeChanged` and `drawingStarted` events are available as Output of the directive.
+
+```
+<azure-map>
+  <drawing-toolbar position="top-right" toolbarStyle="dark"></drawing-toolbar>
+</azure-map>
+```
+
+NB: To avoid conflict with the `style` html tag, the style to apply to the toolbar can be found under `toolbarStyle` instead.
+
+Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-drawing-toolbar) for customization and events.
+
+![HTML Markers](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/drawing-toolbar/drawing-toolbar.png) 
+
