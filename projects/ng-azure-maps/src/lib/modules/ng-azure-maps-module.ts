@@ -7,7 +7,8 @@ import {
   CompassControlDirective,
   StyleControlDirective,
   HtmlMarkerDirective,
-  DrawingToolbarDirective
+  DrawingToolbarDirective,
+  SymbolLayerDirective
 } from '../directives';
 
 @NgModule({
@@ -18,7 +19,8 @@ import {
     CompassControlDirective,
     StyleControlDirective,
     HtmlMarkerDirective,
-    DrawingToolbarDirective
+    DrawingToolbarDirective,
+    SymbolLayerDirective
   ],
   exports: [
     AzureMapDirective,
@@ -27,7 +29,8 @@ import {
     CompassControlDirective,
     StyleControlDirective,
     HtmlMarkerDirective,
-    DrawingToolbarDirective
+    DrawingToolbarDirective,
+    SymbolLayerDirective
   ]
 })
 export class AzureMapsModule {

@@ -10,6 +10,7 @@ export {
   CompassControlDirective,
   StyleControlDirective,
   HtmlMarkerDirective,
-  DrawingToolbarDirective
+  DrawingToolbarDirective,
+  SymbolLayerDirective
 } from './lib/directives';
 export { AzureMapsModule } from './lib/modules';

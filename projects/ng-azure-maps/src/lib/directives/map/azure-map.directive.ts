@@ -1,4 +1,4 @@
-import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, Query, QueryList, AfterContentChecked, ContentChildren, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, QueryList, AfterContentChecked, ContentChildren, OnChanges, SimpleChanges } from '@angular/core';
 import { Map, LightOptions, MapEvent, MapErrorEvent, CameraOptions, CameraBoundsOptions, AnimationOptions } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
@@ -9,6 +9,7 @@ import { CompassControlDirective } from '../controls/compass-control.directive';
 import { StyleControlDirective } from '../controls/style-control.directive';
 import { HtmlMarkerDirective } from '../markers/html-marker.directive';
 import { DrawingToolbarDirective } from '../drawing/drawing-toolbar.directive';
+import { SymbolLayerDirective } from '../layers/symbol-layer.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -18,11 +19,12 @@ import { DrawingToolbarDirective } from '../drawing/drawing-toolbar.directive';
     compassControl: new ContentChild(CompassControlDirective),
     styleControl: new ContentChild(StyleControlDirective),
     htmlMarkers: new ContentChildren(HtmlMarkerDirective),
-    drawingToolbar: new ContentChild(DrawingToolbarDirective)
+    drawingToolbar: new ContentChild(DrawingToolbarDirective),
+    symbolLayers: new ContentChildren(SymbolLayerDirective)
   }
 })
 export class AzureMapDirective
-  implements AfterViewInit, OnDestroy, AfterContentChecked {
+  implements AfterViewInit, OnDestroy, AfterContentChecked, OnChanges {
 
   private _map: Map;
 
@@ -64,6 +66,8 @@ export class AzureMapDirective
   @Input() public wheelZoomRate: number;
   @Input() public zoom: number;
 
+  @Input() public dataSources: atlas.source.DataSource[];
+
   @Output() public error = new Subject<MapErrorEvent>();
   @Output() public ready = new Subject<MapEvent>();
 
@@ -76,8 +80,10 @@ export class AzureMapDirective
 
   public drawingToolbar: DrawingToolbarDirective;
 
+  public symbolLayers: QueryList<SymbolLayerDirective>;
+
   ngAfterViewInit(): void {
-    this._map = new Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
+    const map = new Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
       authOptions: this.azureMapsConfiguration.authOptions,
       disableTelemetry: this.disableTelemetry,
       domain: this.domain,
@@ -85,59 +91,15 @@ export class AzureMapDirective
       refreshExpiredTiles: this.refreshExpiredTiles
     });
 
-    this._map.events.add('error', e => {
+    map.events.add('error', e => {
       this.error.next(e);
     });
 
-    this._map.events.addOnce('ready', e => {
+    map.events.addOnce('ready', e => {
 
-      const cameraOptions: (CameraOptions | CameraBoundsOptions) & AnimationOptions = {
-        bearing: this.bearing,
-        centerOffset: this.centerOffset,
-        duration: this.duration,
-        maxZoom: this.maxZoom,
-        minZoom: this.minZoom,
-        pitch: this.pitch,
-        type: this.cameraType
-      };
+      this._map = map;
 
-      if (this.bounds) {
-        cameraOptions.bounds = this.bounds;
-        cameraOptions.maxBounds = this.maxBounds;
-        cameraOptions.offset = this.offset;
-        cameraOptions.padding = this.padding;
-      } else {
-        cameraOptions.center = this.center;
-        cameraOptions.zoom = this.zoom;
-      }
-
-      this._map.setCamera(cameraOptions);
-
-      this._map.setStyle({
-        autoResize: this.autoResize,
-        language: this.language,
-        light: this.light,
-        preserveDrawingBuffer: this.preserveDrawingBuffer,
-        renderWorldCopies: this.renderWorldCopies,
-        showBuildingModels: this.showBuildingModels,
-        showFeedbackLink: this.showFeedbackLink,
-        showLogo: this.showLogo,
-        showTileBoundaries: this.showTilesBoundary,
-        style: this.mapStyle,
-        view: this.view
-      });
-
-      this._map.setUserInteraction({
-        boxZoomInteraction: this.boxZoomInteraction,
-        dblClickZoomInteraction: this.dblClickZoomInteraction,
-        dragPanInteraction: this.dragPanInteraction,
-        dragRotateInteraction: this.dragRotateInteraction,
-        interactive: this.interactive,
-        keyboardInteraction: this.keyboardInteraction,
-        scrollZoomInteraction: this.scrollZoomInteraction,
-        touchInteraction: this.touchInteraction,
-        wheelZoomRate: this.wheelZoomRate
-      });
+      this.setOptions();
 
       this.ready.next(e);
 
@@ -160,6 +122,8 @@ export class AzureMapDirective
       if (this.drawingToolbar) {
         this.drawingToolbar.initialize(this._map);
       }
+
+      this.updateDataSources();
     });
   }
 
@@ -169,6 +133,22 @@ export class AzureMapDirective
         for (const marker of this.htmlMarkers.filter(m => !m.hasMap)) {
           marker.addToMap(this._map);
         }
+      }
+
+      if (this.symbolLayers) {
+        for (const layer of this.symbolLayers.filter(l => !l.hasLayer)) {
+          layer.initialize(this._map, this.dataSources.find(d => d.getId() === layer.dataSourceId));
+        }
+      }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this._map) {
+      this.setOptions();
+
+      if (changes['dataSources']) {
+        this.updateDataSources();
       }
     }
   }
@@ -181,6 +161,69 @@ export class AzureMapDirective
   constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,
     private readonly elementRef: ElementRef) {
 
+  }
+
+  private updateDataSources(): void {
+    const mapSources = this._map.sources.getSources().filter(s => s.getId() !== "vectorTiles");
+    if ((!this.dataSources || this.dataSources.length === 0) && (mapSources && mapSources.length > 0)) {
+      this._map.sources.clear();
+    } else if (this.dataSources) {
+      const dataSourcesToAdd = this.dataSources.filter(ds => !this._map.sources.getById(ds.getId()));
+      const dataSourcesToRemove = mapSources.filter(ds => !this.dataSources.find(s => s.getId() === ds.getId()));
+
+      this._map.sources.add(dataSourcesToAdd);
+      this._map.sources.remove(dataSourcesToRemove);
+    }
+  }
+
+  private setOptions(): void {
+    const cameraOptions: (CameraOptions | CameraBoundsOptions) & AnimationOptions = {
+      bearing: this.bearing,
+      centerOffset: this.centerOffset,
+      duration: this.duration,
+      maxZoom: this.maxZoom,
+      minZoom: this.minZoom,
+      pitch: this.pitch,
+      type: this.cameraType
+    };
+
+    if (this.bounds) {
+      cameraOptions.bounds = this.bounds;
+      cameraOptions.maxBounds = this.maxBounds;
+      cameraOptions.offset = this.offset;
+      cameraOptions.padding = this.padding;
+    } else {
+      cameraOptions.center = this.center;
+      cameraOptions.zoom = this.zoom;
+    }
+
+    this._map.setCamera(cameraOptions);
+
+    this._map.setStyle({
+      autoResize: this.autoResize,
+      language: this.language,
+      light: this.light,
+      preserveDrawingBuffer: this.preserveDrawingBuffer,
+      renderWorldCopies: this.renderWorldCopies,
+      showBuildingModels: this.showBuildingModels,
+      showFeedbackLink: this.showFeedbackLink,
+      showLogo: this.showLogo,
+      showTileBoundaries: this.showTilesBoundary,
+      style: this.mapStyle,
+      view: this.view
+    });
+
+    this._map.setUserInteraction({
+      boxZoomInteraction: this.boxZoomInteraction,
+      dblClickZoomInteraction: this.dblClickZoomInteraction,
+      dragPanInteraction: this.dragPanInteraction,
+      dragRotateInteraction: this.dragRotateInteraction,
+      interactive: this.interactive,
+      keyboardInteraction: this.keyboardInteraction,
+      scrollZoomInteraction: this.scrollZoomInteraction,
+      touchInteraction: this.touchInteraction,
+      wheelZoomRate: this.wheelZoomRate
+    });
   }
 
 }
