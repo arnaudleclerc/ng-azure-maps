@@ -87,26 +87,24 @@ Compass, pitch, style and zoom controls have their own directive, each of them a
 You can add HTML Markers to the map using the `html-marker` directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-custom-html) concerning the available options. The map and the HTML Markers listen to the changes on the provided markers and will update them accordingly.
 
 ```
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map>' +
+  template: '<azure-map (ready)="mapReady()">' +
     '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
     '</html-marker>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent
-  implements OnInit {
+export class AppComponent {
 
   public markerPositions: [number, number][] = [];
 
-  ngOnInit(): void {
+  mapReady() {
     for (let i = 0; i < 10; i++) {
       this.markerPositions.push([i * 5, i * 5]);
     }
-
   }
 }
 ```
@@ -146,20 +144,18 @@ A symbol layer can be added using the `symbol-layer` directive. The id of the da
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-pin).
 
 ```
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: `
-  <azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]">' +
-  '<symbol-layer dataSourceId="blue"></symbol-layer>' +
-  '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
-  '</azure-map>`,
+  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (ready)="mapReady()">' +
+    '<symbol-layer dataSourceId="blue"></symbol-layer>' +
+    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
+    '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent
-  implements OnInit {
+export class AppComponent {
 
   public dataSource: atlas.source.DataSource;
   public dataSourceRed: atlas.source.DataSource;
@@ -168,10 +164,9 @@ export class AppComponent
     image: 'pin-red'
   };
 
-  public ngOnInit(): void {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('blue');
     this.dataSourceRed = new atlas.source.DataSource('red');
-
     for (let i = 0; i < 10; i++) {
       const point = new atlas.Shape(new atlas.data.Point([i * 5, i * 5]));
       this.dataSource.add([point]);

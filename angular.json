@@ -43,32 +43,32 @@
         }
       }
     },
-    "samples-ng-azure-maps": {
+    "sample-simple-map": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/samples-ng-azure-maps",
-      "sourceRoot": "projects/samples-ng-azure-maps/src",
+      "root": "projects/sample-simple-map",
+      "sourceRoot": "projects/sample-simple-map/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/samples-ng-azure-maps",
-            "index": "projects/samples-ng-azure-maps/src/index.html",
-            "main": "projects/samples-ng-azure-maps/src/main.ts",
-            "polyfills": "projects/samples-ng-azure-maps/src/polyfills.ts",
-            "tsConfig": "projects/samples-ng-azure-maps/tsconfig.app.json",
+            "outputPath": "dist/sample-simple-map",
+            "index": "projects/sample-simple-map/src/index.html",
+            "main": "projects/sample-simple-map/src/main.ts",
+            "polyfills": "projects/sample-simple-map/src/polyfills.ts",
+            "tsConfig": "projects/sample-simple-map/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/samples-ng-azure-maps/src/favicon.ico",
-              "projects/samples-ng-azure-maps/src/assets"
+              "projects/sample-simple-map/src/favicon.ico",
+              "projects/sample-simple-map/src/assets"
             ],
             "styles": [
-              "projects/samples-ng-azure-maps/src/styles.scss"
+              "projects/sample-simple-map/src/styles.scss"
             ],
             "scripts": []
           },
@@ -76,8 +76,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/samples-ng-azure-maps/src/environments/environment.ts",
-                  "with": "projects/samples-ng-azure-maps/src/environments/environment.prod.ts"
+                  "replace": "projects/sample-simple-map/src/environments/environment.ts",
+                  "with": "projects/sample-simple-map/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -104,8 +104,8 @@
             "local": {
               "fileReplacements": [
                 {
-                  "replace": "projects/samples-ng-azure-maps/src/environments/environment.ts",
-                  "with": "projects/samples-ng-azure-maps/src/environments/environment.local.ts"
+                  "replace": "projects/sample-simple-map/src/environments/environment.ts",
+                  "with": "projects/sample-simple-map/src/environments/environment.local.ts"
                 }
               ],
               "sourceMap": true
@@ -115,36 +115,36 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "samples-ng-azure-maps:build"
+            "browserTarget": "sample-simple-map:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "samples-ng-azure-maps:build:production"
+              "browserTarget": "sample-simple-map:build:production"
             },
             "local": {
-              "browserTarget": "samples-ng-azure-maps:build:local"
+              "browserTarget": "sample-simple-map:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "samples-ng-azure-maps:build"
+            "browserTarget": "sample-simple-map:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/samples-ng-azure-maps/src/test.ts",
-            "polyfills": "projects/samples-ng-azure-maps/src/polyfills.ts",
-            "tsConfig": "projects/samples-ng-azure-maps/tsconfig.spec.json",
-            "karmaConfig": "projects/samples-ng-azure-maps/karma.conf.js",
+            "main": "projects/sample-simple-map/src/test.ts",
+            "polyfills": "projects/sample-simple-map/src/polyfills.ts",
+            "tsConfig": "projects/sample-simple-map/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-simple-map/karma.conf.js",
             "assets": [
-              "projects/samples-ng-azure-maps/src/favicon.ico",
-              "projects/samples-ng-azure-maps/src/assets"
+              "projects/sample-simple-map/src/favicon.ico",
+              "projects/sample-simple-map/src/assets"
             ],
             "styles": [
-              "projects/samples-ng-azure-maps/src/styles.scss"
+              "projects/sample-simple-map/src/styles.scss"
             ],
             "scripts": []
           }
@@ -153,9 +153,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/samples-ng-azure-maps/tsconfig.app.json",
-              "projects/samples-ng-azure-maps/tsconfig.spec.json",
-              "projects/samples-ng-azure-maps/e2e/tsconfig.json"
+              "projects/sample-simple-map/tsconfig.app.json",
+              "projects/sample-simple-map/tsconfig.spec.json",
+              "projects/sample-simple-map/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -165,12 +165,544 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/samples-ng-azure-maps/e2e/protractor.conf.js",
-            "devServerTarget": "samples-ng-azure-maps:serve"
+            "protractorConfig": "projects/sample-simple-map/e2e/protractor.conf.js",
+            "devServerTarget": "sample-simple-map:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "samples-ng-azure-maps:serve:production"
+              "devServerTarget": "sample-simple-map:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "sample-map-with-controls": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-map-with-controls",
+      "sourceRoot": "projects/sample-map-with-controls/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-map-with-controls",
+            "index": "projects/sample-map-with-controls/src/index.html",
+            "main": "projects/sample-map-with-controls/src/main.ts",
+            "polyfills": "projects/sample-map-with-controls/src/polyfills.ts",
+            "tsConfig": "projects/sample-map-with-controls/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-map-with-controls/src/favicon.ico",
+              "projects/sample-map-with-controls/src/assets"
+            ],
+            "styles": [
+              "projects/sample-map-with-controls/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-map-with-controls/src/environments/environment.ts",
+                  "with": "projects/sample-map-with-controls/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-map-with-controls/src/environments/environment.ts",
+                  "with": "projects/sample-map-with-controls/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-map-with-controls:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-map-with-controls:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-map-with-controls:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-map-with-controls:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-map-with-controls/src/test.ts",
+            "polyfills": "projects/sample-map-with-controls/src/polyfills.ts",
+            "tsConfig": "projects/sample-map-with-controls/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-map-with-controls/karma.conf.js",
+            "assets": [
+              "projects/sample-map-with-controls/src/favicon.ico",
+              "projects/sample-map-with-controls/src/assets"
+            ],
+            "styles": [
+              "projects/sample-map-with-controls/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-map-with-controls/tsconfig.app.json",
+              "projects/sample-map-with-controls/tsconfig.spec.json",
+              "projects/sample-map-with-controls/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-map-with-controls/e2e/protractor.conf.js",
+            "devServerTarget": "sample-map-with-controls:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-map-with-controls:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "sample-html-markers": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-html-markers",
+      "sourceRoot": "projects/sample-html-markers/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-html-markers",
+            "index": "projects/sample-html-markers/src/index.html",
+            "main": "projects/sample-html-markers/src/main.ts",
+            "polyfills": "projects/sample-html-markers/src/polyfills.ts",
+            "tsConfig": "projects/sample-html-markers/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-html-markers/src/favicon.ico",
+              "projects/sample-html-markers/src/assets"
+            ],
+            "styles": [
+              "projects/sample-html-markers/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-html-markers/src/environments/environment.ts",
+                  "with": "projects/sample-html-markers/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-html-markers/src/environments/environment.ts",
+                  "with": "projects/sample-html-markers/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-html-markers:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-html-markers:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-html-markers:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-html-markers:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-html-markers/src/test.ts",
+            "polyfills": "projects/sample-html-markers/src/polyfills.ts",
+            "tsConfig": "projects/sample-html-markers/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-html-markers/karma.conf.js",
+            "assets": [
+              "projects/sample-html-markers/src/favicon.ico",
+              "projects/sample-html-markers/src/assets"
+            ],
+            "styles": [
+              "projects/sample-html-markers/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-html-markers/tsconfig.app.json",
+              "projects/sample-html-markers/tsconfig.spec.json",
+              "projects/sample-html-markers/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-html-markers/e2e/protractor.conf.js",
+            "devServerTarget": "sample-html-markers:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-html-markers:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "sample-drawing-toolbar": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-drawing-toolbar",
+      "sourceRoot": "projects/sample-drawing-toolbar/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-drawing-toolbar",
+            "index": "projects/sample-drawing-toolbar/src/index.html",
+            "main": "projects/sample-drawing-toolbar/src/main.ts",
+            "polyfills": "projects/sample-drawing-toolbar/src/polyfills.ts",
+            "tsConfig": "projects/sample-drawing-toolbar/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-drawing-toolbar/src/favicon.ico",
+              "projects/sample-drawing-toolbar/src/assets"
+            ],
+            "styles": [
+              "projects/sample-drawing-toolbar/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-drawing-toolbar/src/environments/environment.ts",
+                  "with": "projects/sample-drawing-toolbar/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-drawing-toolbar/src/environments/environment.ts",
+                  "with": "projects/sample-drawing-toolbar/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-drawing-toolbar:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-drawing-toolbar:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-drawing-toolbar:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-drawing-toolbar:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-drawing-toolbar/src/test.ts",
+            "polyfills": "projects/sample-drawing-toolbar/src/polyfills.ts",
+            "tsConfig": "projects/sample-drawing-toolbar/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-drawing-toolbar/karma.conf.js",
+            "assets": [
+              "projects/sample-drawing-toolbar/src/favicon.ico",
+              "projects/sample-drawing-toolbar/src/assets"
+            ],
+            "styles": [
+              "projects/sample-drawing-toolbar/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-drawing-toolbar/tsconfig.app.json",
+              "projects/sample-drawing-toolbar/tsconfig.spec.json",
+              "projects/sample-drawing-toolbar/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-drawing-toolbar/e2e/protractor.conf.js",
+            "devServerTarget": "sample-drawing-toolbar:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-drawing-toolbar:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "sample-symbol-layer": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-symbol-layer",
+      "sourceRoot": "projects/sample-symbol-layer/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-symbol-layer",
+            "index": "projects/sample-symbol-layer/src/index.html",
+            "main": "projects/sample-symbol-layer/src/main.ts",
+            "polyfills": "projects/sample-symbol-layer/src/polyfills.ts",
+            "tsConfig": "projects/sample-symbol-layer/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-symbol-layer/src/favicon.ico",
+              "projects/sample-symbol-layer/src/assets"
+            ],
+            "styles": [
+              "projects/sample-symbol-layer/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-symbol-layer/src/environments/environment.ts",
+                  "with": "projects/sample-symbol-layer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-symbol-layer/src/environments/environment.ts",
+                  "with": "projects/sample-symbol-layer/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-symbol-layer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-symbol-layer:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-symbol-layer:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-symbol-layer:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-symbol-layer/src/test.ts",
+            "polyfills": "projects/sample-symbol-layer/src/polyfills.ts",
+            "tsConfig": "projects/sample-symbol-layer/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-symbol-layer/karma.conf.js",
+            "assets": [
+              "projects/sample-symbol-layer/src/favicon.ico",
+              "projects/sample-symbol-layer/src/assets"
+            ],
+            "styles": [
+              "projects/sample-symbol-layer/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-symbol-layer/tsconfig.app.json",
+              "projects/sample-symbol-layer/tsconfig.spec.json",
+              "projects/sample-symbol-layer/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-symbol-layer/e2e/protractor.conf.js",
+            "devServerTarget": "sample-symbol-layer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-symbol-layer:serve:production"
             }
           }
         }
