@@ -6,3 +6,4 @@ export { StyleControlDirective } from './controls/style-control.directive';
 export { HtmlMarkerDirective } from './markers/html-marker.directive';
 export { DrawingToolbarDirective } from './drawing/drawing-toolbar.directive';
 export { SymbolLayerDirective } from './layers/symbol-layer.directive';
+export { BubbleLayerDirective } from './layers/bubble-layer.directive';

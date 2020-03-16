@@ -8,7 +8,8 @@ import {
   StyleControlDirective,
   HtmlMarkerDirective,
   DrawingToolbarDirective,
-  SymbolLayerDirective
+  SymbolLayerDirective,
+  BubbleLayerDirective
 } from '../directives';
 
 @NgModule({
@@ -20,7 +21,8 @@ import {
     StyleControlDirective,
     HtmlMarkerDirective,
     DrawingToolbarDirective,
-    SymbolLayerDirective
+    SymbolLayerDirective,
+    BubbleLayerDirective
   ],
   exports: [
     AzureMapDirective,
@@ -30,7 +32,8 @@ import {
     StyleControlDirective,
     HtmlMarkerDirective,
     DrawingToolbarDirective,
-    SymbolLayerDirective
+    SymbolLayerDirective,
+    BubbleLayerDirective
   ]
 })
 export class AzureMapsModule {

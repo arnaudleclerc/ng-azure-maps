@@ -10,6 +10,8 @@ import { StyleControlDirective } from '../controls/style-control.directive';
 import { HtmlMarkerDirective } from '../markers/html-marker.directive';
 import { DrawingToolbarDirective } from '../drawing/drawing-toolbar.directive';
 import { SymbolLayerDirective } from '../layers/symbol-layer.directive';
+import { BubbleLayerDirective } from '../layers/bubble-layer.directive';
+import { LayerDirective } from '../layers/layer-directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -20,7 +22,8 @@ import { SymbolLayerDirective } from '../layers/symbol-layer.directive';
     styleControl: new ContentChild(StyleControlDirective),
     htmlMarkers: new ContentChildren(HtmlMarkerDirective),
     drawingToolbar: new ContentChild(DrawingToolbarDirective),
-    symbolLayers: new ContentChildren(SymbolLayerDirective)
+    symbolLayers: new ContentChildren(SymbolLayerDirective),
+    bubbleLayers: new ContentChildren(BubbleLayerDirective)
   }
 })
 export class AzureMapDirective
@@ -81,6 +84,20 @@ export class AzureMapDirective
   public drawingToolbar: DrawingToolbarDirective;
 
   public symbolLayers: QueryList<SymbolLayerDirective>;
+  public bubbleLayers: QueryList<BubbleLayerDirective>;
+
+  private get layers(): LayerDirective<atlas.layer.Layer>[] {
+    const result = [];
+    if (this.symbolLayers.length > 0) {
+      result.push(...this.symbolLayers.toArray());
+    }
+
+    if (this.bubbleLayers.length > 0) {
+      result.push(...this.bubbleLayers.toArray());
+    }
+
+    return result;
+  }
 
   ngAfterViewInit(): void {
     const map = new Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
@@ -135,8 +152,8 @@ export class AzureMapDirective
         }
       }
 
-      if (this.symbolLayers) {
-        for (const layer of this.symbolLayers.filter(l => !l.hasLayer)) {
+      if (this.layers.length > 0) {
+        for (const layer of this.layers.filter(l => !l.hasLayer)) {
           layer.initialize(this._map, this.dataSources.find(d => d.getId() === layer.dataSourceId));
         }
       }
@@ -168,8 +185,8 @@ export class AzureMapDirective
     if ((!this.dataSources || this.dataSources.length === 0) && (mapSources && mapSources.length > 0)) {
       this._map.sources.clear();
     } else if (this.dataSources) {
-      const dataSourcesToAdd = this.dataSources.filter(ds => !this._map.sources.getById(ds.getId()));
-      const dataSourcesToRemove = mapSources.filter(ds => !this.dataSources.find(s => s.getId() === ds.getId()));
+      const dataSourcesToAdd = this.dataSources.filter(ds => ds && !this._map.sources.getById(ds.getId()));
+      const dataSourcesToRemove = mapSources.filter(ds => !this.dataSources.find(s => s && s.getId() === ds.getId()));
 
       this._map.sources.add(dataSourcesToAdd);
       this._map.sources.remove(dataSourcesToRemove);

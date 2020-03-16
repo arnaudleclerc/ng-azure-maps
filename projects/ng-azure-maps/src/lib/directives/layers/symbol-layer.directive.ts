@@ -1,18 +1,14 @@
 import { Directive, Input, OnChanges, SimpleChanges, OnDestroy, Output } from '@angular/core';
 import { Map, Expression, IconOptions, TextOptions } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
-import { Subject } from 'rxjs';
+import { LayerDirective } from './layer-directive';
 
 @Directive({
   selector: '[symbol-layer], symbol-layer'
 })
 export class SymbolLayerDirective
-  implements OnChanges, OnDestroy {
-
-  private _layer: atlas.layer.SymbolLayer;
-
-  @Input() public id: string;
-  @Input() public dataSourceId: string;
+  extends LayerDirective<atlas.layer.SymbolLayer>
+  implements OnChanges {
 
   @Input() public filter: Expression;
   @Input() public iconOptions: IconOptions;
@@ -23,13 +19,9 @@ export class SymbolLayerDirective
   @Input() public textOptions: TextOptions;
   @Input() public visible: boolean;
 
-  public get hasLayer(): boolean {
-    return !!this._layer;
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    if (this._layer) {
-      this._layer.setOptions({
+    if (this.layer) {
+      this.layer.setOptions({
         filter: this.filter,
         iconOptions: this.iconOptions,
         lineSpacing: this.lineSpacing,
@@ -42,12 +34,8 @@ export class SymbolLayerDirective
     }
   }
 
-  ngOnDestroy() {
-    this._layer.getMap().layers.remove(this._layer);
-  }
-
-  public initialize(map: Map, dataSource: atlas.source.DataSource): void {
-    this._layer = new atlas.layer.SymbolLayer(dataSource, this.id, {
+  protected buildLayer(map: Map, dataSource: atlas.source.DataSource): atlas.layer.SymbolLayer {
+    return new atlas.layer.SymbolLayer(dataSource, this.id, {
       filter: this.filter,
       iconOptions: this.iconOptions,
       lineSpacing: this.lineSpacing,
@@ -57,8 +45,6 @@ export class SymbolLayerDirective
       textOptions: this.textOptions,
       visible: this.visible
     });
-
-    map.layers.add(this._layer);
   }
 
 }

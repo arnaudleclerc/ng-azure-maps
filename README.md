@@ -178,4 +178,42 @@ export class AppComponent {
 }
 ```
 
-![HTML Markers](./assets/layers/symbol-layer.png)
+![Symbol Layer](./assets/layers/symbol-layer.png)
+
+### Bubble layers
+
+A bubble layer can be added using the `bubble-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-bubble-layer).
+
+```
+import { Component } from '@angular/core';
+import * as atlas from 'azure-maps-control';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (ready)="mapReady()">' +
+    '<bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></bubble-layer>' +
+    '</azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+
+  public dataSource: atlas.source.DataSource;
+  public strokeColor = '#4288f7';
+  public strokeWidth = 6;
+  public radius = 5;
+  public color = "white";
+
+  mapReady() {
+    this.dataSource = new atlas.source.DataSource('source');
+    for (let i = 0; i < 10; i++) {
+      const point = new atlas.Shape(new atlas.data.Point([i * 5, i * 5]));
+      this.dataSource.add([point]);
+    }
+  }
+
+}
+```
+
+![Bubble Layer](./assets/layers/bubble-layer.png)
