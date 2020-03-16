@@ -7,3 +7,4 @@ export { HtmlMarkerDirective } from './markers/html-marker.directive';
 export { DrawingToolbarDirective } from './drawing/drawing-toolbar.directive';
 export { SymbolLayerDirective } from './layers/symbol-layer.directive';
 export { BubbleLayerDirective } from './layers/bubble-layer.directive';
+export { LineLayerDirective } from './layers/line-layer.directive';

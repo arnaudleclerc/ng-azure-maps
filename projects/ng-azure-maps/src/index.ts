@@ -12,6 +12,7 @@ export {
   HtmlMarkerDirective,
   DrawingToolbarDirective,
   SymbolLayerDirective,
-  BubbleLayerDirective
+  BubbleLayerDirective,
+  LineLayerDirective
 } from './lib/directives';
 export { AzureMapsModule } from './lib/modules';

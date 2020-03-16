@@ -12,6 +12,7 @@ import { DrawingToolbarDirective } from '../drawing/drawing-toolbar.directive';
 import { SymbolLayerDirective } from '../layers/symbol-layer.directive';
 import { BubbleLayerDirective } from '../layers/bubble-layer.directive';
 import { LayerDirective } from '../layers/layer-directive';
+import { LineLayerDirective } from '../layers/line-layer.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -23,7 +24,8 @@ import { LayerDirective } from '../layers/layer-directive';
     htmlMarkers: new ContentChildren(HtmlMarkerDirective),
     drawingToolbar: new ContentChild(DrawingToolbarDirective),
     symbolLayers: new ContentChildren(SymbolLayerDirective),
-    bubbleLayers: new ContentChildren(BubbleLayerDirective)
+    bubbleLayers: new ContentChildren(BubbleLayerDirective),
+    lineLayers: new ContentChildren(LineLayerDirective)
   }
 })
 export class AzureMapDirective
@@ -85,6 +87,7 @@ export class AzureMapDirective
 
   public symbolLayers: QueryList<SymbolLayerDirective>;
   public bubbleLayers: QueryList<BubbleLayerDirective>;
+  public lineLayers: QueryList<LineLayerDirective>;
 
   private get layers(): LayerDirective<atlas.layer.Layer>[] {
     const result = [];
@@ -94,6 +97,10 @@ export class AzureMapDirective
 
     if (this.bubbleLayers.length > 0) {
       result.push(...this.bubbleLayers.toArray());
+    }
+
+    if (this.lineLayers.length > 0) {
+      result.push(...this.lineLayers.toArray());
     }
 
     return result;
