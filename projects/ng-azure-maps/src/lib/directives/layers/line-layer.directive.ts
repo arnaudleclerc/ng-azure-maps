@@ -1,5 +1,4 @@
 import { LayerDirective } from './layer-directive';
-import { Map } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
 import { OnChanges, Input, SimpleChanges, Directive } from '@angular/core';
 
@@ -48,7 +47,7 @@ export class LineLayerDirective
     }
   }
 
-  protected buildLayer(map: Map, dataSource: atlas.source.DataSource): atlas.layer.LineLayer {
+  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.LineLayer {
     if (this.strokeGradient) {
       dataSource.setOptions({
         lineMetrics: true

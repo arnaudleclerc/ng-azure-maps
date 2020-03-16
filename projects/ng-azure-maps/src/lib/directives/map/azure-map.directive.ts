@@ -13,6 +13,7 @@ import { SymbolLayerDirective } from '../layers/symbol-layer.directive';
 import { BubbleLayerDirective } from '../layers/bubble-layer.directive';
 import { LayerDirective } from '../layers/layer-directive';
 import { LineLayerDirective } from '../layers/line-layer.directive';
+import { PolygonLayerDirective } from '../layers/polygon-layer.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -25,7 +26,8 @@ import { LineLayerDirective } from '../layers/line-layer.directive';
     drawingToolbar: new ContentChild(DrawingToolbarDirective),
     symbolLayers: new ContentChildren(SymbolLayerDirective),
     bubbleLayers: new ContentChildren(BubbleLayerDirective),
-    lineLayers: new ContentChildren(LineLayerDirective)
+    lineLayers: new ContentChildren(LineLayerDirective),
+    polygonLayers: new ContentChildren(PolygonLayerDirective)
   }
 })
 export class AzureMapDirective
@@ -88,6 +90,7 @@ export class AzureMapDirective
   public symbolLayers: QueryList<SymbolLayerDirective>;
   public bubbleLayers: QueryList<BubbleLayerDirective>;
   public lineLayers: QueryList<LineLayerDirective>;
+  public polygonLayers: QueryList<PolygonLayerDirective>;
 
   private get layers(): LayerDirective<atlas.layer.Layer>[] {
     const result = [];
@@ -101,6 +104,10 @@ export class AzureMapDirective
 
     if (this.lineLayers.length > 0) {
       result.push(...this.lineLayers.toArray());
+    }
+
+    if (this.polygonLayers.length > 0) {
+      result.push(...this.polygonLayers.toArray());
     }
 
     return result;

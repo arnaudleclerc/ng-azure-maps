@@ -10,7 +10,8 @@ import {
   DrawingToolbarDirective,
   SymbolLayerDirective,
   BubbleLayerDirective,
-  LineLayerDirective
+  LineLayerDirective,
+  PolygonLayerDirective
 } from '../directives';
 
 @NgModule({
@@ -24,7 +25,8 @@ import {
     DrawingToolbarDirective,
     SymbolLayerDirective,
     BubbleLayerDirective,
-    LineLayerDirective
+    LineLayerDirective,
+    PolygonLayerDirective
   ],
   exports: [
     AzureMapDirective,
@@ -36,7 +38,8 @@ import {
     DrawingToolbarDirective,
     SymbolLayerDirective,
     BubbleLayerDirective,
-    LineLayerDirective
+    LineLayerDirective,
+    PolygonLayerDirective
   ]
 })
 export class AzureMapsModule {

@@ -1,7 +1,6 @@
 import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { LayerDirective } from './layer-directive';
 import * as atlas from 'azure-maps-control';
-import { Map } from 'azure-maps-control';
 
 @Directive({
   selector: '[bubble-layer], bubble-layer'
@@ -42,7 +41,7 @@ export class BubbleLayerDirective
     }
   }
 
-  protected buildLayer(map: Map, dataSource: atlas.source.DataSource): atlas.layer.BubbleLayer {
+  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.BubbleLayer {
     return new atlas.layer.BubbleLayer(dataSource, this.id, {
       blur: this.blur,
       color: this.color,

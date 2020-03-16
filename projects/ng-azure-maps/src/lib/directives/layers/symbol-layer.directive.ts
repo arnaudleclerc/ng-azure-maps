@@ -1,5 +1,5 @@
 import { Directive, Input, OnChanges, SimpleChanges, OnDestroy, Output } from '@angular/core';
-import { Map, Expression, IconOptions, TextOptions } from 'azure-maps-control';
+import { Expression, IconOptions, TextOptions } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
 import { LayerDirective } from './layer-directive';
 
@@ -34,7 +34,7 @@ export class SymbolLayerDirective
     }
   }
 
-  protected buildLayer(map: Map, dataSource: atlas.source.DataSource): atlas.layer.SymbolLayer {
+  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.SymbolLayer {
     return new atlas.layer.SymbolLayer(dataSource, this.id, {
       filter: this.filter,
       iconOptions: this.iconOptions,

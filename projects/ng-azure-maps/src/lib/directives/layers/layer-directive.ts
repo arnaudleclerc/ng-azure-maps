@@ -19,10 +19,10 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
   }
 
   public initialize(map: Map, dataSource: atlas.source.DataSource): void {
-    this.layer = this.buildLayer(map, dataSource);
+    this.layer = this.buildLayer(dataSource);
     map.layers.add(this.layer);
   };
 
-  protected abstract buildLayer(map: Map, dataSource: atlas.source.DataSource): T;
+  protected abstract buildLayer(dataSource: atlas.source.DataSource): T;
 
 }

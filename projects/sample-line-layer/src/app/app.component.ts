@@ -31,10 +31,6 @@ export class AppComponent {
 
   mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
-    const points: [number, number][] = [];
-    for (let i = 0; i < 10; i++) {
-      points.push([i * 5, i * 5]);
-    }
 
     this.dataSource.add(new atlas.data.LineString([
       [11.575454, 48.137392],
