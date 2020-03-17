@@ -1106,6 +1106,139 @@
           }
         }
       }
+    },
+    "sample-polygon-extrusion-layer": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-polygon-extrusion-layer",
+      "sourceRoot": "projects/sample-polygon-extrusion-layer/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-polygon-extrusion-layer",
+            "index": "projects/sample-polygon-extrusion-layer/src/index.html",
+            "main": "projects/sample-polygon-extrusion-layer/src/main.ts",
+            "polyfills": "projects/sample-polygon-extrusion-layer/src/polyfills.ts",
+            "tsConfig": "projects/sample-polygon-extrusion-layer/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-polygon-extrusion-layer/src/favicon.ico",
+              "projects/sample-polygon-extrusion-layer/src/assets"
+            ],
+            "styles": [
+              "projects/sample-polygon-extrusion-layer/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-polygon-extrusion-layer/src/environments/environment.ts",
+                  "with": "projects/sample-polygon-extrusion-layer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-polygon-extrusion-layer/src/environments/environment.ts",
+                  "with": "projects/sample-polygon-extrusion-layer/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-polygon-extrusion-layer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-polygon-extrusion-layer:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-polygon-extrusion-layer:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-polygon-extrusion-layer:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-polygon-extrusion-layer/src/test.ts",
+            "polyfills": "projects/sample-polygon-extrusion-layer/src/polyfills.ts",
+            "tsConfig": "projects/sample-polygon-extrusion-layer/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-polygon-extrusion-layer/karma.conf.js",
+            "assets": [
+              "projects/sample-polygon-extrusion-layer/src/favicon.ico",
+              "projects/sample-polygon-extrusion-layer/src/assets"
+            ],
+            "styles": [
+              "projects/sample-polygon-extrusion-layer/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-polygon-extrusion-layer/tsconfig.app.json",
+              "projects/sample-polygon-extrusion-layer/tsconfig.spec.json",
+              "projects/sample-polygon-extrusion-layer/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-polygon-extrusion-layer/e2e/protractor.conf.js",
+            "devServerTarget": "sample-polygon-extrusion-layer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-polygon-extrusion-layer:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-azure-maps"

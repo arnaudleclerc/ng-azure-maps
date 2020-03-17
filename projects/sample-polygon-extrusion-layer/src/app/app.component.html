@@ -1,0 +1,13 @@
+<azure-map [center]="[11.47, 48.18]" zoom="4" pitch="45" view="Auto" (ready)="mapReady()" [dataSources]="[dataSource]">
+  <polygon-extrusion-layer dataSourceId="source" [base]="base" [fillColor]="fillColor" [fillOpacity]="fillOpacity"
+    [height]="height"></polygon-extrusion-layer>
+  <div class="legend">
+    Population Density (people/km<sup>2</sup>)
+    <p>
+      <i [style.background]="defaultColor"></i> 0-{{colorScale[0]}}
+    </p>
+    <p *ngFor="let legendItem of legend">
+      <i [style.background]="legendItem.color"></i> {{legendItem.label}}
+    </p>
+  </div>
+</azure-map>

@@ -1,0 +1,61 @@
+import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
+import * as atlas from 'azure-maps-control';
+import { LayerDirective } from './layer-directive';
+
+@Directive({
+  selector: '[polygon-extrusion-layer], polygon-extrusion-layer'
+})
+export class PolygonExtrusionLayerDirective
+  extends LayerDirective<atlas.layer.PolygonExtrusionLayer>
+  implements OnChanges {
+
+  @Input() public base: number | atlas.Expression;
+  @Input() public fillColor: string | atlas.Expression;
+  @Input() public fillOpacity: number;
+  @Input() public fillPattern: string;
+  @Input() public filter: atlas.Expression;
+  @Input() public height: number;
+  @Input() public maxZoom: number;
+  @Input() public minZoom: number;
+  @Input() public translate: atlas.Pixel;
+  @Input() public translateAnchor: "map" | "viewport";
+  @Input() public verticalGradient: boolean;
+  @Input() public visible: boolean;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.layer) {
+      this.layer.setOptions({
+        base: this.base,
+        fillColor: this.fillColor,
+        fillOpacity: this.fillOpacity,
+        fillPattern: this.fillPattern,
+        filter: this.filter,
+        height: this.height,
+        maxZoom: this.maxZoom,
+        minZoom: this.minZoom,
+        translate: this.translate,
+        translateAnchor: this.translateAnchor,
+        verticalGradient: this.verticalGradient,
+        visible: this.visible
+      });
+    }
+  }
+
+  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.PolygonExtrusionLayer {
+    return new atlas.layer.PolygonExtrusionLayer(dataSource, this.id, {
+      base: this.base,
+      fillColor: this.fillColor,
+      fillOpacity: this.fillOpacity,
+      fillPattern: this.fillPattern,
+      filter: this.filter,
+      height: this.height,
+      maxZoom: this.maxZoom,
+      minZoom: this.minZoom,
+      translate: this.translate,
+      translateAnchor: this.translateAnchor,
+      verticalGradient: this.verticalGradient,
+      visible: this.visible
+    });
+  }
+
+}

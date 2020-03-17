@@ -10,6 +10,7 @@ export {
   SymbolLayerDirective,
   BubbleLayerDirective,
   LineLayerDirective,
-  PolygonLayerDirective
+  PolygonLayerDirective,
+  PolygonExtrusionLayerDirective
 } from './lib/directives';
 export { AzureMapsModule } from './lib/modules';

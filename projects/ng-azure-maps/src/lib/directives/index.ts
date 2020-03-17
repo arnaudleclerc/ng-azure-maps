@@ -9,3 +9,4 @@ export { SymbolLayerDirective } from './layers/symbol-layer.directive';
 export { BubbleLayerDirective } from './layers/bubble-layer.directive';
 export { LineLayerDirective } from './layers/line-layer.directive';
 export { PolygonLayerDirective } from './layers/polygon-layer.directive';
+export { PolygonExtrusionLayerDirective } from './layers/polygon-extrusion-layer.directive';
