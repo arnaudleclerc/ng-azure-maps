@@ -17,6 +17,7 @@ import { PolygonLayerDirective } from '../layers/polygon-layer.directive';
 import { PolygonExtrusionLayerDirective } from '../layers/polygon-extrusion-layer.directive';
 import { HeatmapLayerDirective } from '../layers/heatmap-layer.directive';
 import { ImageLayerDirective } from '../layers/image-layer.directive';
+import { TileLayerDirective } from '../layers/tile-layer.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -33,7 +34,8 @@ import { ImageLayerDirective } from '../layers/image-layer.directive';
     polygonLayers: new ContentChildren(PolygonLayerDirective),
     polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective),
     heatmapLayers: new ContentChildren(HeatmapLayerDirective),
-    imageLayers: new ContentChildren(ImageLayerDirective)
+    imageLayers: new ContentChildren(ImageLayerDirective),
+    tileLayers: new ContentChildren(TileLayerDirective)
   }
 })
 export class AzureMapDirective
@@ -100,6 +102,7 @@ export class AzureMapDirective
   public polygonExtrusionLayers: QueryList<PolygonExtrusionLayerDirective>;
   public heatmapLayers: QueryList<HeatmapLayerDirective>;
   public imageLayers: QueryList<ImageLayerDirective>;
+  public tileLayers: QueryList<TileLayerDirective>;
 
   private get sourceLayers(): SourceLayerDirective<atlas.layer.Layer>[] {
     const result = [];
@@ -191,6 +194,12 @@ export class AzureMapDirective
 
       if (this.imageLayers.length > 0) {
         for (const layer of this.imageLayers.filter(l => !l.hasLayer)) {
+          layer.initialize(this._map);
+        }
+      }
+
+      if (this.tileLayers.length > 0) {
+        for (const layer of this.tileLayers.filter(l => !l.hasLayer)) {
           layer.initialize(this._map);
         }
       }

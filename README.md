@@ -471,3 +471,27 @@ export class AppComponent {
 ```
 
 ![Image Layer](./assets/layers/image-layer.png)
+
+### Tile layers
+
+A tile layer can be added using the `tile-layer` directive.
+
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-tile-layer).
+
+```
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map [center]="[-99.47, 40.75]" zoom="4">' +
+    '<tile-layer tileUrl="https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png">' +
+    '</tile-layer>' +
+    '</azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+
+}
+```
+
+![Tile Layer](./assets/layers/tile-layer.png)

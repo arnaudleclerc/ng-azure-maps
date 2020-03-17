@@ -14,7 +14,8 @@ import {
   PolygonLayerDirective,
   PolygonExtrusionLayerDirective,
   HeatmapLayerDirective,
-  ImageLayerDirective
+  ImageLayerDirective,
+  TileLayerDirective
 } from '../directives';
 
 @NgModule({
@@ -32,7 +33,8 @@ import {
     PolygonLayerDirective,
     PolygonExtrusionLayerDirective,
     HeatmapLayerDirective,
-    ImageLayerDirective
+    ImageLayerDirective,
+    TileLayerDirective
   ],
   exports: [
     AzureMapDirective,
@@ -48,7 +50,8 @@ import {
     PolygonLayerDirective,
     PolygonExtrusionLayerDirective,
     HeatmapLayerDirective,
-    ImageLayerDirective
+    ImageLayerDirective,
+    TileLayerDirective
   ]
 })
 export class AzureMapsModule {
