@@ -83,6 +83,8 @@ export class AzureMapDirective
 
   @Input() public dataSources: atlas.source.DataSource[];
 
+  @Input() public trafficOptions: atlas.TrafficOptions;
+
   @Output() public error = new Subject<MapErrorEvent>();
   @Output() public ready = new Subject<MapEvent>();
 
@@ -227,7 +229,7 @@ export class AzureMapDirective
   }
 
   private updateDataSources(): void {
-    const mapSources = this._map.sources.getSources().filter(s => s.getId() !== "vectorTiles");
+    const mapSources = this._map.sources.getSources().filter(s => s.getId() !== "vectorTiles" && s.getId() !== "incidents-source");
     if ((!this.dataSources || this.dataSources.length === 0) && (mapSources && mapSources.length > 0)) {
       this._map.sources.clear();
     } else if (this.dataSources) {
@@ -287,6 +289,10 @@ export class AzureMapDirective
       touchInteraction: this.touchInteraction,
       wheelZoomRate: this.wheelZoomRate
     });
+
+    if (this.trafficOptions) {
+      this._map.setTraffic(this.trafficOptions);
+    }
   }
 
 }

@@ -82,6 +82,31 @@ Compass, pitch, style and zoom controls have their own directive, each of them a
 
 ![Controls](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/controls/controls.png) 
 
+## Traffic
+
+Traffic options can be given to the `azure-map` using the `trafficOptions` input. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-show-traffic) concerning the traffic options.
+
+```
+import { Component } from '@angular/core';
+import * as atlas from 'azure-maps-control';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map [center]="[11.47, 48.18]" [zoom]="10" mapStyle="grayscale_light" [trafficOptions]="trafficOptions"></azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+
+  trafficOptions: atlas.TrafficOptions = {
+    flow: "relative",
+    incidents: true
+  };
+
+}
+```
+
+![Traffic](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/azure-map/traffic.png)
+
 ## HtmlMarkers
 
 You can add HTML Markers to the map using the `html-marker` directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-custom-html) concerning the available options. The map and the HTML Markers listen to the changes on the provided markers and will update them accordingly.
