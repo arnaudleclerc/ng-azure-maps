@@ -442,3 +442,32 @@ export class AppComponent {
 ```
 
 ![Heatmap Layer](./assets/layers/heatmap-layer.png)
+
+### Image layers
+
+An image layer can be added using the `image-layer` directive.
+
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-image-layer).
+
+```
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map [center]="[11.575454, 48.137392]" zoom="13">' +
+    '<image-layer url="https://ngazuremaps.blob.core.windows.net/images/munich_1858.jpg" [coordinates]="coordinates">' +
+    '</image-layer>' +
+    '</azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  public coordinates = [
+    [11.540774, 48.151994],
+    [11.598952, 48.151994],
+    [11.598952, 48.127172],
+    [11.540774, 48.127172]
+  ]
+}
+```
+
+![Image Layer](./assets/layers/image-layer.png)

@@ -1,12 +1,12 @@
 import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { LayerDirective } from './layer-directive';
+import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
   selector: '[polygon-layer], polygon-layer'
 })
 export class PolygonLayerDirective
-  extends LayerDirective<atlas.layer.PolygonLayer>
+  extends SourceLayerDirective<atlas.layer.PolygonLayer>
   implements OnChanges {
 
   @Input() public fillColor: string | atlas.Expression;

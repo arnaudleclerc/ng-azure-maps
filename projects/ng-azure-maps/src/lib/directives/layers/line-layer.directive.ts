@@ -1,4 +1,4 @@
-import { LayerDirective } from './layer-directive';
+import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 import { OnChanges, Input, SimpleChanges, Directive } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { OnChanges, Input, SimpleChanges, Directive } from '@angular/core';
   selector: '[line-layer], line-layer'
 })
 export class LineLayerDirective
-  extends LayerDirective<atlas.layer.LineLayer>
+  extends SourceLayerDirective<atlas.layer.LineLayer>
   implements OnChanges {
 
   @Input() public blur: number | atlas.Expression;

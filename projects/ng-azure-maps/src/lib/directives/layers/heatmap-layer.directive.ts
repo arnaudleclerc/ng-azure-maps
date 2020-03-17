@@ -1,12 +1,12 @@
 import { Directive, OnChanges, Input } from '@angular/core';
-import { LayerDirective } from './layer-directive';
+import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
   selector: '[heatmap-layer], heatmap-layer'
 })
 export class HeatmapLayerDirective
-  extends LayerDirective<atlas.layer.HeatMapLayer>
+  extends SourceLayerDirective<atlas.layer.HeatMapLayer>
   implements OnChanges {
 
   @Input() public color: atlas.Expression;

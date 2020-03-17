@@ -1,13 +1,13 @@
 import { Directive, Input, OnChanges, SimpleChanges, OnDestroy, Output } from '@angular/core';
 import { Expression, IconOptions, TextOptions } from 'azure-maps-control';
 import * as atlas from 'azure-maps-control';
-import { LayerDirective } from './layer-directive';
+import { SourceLayerDirective } from './source-layer-directive';
 
 @Directive({
   selector: '[symbol-layer], symbol-layer'
 })
 export class SymbolLayerDirective
-  extends LayerDirective<atlas.layer.SymbolLayer>
+  extends SourceLayerDirective<atlas.layer.SymbolLayer>
   implements OnChanges {
 
   @Input() public filter: Expression;

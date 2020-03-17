@@ -1,12 +1,12 @@
 import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
 import * as atlas from 'azure-maps-control';
-import { LayerDirective } from './layer-directive';
+import { SourceLayerDirective } from './source-layer-directive';
 
 @Directive({
   selector: '[polygon-extrusion-layer], polygon-extrusion-layer'
 })
 export class PolygonExtrusionLayerDirective
-  extends LayerDirective<atlas.layer.PolygonExtrusionLayer>
+  extends SourceLayerDirective<atlas.layer.PolygonExtrusionLayer>
   implements OnChanges {
 
   @Input() public base: number | atlas.Expression;

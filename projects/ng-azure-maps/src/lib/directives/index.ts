@@ -11,3 +11,4 @@ export { LineLayerDirective } from './layers/line-layer.directive';
 export { PolygonLayerDirective } from './layers/polygon-layer.directive';
 export { PolygonExtrusionLayerDirective } from './layers/polygon-extrusion-layer.directive';
 export { HeatmapLayerDirective } from './layers/heatmap-layer.directive';
+export { ImageLayerDirective } from './layers/image-layer.directive';

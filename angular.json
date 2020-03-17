@@ -1372,6 +1372,139 @@
           }
         }
       }
+    },
+    "sample-image-layer": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-image-layer",
+      "sourceRoot": "projects/sample-image-layer/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-image-layer",
+            "index": "projects/sample-image-layer/src/index.html",
+            "main": "projects/sample-image-layer/src/main.ts",
+            "polyfills": "projects/sample-image-layer/src/polyfills.ts",
+            "tsConfig": "projects/sample-image-layer/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-image-layer/src/favicon.ico",
+              "projects/sample-image-layer/src/assets"
+            ],
+            "styles": [
+              "projects/sample-image-layer/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-image-layer/src/environments/environment.ts",
+                  "with": "projects/sample-image-layer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-image-layer/src/environments/environment.ts",
+                  "with": "projects/sample-image-layer/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-image-layer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-image-layer:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-image-layer:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-image-layer:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-image-layer/src/test.ts",
+            "polyfills": "projects/sample-image-layer/src/polyfills.ts",
+            "tsConfig": "projects/sample-image-layer/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-image-layer/karma.conf.js",
+            "assets": [
+              "projects/sample-image-layer/src/favicon.ico",
+              "projects/sample-image-layer/src/assets"
+            ],
+            "styles": [
+              "projects/sample-image-layer/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-image-layer/tsconfig.app.json",
+              "projects/sample-image-layer/tsconfig.spec.json",
+              "projects/sample-image-layer/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-image-layer/e2e/protractor.conf.js",
+            "devServerTarget": "sample-image-layer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-image-layer:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-azure-maps"

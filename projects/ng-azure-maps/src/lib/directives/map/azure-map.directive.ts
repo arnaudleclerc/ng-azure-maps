@@ -11,11 +11,12 @@ import { HtmlMarkerDirective } from '../markers/html-marker.directive';
 import { DrawingToolbarDirective } from '../drawing/drawing-toolbar.directive';
 import { SymbolLayerDirective } from '../layers/symbol-layer.directive';
 import { BubbleLayerDirective } from '../layers/bubble-layer.directive';
-import { LayerDirective } from '../layers/layer-directive';
+import { SourceLayerDirective } from '../layers/source-layer-directive';
 import { LineLayerDirective } from '../layers/line-layer.directive';
 import { PolygonLayerDirective } from '../layers/polygon-layer.directive';
 import { PolygonExtrusionLayerDirective } from '../layers/polygon-extrusion-layer.directive';
 import { HeatmapLayerDirective } from '../layers/heatmap-layer.directive';
+import { ImageLayerDirective } from '../layers/image-layer.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -31,7 +32,8 @@ import { HeatmapLayerDirective } from '../layers/heatmap-layer.directive';
     lineLayers: new ContentChildren(LineLayerDirective),
     polygonLayers: new ContentChildren(PolygonLayerDirective),
     polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective),
-    heatmapLayers: new ContentChildren(HeatmapLayerDirective)
+    heatmapLayers: new ContentChildren(HeatmapLayerDirective),
+    imageLayers: new ContentChildren(ImageLayerDirective)
   }
 })
 export class AzureMapDirective
@@ -97,8 +99,9 @@ export class AzureMapDirective
   public polygonLayers: QueryList<PolygonLayerDirective>;
   public polygonExtrusionLayers: QueryList<PolygonExtrusionLayerDirective>;
   public heatmapLayers: QueryList<HeatmapLayerDirective>;
+  public imageLayers: QueryList<ImageLayerDirective>;
 
-  private get layers(): LayerDirective<atlas.layer.Layer>[] {
+  private get sourceLayers(): SourceLayerDirective<atlas.layer.Layer>[] {
     const result = [];
     if (this.symbolLayers.length > 0) {
       result.push(...this.symbolLayers.toArray());
@@ -180,9 +183,15 @@ export class AzureMapDirective
         }
       }
 
-      if (this.layers.length > 0) {
-        for (const layer of this.layers.filter(l => !l.hasLayer)) {
+      if (this.sourceLayers.length > 0) {
+        for (const layer of this.sourceLayers.filter(l => !l.hasLayer)) {
           layer.initialize(this._map, this.dataSources.find(d => d.getId() === layer.dataSourceId));
+        }
+      }
+
+      if (this.imageLayers.length > 0) {
+        for (const layer of this.imageLayers.filter(l => !l.hasLayer)) {
+          layer.initialize(this._map);
         }
       }
     }

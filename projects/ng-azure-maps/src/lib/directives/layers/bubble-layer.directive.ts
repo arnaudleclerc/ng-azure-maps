@@ -1,12 +1,12 @@
 import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { LayerDirective } from './layer-directive';
+import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
   selector: '[bubble-layer], bubble-layer'
 })
 export class BubbleLayerDirective
-  extends LayerDirective<atlas.layer.BubbleLayer>
+  extends SourceLayerDirective<atlas.layer.BubbleLayer>
   implements OnChanges {
 
   @Input() public blur: number | atlas.Expression;
