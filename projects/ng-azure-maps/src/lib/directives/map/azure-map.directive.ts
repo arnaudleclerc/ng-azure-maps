@@ -15,6 +15,7 @@ import { LayerDirective } from '../layers/layer-directive';
 import { LineLayerDirective } from '../layers/line-layer.directive';
 import { PolygonLayerDirective } from '../layers/polygon-layer.directive';
 import { PolygonExtrusionLayerDirective } from '../layers/polygon-extrusion-layer.directive';
+import { HeatmapLayerDirective } from '../layers/heatmap-layer.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -29,7 +30,8 @@ import { PolygonExtrusionLayerDirective } from '../layers/polygon-extrusion-laye
     bubbleLayers: new ContentChildren(BubbleLayerDirective),
     lineLayers: new ContentChildren(LineLayerDirective),
     polygonLayers: new ContentChildren(PolygonLayerDirective),
-    polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective)
+    polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective),
+    heatmapLayers: new ContentChildren(HeatmapLayerDirective)
   }
 })
 export class AzureMapDirective
@@ -94,6 +96,7 @@ export class AzureMapDirective
   public lineLayers: QueryList<LineLayerDirective>;
   public polygonLayers: QueryList<PolygonLayerDirective>;
   public polygonExtrusionLayers: QueryList<PolygonExtrusionLayerDirective>;
+  public heatmapLayers: QueryList<HeatmapLayerDirective>;
 
   private get layers(): LayerDirective<atlas.layer.Layer>[] {
     const result = [];
@@ -115,6 +118,10 @@ export class AzureMapDirective
 
     if (this.polygonExtrusionLayers.length > 0) {
       result.push(...this.polygonExtrusionLayers.toArray());
+    }
+
+    if (this.heatmapLayers.length > 0) {
+      result.push(...this.heatmapLayers.toArray());
     }
 
     return result;

@@ -11,6 +11,7 @@ export {
   BubbleLayerDirective,
   LineLayerDirective,
   PolygonLayerDirective,
-  PolygonExtrusionLayerDirective
+  PolygonExtrusionLayerDirective,
+  HeatmapLayerDirective
 } from './lib/directives';
 export { AzureMapsModule } from './lib/modules';

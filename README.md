@@ -408,3 +408,37 @@ export class AppComponent {
 ```
 
 ![Polygon Extrusion Layer](./assets/layers/polygon-extrusion-layer.png)
+
+### Heatmap layers
+
+A heatmap layer can be added using the `heatmap-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-heat-map-layer).
+
+```
+import { Component } from '@angular/core';
+import * as atlas from 'azure-maps-control';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map zoom="2" [mapStyle]="mapStyle" (ready)="mapReady()" [dataSources]="[dataSource]">' +
+    '<heatmap-layer [weight]="weight" [radius]="radius" dataSourceId="source"></heatmap-layer>' +
+    '</azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+
+  public dataSource: atlas.source.DataSource;
+  public mapStyle = "grayscale_dark";
+  public weight: any = ['get', 'Confirmed'];
+  public radius = 20;
+
+  mapReady() {
+    this.dataSource = new atlas.source.DataSource('source');
+    this.dataSource.importDataFromUrl('https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?where=1%3D1&f=geojson&outFields=*');
+  }
+
+}
+```
+
+![Heatmap Layer](./assets/layers/heatmap-layer.png)
