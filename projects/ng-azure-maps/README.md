@@ -51,7 +51,7 @@ Use the `azure-map` directive to display a map.
 
 ![Azure Map](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/azure-map/azure-map.png) 
 
-You can specific different inputs on the `azure-map` directive to customize your display. Please refer to the [Azure Maps Web SDK Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-create) for more information.
+You can specify different inputs on the `azure-map` directive to customize your display. Please refer to the [Azure Maps Web SDK Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-create) for more information.
 
 ```
 <azure-map [center]="[11.47, 48.18]" mapStyle='grayscale_dark'></azure-map>
