@@ -90,7 +90,6 @@ export class AzureMapDirective
   );
 
   private _map: atlas.Map;
-  private _loaded: boolean;
 
   @Input() public autoResize: boolean;
   @Input() public bearing: number;
@@ -273,17 +272,17 @@ export class AzureMapDirective
       if (this.drawingToolbar) {
         this.drawingToolbar.initialize(this._map);
       }
+
+      this.updateDataSources();
     });
 
     map.events.addOnce('load', e => {
-      this._loaded = true;
       this.onLoad.next(this.toMapEvent(e));
-      this.updateDataSources();
     });
   }
 
   ngAfterContentChecked() {
-    if (this._map && this._loaded) {
+    if (this._map) {
       if (this.htmlMarkers) {
         for (const marker of this.htmlMarkers.filter(m => !m.hasMap)) {
           marker.addToMap(this._map);
@@ -292,7 +291,10 @@ export class AzureMapDirective
 
       if (this.sourceLayers.length > 0) {
         for (const layer of this.sourceLayers.filter(l => !l.hasLayer)) {
-          layer.initialize(this._map, this.dataSources.find(d => d.getId() === layer.dataSourceId));
+          const dataSource = this.dataSources.find(d => d.getId() === layer.dataSourceId);
+          if (dataSource) {
+            layer.initialize(this._map, dataSource);
+          }
         }
       }
 

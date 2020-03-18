@@ -17,6 +17,10 @@ import {
   ImageLayerDirective,
   TileLayerDirective
 } from '../directives';
+import {
+  PipelineProvider,
+  SearchService
+} from '../services';
 
 @NgModule({
   declarations: [
@@ -62,7 +66,9 @@ export class AzureMapsModule {
         {
           provide: AZUREMAPS_CONFIG,
           useValue: configuration
-        }
+        },
+        PipelineProvider,
+        SearchService
       ]
     };
   }

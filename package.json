@@ -21,6 +21,7 @@
     "@angular/router": "~9.0.0",
     "azure-maps-control": "^2.0.23",
     "azure-maps-drawing-tools": "^0.1.4",
+    "azure-maps-rest": "^2.0.5",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
