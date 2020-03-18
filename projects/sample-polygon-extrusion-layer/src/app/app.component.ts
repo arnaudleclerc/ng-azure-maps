@@ -46,7 +46,7 @@ export class AppComponent {
   public base = 100;
   public fillOpacity = 0.7;
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.importDataFromUrl('https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/data/countries.geojson.json');
   }

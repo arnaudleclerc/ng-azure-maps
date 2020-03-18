@@ -3,7 +3,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (ready)="mapReady()">' +
+  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
     '<bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></bubble-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -16,7 +16,7 @@ export class AppComponent {
   public radius = 5;
   public color = "white";
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     for (let i = 0; i < 10; i++) {
       const point = new atlas.Shape(new atlas.data.Point([i * 5, i * 5]));

@@ -1,5 +1,5 @@
 import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, QueryList, AfterContentChecked, ContentChildren, OnChanges, SimpleChanges } from '@angular/core';
-import { Map, LightOptions, MapEvent, MapErrorEvent, CameraOptions, CameraBoundsOptions, AnimationOptions } from 'azure-maps-control';
+import { LightOptions, MapEvent, MapErrorEvent, CameraOptions, CameraBoundsOptions, AnimationOptions, MapMouseEvent } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
@@ -18,6 +18,7 @@ import { PolygonExtrusionLayerDirective } from '../layers/polygon-extrusion-laye
 import { HeatmapLayerDirective } from '../layers/heatmap-layer.directive';
 import { ImageLayerDirective } from '../layers/image-layer.directive';
 import { TileLayerDirective } from '../layers/tile-layer.directive';
+import { IMapEvent } from '../../contracts';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -41,7 +42,55 @@ import { TileLayerDirective } from '../layers/tile-layer.directive';
 export class AzureMapDirective
   implements AfterViewInit, OnDestroy, AfterContentChecked, OnChanges {
 
-  private _map: Map;
+  private readonly _mapEvents = new Map<any, (e: any) => void>(
+    [
+      ["boxzoomend", e => this.onBoxZoomEnd.next(this.toMapEvent(e))],
+      ["boxzoomstart", e => this.onBoxZoomStart.next(this.toMapEvent(e))],
+      ["click", e => this.onClick.next(this.toMapEvent(e))],
+      ["contextmenu", e => this.onContextMenu.next(this.toMapEvent(e))],
+      ["data", e => this.onData.next(this.toMapEvent(e))],
+      ["dblclick", e => this.onDblClick.next(this.toMapEvent(e))],
+      ["drag", e => this.onDrag.next(this.toMapEvent(e))],
+      ["dragend", e => this.onDragEnd.next(this.toMapEvent(e))],
+      ["dragstart", e => this.onDragStart.next(this.toMapEvent(e))],
+      ["idle", e => this.onIdle.next(this.toMapEvent(e))],
+      ["mousedown", e => this.onMouseDown.next(this.toMapEvent(e))],
+      ["mouseenter", e => this.onMouseEnter.next(this.toMapEvent(e))],
+      ["mouseleave", e => this.onMouseLeave.next(this.toMapEvent(e))],
+      ["mousemove", e => this.onMouseMove.next(this.toMapEvent(e))],
+      ["mouseout", e => this.onMouseOut.next(this.toMapEvent(e))],
+      ["mouseover", e => this.onMouseOver.next(this.toMapEvent(e))],
+      ["mouseup", e => this.onMouseUp.next(this.toMapEvent(e))],
+      ["move", e => this.onMove.next(this.toMapEvent(e))],
+      ["moveend", e => this.onMoveEnd.next(this.toMapEvent(e))],
+      ["movestart", e => this.onMoveStart.next(this.toMapEvent(e))],
+      ["pitch", e => this.onPitch.next(this.toMapEvent(e))],
+      ["pitchend", e => this.onPitchEnd.next(this.toMapEvent(e))],
+      ["pitchstart", e => this.onPitchStart.next(this.toMapEvent(e))],
+      ["render", e => this.onRender.next(this.toMapEvent(e))],
+      ["resize", e => this.onResize.next(this.toMapEvent(e))],
+      ["rotate", e => this.onRotate.next(this.toMapEvent(e))],
+      ["rotateend", e => this.onRotateEnd.next(this.toMapEvent(e))],
+      ["rotatestart", e => this.onRotateStart.next(this.toMapEvent(e))],
+      ["sourceadded", e => this.onSourceAdded.next(this.toMapEvent(e))],
+      ["sourcedata", e => this.onSourceData.next(this.toMapEvent(e))],
+      ["sourceremoved", e => this.onSourceRemoved.next(this.toMapEvent(e))],
+      ["styledata", e => this.onStyleData.next(this.toMapEvent(e))],
+      ["styleimagemissing", e => this.onStyleImageMissing.next(this.toMapEvent(e))],
+      ["tokenacquired", e => this.onTokenAcquired.next(this.toMapEvent(e))],
+      ["touchcancel", e => this.onTouchCancel.next(this.toMapEvent(e))],
+      ["touchend", e => this.onTouchEnd.next(this.toMapEvent(e))],
+      ["touchmove", e => this.onTouchMove.next(this.toMapEvent(e))],
+      ["touchstart", e => this.onTouchStart.next(this.toMapEvent(e))],
+      ["wheel", e => this.onWheel.next(this.toMapEvent(e))],
+      ["zoom", e => this.onZoom.next(this.toMapEvent(e))],
+      ["zoomend", e => this.onZoomEnd.next(this.toMapEvent(e))],
+      ["zoomstart", e => this.onZoomStart.next(this.toMapEvent(e))]
+    ]
+  );
+
+  private _map: atlas.Map;
+  private _loaded: boolean;
 
   @Input() public autoResize: boolean;
   @Input() public bearing: number;
@@ -50,7 +99,7 @@ export class AzureMapDirective
   @Input() public cameraType: "jump" | "ease" | "fly";
   @Input() public center: [number, number];
   @Input() public centerOffset: [number, number];
-  @Input() public dblClickZoomInteraction: boolean;
+  @Input() public dblclickZoomInteraction: boolean;
   @Input() public disableTelemetry: boolean;
   @Input() public duration: number;
   @Input() public domain: string;
@@ -85,8 +134,51 @@ export class AzureMapDirective
 
   @Input() public trafficOptions: atlas.TrafficOptions;
 
-  @Output() public error = new Subject<MapErrorEvent>();
-  @Output() public ready = new Subject<MapEvent>();
+  @Output() public onBoxZoomEnd = new Subject<IMapEvent>();
+  @Output() public onBoxZoomStart = new Subject<IMapEvent>();
+  @Output() public onClick = new Subject<IMapEvent>();
+  @Output() public onContextMenu = new Subject<IMapEvent>();
+  @Output() public onData = new Subject<IMapEvent>();
+  @Output() public onDblClick = new Subject<IMapEvent>();
+  @Output() public onDrag = new Subject<IMapEvent>();
+  @Output() public onDragEnd = new Subject<IMapEvent>();
+  @Output() public onDragStart = new Subject<IMapEvent>();
+  @Output() public onError = new Subject<IMapEvent>();
+  @Output() public onIdle = new Subject<IMapEvent>();
+  @Output() public onLoad = new Subject<IMapEvent>();
+  @Output() public onMouseDown = new Subject<IMapEvent>();
+  @Output() public onMouseEnter = new Subject<IMapEvent>();
+  @Output() public onMouseLeave = new Subject<IMapEvent>();
+  @Output() public onMouseMove = new Subject<IMapEvent>();
+  @Output() public onMouseOut = new Subject<IMapEvent>();
+  @Output() public onMouseOver = new Subject<IMapEvent>();
+  @Output() public onMouseUp = new Subject<IMapEvent>();
+  @Output() public onMove = new Subject<IMapEvent>();
+  @Output() public onMoveEnd = new Subject<IMapEvent>();
+  @Output() public onMoveStart = new Subject<IMapEvent>();
+  @Output() public onPitch = new Subject<IMapEvent>();
+  @Output() public onPitchEnd = new Subject<IMapEvent>();
+  @Output() public onPitchStart = new Subject<IMapEvent>();
+  @Output() public onReady = new Subject<IMapEvent>();
+  @Output() public onRender = new Subject<IMapEvent>();
+  @Output() public onResize = new Subject<IMapEvent>();
+  @Output() public onRotate = new Subject<IMapEvent>();
+  @Output() public onRotateEnd = new Subject<IMapEvent>();
+  @Output() public onRotateStart = new Subject<IMapEvent>();
+  @Output() public onSourceAdded = new Subject<IMapEvent>();
+  @Output() public onSourceData = new Subject<IMapEvent>();
+  @Output() public onSourceRemoved = new Subject<IMapEvent>();
+  @Output() public onStyleData = new Subject<IMapEvent>();
+  @Output() public onStyleImageMissing = new Subject<IMapEvent>();
+  @Output() public onTokenAcquired = new Subject<IMapEvent>();
+  @Output() public onTouchCancel = new Subject<IMapEvent>();
+  @Output() public onTouchEnd = new Subject<IMapEvent>();
+  @Output() public onTouchMove = new Subject<IMapEvent>();
+  @Output() public onTouchStart = new Subject<IMapEvent>();
+  @Output() public onWheel = new Subject<IMapEvent>();
+  @Output() public onZoom = new Subject<IMapEvent>();
+  @Output() public onZoomEnd = new Subject<IMapEvent>();
+  @Output() public onZoomStart = new Subject<IMapEvent>();
 
   public zoomControl: ZoomControlDirective;
   public pitchControl: PitchControlDirective;
@@ -136,7 +228,7 @@ export class AzureMapDirective
   }
 
   ngAfterViewInit(): void {
-    const map = new Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
+    const map = new atlas.Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
       authOptions: this.azureMapsConfiguration.authOptions,
       disableTelemetry: this.disableTelemetry,
       domain: this.domain,
@@ -145,16 +237,22 @@ export class AzureMapDirective
     });
 
     map.events.add('error', e => {
-      this.error.next(e);
+      this.onError.next({
+        event: e,
+        map: map
+      });
     });
 
     map.events.addOnce('ready', e => {
-
       this._map = map;
 
       this.setOptions();
 
-      this.ready.next(e);
+      this.onReady.next(this.toMapEvent(e));
+
+      this._mapEvents.forEach((value, key) => {
+        this._map.events.add(key, value);
+      });
 
       if (this.zoomControl) {
         this.zoomControl.initialize(this._map);
@@ -175,13 +273,17 @@ export class AzureMapDirective
       if (this.drawingToolbar) {
         this.drawingToolbar.initialize(this._map);
       }
+    });
 
+    map.events.addOnce('load', e => {
+      this._loaded = true;
+      this.onLoad.next(this.toMapEvent(e));
       this.updateDataSources();
     });
   }
 
   ngAfterContentChecked() {
-    if (this._map) {
+    if (this._map && this._loaded) {
       if (this.htmlMarkers) {
         for (const marker of this.htmlMarkers.filter(m => !m.hasMap)) {
           marker.addToMap(this._map);
@@ -219,8 +321,52 @@ export class AzureMapDirective
   }
 
   ngOnDestroy() {
-    this.error.unsubscribe();
-    this.ready.unsubscribe();
+    this.onBoxZoomEnd.unsubscribe();
+    this.onBoxZoomStart.unsubscribe();
+    this.onClick.unsubscribe();
+    this.onContextMenu.unsubscribe();
+    this.onData.unsubscribe();
+    this.onDblClick.unsubscribe();
+    this.onData.unsubscribe();
+    this.onDrag.unsubscribe();
+    this.onDragEnd.unsubscribe();
+    this.onDragStart.unsubscribe();
+    this.onError.unsubscribe();
+    this.onIdle.unsubscribe();
+    this.onLoad.unsubscribe();
+    this.onMouseDown.unsubscribe();
+    this.onMouseEnter.unsubscribe();
+    this.onMouseLeave.unsubscribe();
+    this.onMouseMove.unsubscribe();
+    this.onMouseOut.unsubscribe();
+    this.onMouseOver.unsubscribe();
+    this.onMouseUp.unsubscribe();
+    this.onMove.unsubscribe();
+    this.onMoveEnd.unsubscribe();
+    this.onMoveStart.unsubscribe();
+    this.onPitch.unsubscribe();
+    this.onPitchEnd.unsubscribe();
+    this.onPitchStart.unsubscribe();
+    this.onReady.unsubscribe();
+    this.onRender.unsubscribe();
+    this.onResize.unsubscribe();
+    this.onRotate.unsubscribe();
+    this.onRotateEnd.unsubscribe();
+    this.onRotateStart.unsubscribe();
+    this.onSourceAdded.unsubscribe();
+    this.onSourceData.unsubscribe();
+    this.onSourceRemoved.unsubscribe();
+    this.onStyleData.unsubscribe();
+    this.onStyleImageMissing.unsubscribe();
+    this.onTokenAcquired.unsubscribe();
+    this.onTouchCancel.unsubscribe();
+    this.onTouchEnd.unsubscribe();
+    this.onTouchMove.unsubscribe();
+    this.onTouchStart.unsubscribe();
+    this.onWheel.unsubscribe();
+    this.onZoom.unsubscribe();
+    this.onZoomEnd.unsubscribe();
+    this.onZoomStart.unsubscribe();
   }
 
   constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,
@@ -280,7 +426,7 @@ export class AzureMapDirective
 
     this._map.setUserInteraction({
       boxZoomInteraction: this.boxZoomInteraction,
-      dblClickZoomInteraction: this.dblClickZoomInteraction,
+      dblclickZoomInteraction: this.dblclickZoomInteraction,
       dragPanInteraction: this.dragPanInteraction,
       dragRotateInteraction: this.dragRotateInteraction,
       interactive: this.interactive,
@@ -293,6 +439,13 @@ export class AzureMapDirective
     if (this.trafficOptions) {
       this._map.setTraffic(this.trafficOptions);
     }
+  }
+
+  private toMapEvent(e: any): IMapEvent {
+    return {
+      event: e,
+      map: this._map
+    };
   }
 
 }

@@ -67,6 +67,61 @@ NB: To avoid conflict with the `style` html tag, the style to apply to the map c
 
 For now, only the `ready` and `error` events are available as Output of the `azure-map` directive.
 
+## React to events on the map
+
+The map events are supported on the `azure-map` directive. In order to avoid conflicts with the names of some input (like pitch or zoom), every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `map` and the `event` is given to the method. 
+
+The events and their description are defined on the following table.
+
+| Native event key | azure-map event | Description |
+| -- | -- | -- |
+| `boxzoomend` | `onBoxZoomEnd` | Fired when a "box zoom" interaction ends. |
+| `boxzoomstart` | `onBoxZoomStart` | Fired when a "box zoom" interaction starts. | 
+| `click` | `onClick` | Fired when a pointing device is pressed and released at the same point on the map. |
+| `contextmenu` | `onContextMenu` | Fired when the right button of the mouse is clicked. |
+| `data` | `onData` | Fired when any map data loads or changes. |
+| `dblclick` | `onDblClick` | Fired when a pointing device is clicked twice at the same point on the map. |
+| `drag` | `onDrag` | Fired repeatedly during a "drag to pan" interaction on the map, popup, or HTML marker. |
+| `dragend` | `onDragEnd` | Fired when a "drag to pan" interaction ends on the map, popup, or HTML marker. |
+| `dragstart` | `onDragStart` | Fired when a "drag to pan" interaction starts on the map, popup, or HTML marker. |
+| `error` | `onError` | Fired when an error occurs. |
+| `idle` | `onIdle` | <p>Fired after the last frame rendered before the map enters an "idle" state:<ul><li>No camera transitions are in progress.</li><li>All currently requested tiles have loaded.</li><li>All fade/transition animations have completed.</li></ul></p> |
+| `load` | `onLoad` | Fired immediately after all necessary resources have been downloaded and the first visually complete rendering of the map has occurred.
+| `mousedown` | `onMouseDown` | Fired when a pointing device is pressed within the map or when on top of an element. |
+| `mouseenter` | `onMouseEnter` | Fired when a pointing device is initially moved over the map or an element. |
+| `mouseleave` | `onMouseLeave` | Fired when a pointing device is moved out the map or an element. |
+| `mousemove` | `onMouseMove` | Fired when a pointing device is moved within the map or an element. |
+| `mouseout` | `onMouseOut` | Fired when a point device leaves the map's canvas our leaves an element. |
+| `mouseover` | `onMouseOver` | Fired when a pointing device is moved over the map or an element. |
+| `mouseup` | `onMouseUp` | Fired when a pointing device is released within the map or when on top of an element. |
+| `move` | `onMove` | Fired repeatedly during an animated transition from one view to another, as the result of either user interaction or methods. |
+| `moveend` | `onMoveEnd` | Fired just after the map completes a transition from one view to another, as the result of either user interaction or methods. |
+| `movestart` | `onMoveStart` | Fired just before the map begins a transition from one view to another, as the result of either user interaction or methods. |
+| `pitch` | `onPitch` | Fired whenever the map's pitch (tilt) changes as the result of either user interaction or methods. |
+| `pitchend` | `onPitchEnd` | Fired immediately after the map's pitch (tilt) finishes changing as the result of either user interaction or methods. |
+| `pitchstart` | `onPitchStart` | Fired whenever the map's pitch (tilt) begins a change as the result of either user interaction or methods. |
+| `render` | `onRender` | <p>Fired whenever the map is drawn to the screen, as the result of:<ul><li>A change to the map's position, zoom, pitch, or bearing.</li><li>A change to the map's style.</li><li>A change to a `DataSource` source.</li><li>The loading of a vector tile, GeoJSON file, glyph, or sprite.</li></ul></p> |
+| `ready` | `onReady` | Fired when the minimum required map resources are loaded before the map is ready to be programmatically interacted with. |
+| `render` | `onRender` | Fired whenever the map is drawn to the screen, as the result of: |
+| `resize` | `onResize` | Fired immediately after the map has been resized. |
+| `rotate` | `onRotate` | Fired repeatedly during a "drag to rotate" interaction. |
+| `rotateend` | `onRotateEnd` | Fired when a "drag to rotate" interaction ends. |
+| `rotatestart` | `onRotateStart` | Fired when a "drag to rotate" interaction starts. |
+| `sourcedata` | `onSourceData` | Fired when one of the map's sources loads or changes, including if a tile belonging to a source loads or changes. |
+| `sourceadded` | `onSourceAdded` | Fired when a DataSource or VectorTileSource is added to the map. |
+| `sourceremoved` | `onSourceRemoved` | Fired when a DataSource or VectorTileSource is removed from the map. |
+| `styledata` | `onStyleData` | Fired when the map's style loads or changes. |
+| `styleimagemissing` | `onStyleImageMissing` | Fired when a layer tries to load an image from the image sprite that doesn't exist |
+| `tokenacquired` | `onTokenAcquired` | Fired when an AAD access token is obtained. |
+| `touchcancel` | `onTouchCancel` | Fired when a touchcancel event occurs within the map. |
+| `touchend` | `onTouchEnd` | Fired when a touchend event occurs within the map. |
+| `touchmove` | `onTouchMove` | Fired when a touchmove event occurs within the map. |
+| `touchstart` | `onTouchStart` | Fired when a touchstart event occurs within the map. |
+| `wheel` | `onWheel` | Fired when a mouse wheel event occurs within the map. |
+| `zoom` | `onZoom` | Fired repeatedly during an animated transition from one zoom level to another, as the result of either user interaction or methods. |
+| `zoomend` | `onZoomEnd` | Fired just after the map completes a transition from one zoom level to another, as the result of either user interaction or methods. |
+| `zoomstart` | `onZoomStart` | Fired just before the map begins a transition from one zoom level to another, as the result of either user interaction or methods. |
+
 ## Add controls
 
 Compass, pitch, style and zoom controls have their own directive, each of them accepting a position binding.
@@ -116,7 +171,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map (ready)="mapReady()">' +
+  template: '<azure-map (onLoad)="mapLoad()">' +
     '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
     '</html-marker>' +
     '</azure-map>',
@@ -126,7 +181,7 @@ export class AppComponent {
 
   public markerPositions: [number, number][] = [];
 
-  mapReady() {
+  mapLoad() {
     for (let i = 0; i < 10; i++) {
       this.markerPositions.push([i * 5, i * 5]);
     }
@@ -174,7 +229,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (ready)="mapReady()">' +
+  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onLoad)="mapLoad()">' +
     '<symbol-layer dataSourceId="blue"></symbol-layer>' +
     '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
     '</azure-map>',
@@ -189,7 +244,7 @@ export class AppComponent {
     image: 'pin-red'
   };
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('blue');
     this.dataSourceRed = new atlas.source.DataSource('red');
     for (let i = 0; i < 10; i++) {
@@ -217,7 +272,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (ready)="mapReady()">' +
+  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
     '<bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></bubble-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -230,7 +285,7 @@ export class AppComponent {
   public radius = 5;
   public color = "white";
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     for (let i = 0; i < 10; i++) {
       const point = new atlas.Shape(new atlas.data.Point([i * 5, i * 5]));
@@ -255,7 +310,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (ready)="mapReady()">' +
+  template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
     '<line-layer dataSourceId="source" [strokeGradient]="strokeGradient" [strokeWidth]="strokeWidth"></line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -281,7 +336,7 @@ export class AppComponent {
 
   public mapStyle = "grayscale_dark";
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
 
     this.dataSource.add(new atlas.data.LineString([
@@ -326,7 +381,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (ready)="mapReady()">' +
+  template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
     '<polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></polygon-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -339,7 +394,7 @@ export class AppComponent {
 
   public zoom = 2;
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.add(new atlas.data.Polygon([
       [-50, -20],
@@ -361,7 +416,7 @@ A polygon extrusion layer can be added using the `polygon-extrusion-layer` direc
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-extruded-polygon).
 
 ```
-<azure-map [center]="[11.47, 48.18]" zoom="4" pitch="45" view="Auto" (ready)="mapReady()" [dataSources]="[dataSource]">
+<azure-map [center]="[11.47, 48.18]" zoom="4" pitch="45" view="Auto" (onLoad)="mapLoad()" [dataSources]="[dataSource]">
   <polygon-extrusion-layer dataSourceId="source" [base]="base" [fillColor]="fillColor" [fillOpacity]="fillOpacity"
     [height]="height"></polygon-extrusion-layer>
   <div class="legend">
@@ -425,7 +480,7 @@ export class AppComponent {
   public base = 100;
   public fillOpacity = 0.7;
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.importDataFromUrl('https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/data/countries.geojson.json');
   }
@@ -447,7 +502,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [mapStyle]="mapStyle" (ready)="mapReady()" [dataSources]="[dataSource]">' +
+  template: '<azure-map zoom="2" [mapStyle]="mapStyle" (onLoad)="mapLoad()" [dataSources]="[dataSource]">' +
     '<heatmap-layer [weight]="weight" [radius]="radius" dataSourceId="source"></heatmap-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -459,7 +514,7 @@ export class AppComponent {
   public weight: any = ['get', 'Confirmed'];
   public radius = 20;
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.importDataFromUrl('https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?where=1%3D1&f=geojson&outFields=*');
   }

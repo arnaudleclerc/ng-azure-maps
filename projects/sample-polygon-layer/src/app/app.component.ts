@@ -3,7 +3,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (ready)="mapReady()">' +
+  template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
     '<polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></polygon-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -16,7 +16,7 @@ export class AppComponent {
 
   public zoom = 2;
 
-  mapReady() {
+  mapLoad() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.add(new atlas.data.Polygon([
       [-50, -20],
