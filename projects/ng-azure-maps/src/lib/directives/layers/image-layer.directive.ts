@@ -59,6 +59,9 @@ export class ImageLayerDirective
       url: this.url,
       visible: this.visible
     });
+
+    this.initializeEvents(map);
+
     map.layers.add(this.layer);
   }
 
