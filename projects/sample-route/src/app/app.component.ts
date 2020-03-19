@@ -5,18 +5,24 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map (onClick)="mapClick($event)" [center]="center" [zoom]="zoom" cursor="pointer" [dataSources]="[route]">' +
+  template: '<azure-map [trafficOptions]="trafficOptions" (onClick)="mapClick($event)" [center]="center" [zoom]="zoom" cursor="pointer" [dataSources]="[route]">' +
     '<html-marker *ngFor="let point of points" [position]="point"></html-marker>' +
-    '<line-layer dataSourceId="route"></line-layer>' +
+    '<line-layer dataSourceId="route" [strokeWidth]="strokeWidth"></line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
+  public trafficOptions: atlas.TrafficOptions = {
+    flow: "relative",
+    incidents: true
+  };
+
   public points: [number, number][] = [];
   public route = new atlas.source.DataSource('route');
   public zoom = 10;
   public center = [11.581990, 48.143534];
+  public strokeWidth = 6;
 
   constructor(private readonly routeService: RouteService) { }
 
@@ -30,7 +36,8 @@ export class AppComponent {
 
     if (this.points.length === 2) {
       this.routeService.calculateRouteDirections(this.points, {
-        routeType: rest.Models.RouteType.Shortest
+        routeType: rest.Models.RouteType.Shortest,
+        traffic: true
       }).then(result => {
         const features = result.geojson.getFeatures();
         this.route.add(features.features);
