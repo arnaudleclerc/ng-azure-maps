@@ -19,7 +19,8 @@ import {
 } from '../directives';
 import {
   PipelineProvider,
-  SearchService
+  SearchService,
+  RouteService
 } from '../services';
 
 @NgModule({
@@ -68,7 +69,8 @@ export class AzureMapsModule {
           useValue: configuration
         },
         PipelineProvider,
-        SearchService
+        SearchService,
+        RouteService
       ]
     };
   }

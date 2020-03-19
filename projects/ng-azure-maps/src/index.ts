@@ -18,4 +18,4 @@ export {
 } from './lib/directives';
 export { IMapEvent } from './lib/contracts';
 export { AzureMapsModule } from './lib/modules';
-export { SearchService } from './lib/services';
+export { SearchService, RouteService } from './lib/services';
