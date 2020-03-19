@@ -3,7 +3,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
+  template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
     '<line-layer dataSourceId="source" [strokeGradient]="strokeGradient" [strokeWidth]="strokeWidth"></line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -29,7 +29,7 @@ export class AppComponent {
 
   public mapStyle = "grayscale_dark";
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
 
     this.dataSource.add(new atlas.data.LineString([
