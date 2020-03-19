@@ -291,7 +291,7 @@ export class AzureMapDirective
 
       if (this.sourceLayers.length > 0) {
         for (const layer of this.sourceLayers.filter(l => !l.hasLayer)) {
-          const dataSource = this.dataSources.find(d => d.getId() === layer.dataSourceId);
+          const dataSource = this.dataSources.find(d => d && d.getId() === layer.dataSourceId);
           if (dataSource) {
             layer.initialize(this._map, dataSource);
           }

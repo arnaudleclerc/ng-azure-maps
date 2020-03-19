@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map (onLoad)="mapLoad()">' +
+  template: '<azure-map (onReady)="mapReady()">' +
     '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
     '</html-marker>' +
     '</azure-map>',
@@ -12,7 +12,7 @@ export class AppComponent {
 
   public markerPositions: [number, number][] = [];
 
-  mapLoad() {
+  mapReady() {
     for (let i = 0; i < 10; i++) {
       this.markerPositions.push([i * 5, i * 5]);
     }
