@@ -14,6 +14,11 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
     map.layers.add(this.layer);
   };
 
+  public clear(map: Map) {
+    map.layers.remove(this.layer);
+    this.layer = null;
+  }
+
   protected abstract buildLayer(dataSource: atlas.source.DataSource): T;
 
 }

@@ -1904,6 +1904,139 @@
           }
         }
       }
+    },
+    "sample-route": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-route",
+      "sourceRoot": "projects/sample-route/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-route",
+            "index": "projects/sample-route/src/index.html",
+            "main": "projects/sample-route/src/main.ts",
+            "polyfills": "projects/sample-route/src/polyfills.ts",
+            "tsConfig": "projects/sample-route/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-route/src/favicon.ico",
+              "projects/sample-route/src/assets"
+            ],
+            "styles": [
+              "projects/sample-route/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-route/src/environments/environment.ts",
+                  "with": "projects/sample-route/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-route/src/environments/environment.ts",
+                  "with": "projects/sample-route/src/environments/environment.local.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-route:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-route:build:production"
+            },
+            "local": {
+              "browserTarget": "sample-route:build:local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-route:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-route/src/test.ts",
+            "polyfills": "projects/sample-route/src/polyfills.ts",
+            "tsConfig": "projects/sample-route/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-route/karma.conf.js",
+            "assets": [
+              "projects/sample-route/src/favicon.ico",
+              "projects/sample-route/src/assets"
+            ],
+            "styles": [
+              "projects/sample-route/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-route/tsconfig.app.json",
+              "projects/sample-route/tsconfig.spec.json",
+              "projects/sample-route/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-route/e2e/protractor.conf.js",
+            "devServerTarget": "sample-route:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-route:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-azure-maps"

@@ -98,6 +98,7 @@ export class AzureMapDirective
   @Input() public cameraType: "jump" | "ease" | "fly";
   @Input() public center: [number, number];
   @Input() public centerOffset: [number, number];
+  @Input() public cursor: string;
   @Input() public dblclickZoomInteraction: boolean;
   @Input() public disableTelemetry: boolean;
   @Input() public duration: number;
@@ -277,8 +278,12 @@ export class AzureMapDirective
     });
 
     map.events.addOnce('load', e => {
+      if (this.cursor) {
+        this._map.getCanvasContainer().style.cursor = this.cursor;
+      }
       this.onLoad.next(this.toMapEvent(e));
     });
+
   }
 
   ngAfterContentChecked() {
@@ -289,7 +294,7 @@ export class AzureMapDirective
         }
       }
 
-      if (this.sourceLayers.length > 0) {
+      if (this.sourceLayers.length > 0 && this.dataSources) {
         for (const layer of this.sourceLayers.filter(l => !l.hasLayer)) {
           const dataSource = this.dataSources.find(d => d && d.getId() === layer.dataSourceId);
           if (dataSource) {
@@ -318,6 +323,10 @@ export class AzureMapDirective
 
       if (changes['dataSources']) {
         this.updateDataSources();
+      }
+
+      if (changes['cursor']) {
+        this._map.getCanvasContainer().style.cursor = this.cursor;
       }
     }
   }
@@ -385,6 +394,14 @@ export class AzureMapDirective
       const dataSourcesToRemove = mapSources.filter(ds => !this.dataSources.find(s => s && s.getId() === ds.getId()));
 
       this._map.sources.add(dataSourcesToAdd);
+
+      for (const source of dataSourcesToRemove) {
+        const layer = this.sourceLayers.find(l => source && l.dataSourceId === source.getId());
+        if (layer) {
+          layer.clear(this._map);
+        }
+      }
+
       this._map.sources.remove(dataSourcesToRemove);
     }
   }
