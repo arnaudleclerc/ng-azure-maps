@@ -171,7 +171,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map (onLoad)="mapLoad()">' +
+  template: '<azure-map (onReady)="mapReady()">' +
     '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
     '</html-marker>' +
     '</azure-map>',
@@ -181,7 +181,7 @@ export class AppComponent {
 
   public markerPositions: [number, number][] = [];
 
-  mapLoad() {
+  mapReady() {
     for (let i = 0; i < 10; i++) {
       this.markerPositions.push([i * 5, i * 5]);
     }
@@ -229,7 +229,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onLoad)="mapLoad()">' +
+  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onReady)="mapReady()">' +
     '<symbol-layer dataSourceId="blue"></symbol-layer>' +
     '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
     '</azure-map>',
@@ -244,7 +244,7 @@ export class AppComponent {
     image: 'pin-red'
   };
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('blue');
     this.dataSourceRed = new atlas.source.DataSource('red');
     for (let i = 0; i < 10; i++) {
@@ -272,7 +272,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
+  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
     '<bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></bubble-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -285,7 +285,7 @@ export class AppComponent {
   public radius = 5;
   public color = "white";
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
     for (let i = 0; i < 10; i++) {
       const point = new atlas.Shape(new atlas.data.Point([i * 5, i * 5]));
@@ -310,7 +310,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
+  template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
     '<line-layer dataSourceId="source" [strokeGradient]="strokeGradient" [strokeWidth]="strokeWidth"></line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -336,7 +336,7 @@ export class AppComponent {
 
   public mapStyle = "grayscale_dark";
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.add(new atlas.data.LineString([
       [11.575454, 48.137392],
@@ -380,7 +380,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (onLoad)="mapLoad()">' +
+  template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
     '<polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></polygon-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -393,7 +393,7 @@ export class AppComponent {
 
   public zoom = 2;
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.add(new atlas.data.Polygon([
       [-50, -20],
@@ -415,7 +415,7 @@ A polygon extrusion layer can be added using the `polygon-extrusion-layer` direc
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-extruded-polygon).
 
 ```
-<azure-map [center]="[11.47, 48.18]" zoom="4" pitch="45" view="Auto" (onLoad)="mapLoad()" [dataSources]="[dataSource]">
+<azure-map [center]="[11.47, 48.18]" zoom="4" pitch="45" view="Auto" (onReady)="mapReady()" [dataSources]="[dataSource]">
   <polygon-extrusion-layer dataSourceId="source" [base]="base" [fillColor]="fillColor" [fillOpacity]="fillOpacity"
     [height]="height"></polygon-extrusion-layer>
   <div class="legend">
@@ -479,7 +479,7 @@ export class AppComponent {
   public base = 100;
   public fillOpacity = 0.7;
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.importDataFromUrl('https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/data/countries.geojson.json');
   }
@@ -501,7 +501,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [mapStyle]="mapStyle" (onLoad)="mapLoad()" [dataSources]="[dataSource]">' +
+  template: '<azure-map zoom="2" [mapStyle]="mapStyle" (onReady)="mapReady()" [dataSources]="[dataSource]">' +
     '<heatmap-layer [weight]="weight" [radius]="radius" dataSourceId="source"></heatmap-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -513,7 +513,7 @@ export class AppComponent {
   public weight: any = ['get', 'Confirmed'];
   public radius = 20;
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('source');
     this.dataSource.importDataFromUrl('https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?where=1%3D1&f=geojson&outFields=*');
   }

@@ -3,7 +3,7 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onLoad)="mapLoad()">' +
+  template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onReady)="mapReady()">' +
     '<symbol-layer dataSourceId="blue"></symbol-layer>' +
     '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
     '</azure-map>',
@@ -18,7 +18,7 @@ export class AppComponent {
     image: 'pin-red'
   };
 
-  mapLoad() {
+  mapReady() {
     this.dataSource = new atlas.source.DataSource('blue');
     this.dataSourceRed = new atlas.source.DataSource('red');
     for (let i = 0; i < 10; i++) {
