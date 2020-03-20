@@ -102,7 +102,6 @@ export class AzureMapDirective
   @Input() public dblclickZoomInteraction: boolean;
   @Input() public disableTelemetry: boolean;
   @Input() public duration: number;
-  @Input() public domain: string;
   @Input() public dragPanInteraction: boolean;
   @Input() public dragRotateInteraction: boolean;
   @Input() public enableAccessibility: boolean;
@@ -229,9 +228,7 @@ export class AzureMapDirective
 
   ngAfterViewInit(): void {
     const map = new atlas.Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
-      authOptions: this.azureMapsConfiguration.authOptions,
       disableTelemetry: this.disableTelemetry,
-      domain: this.domain,
       enableAccessibility: this.enableAccessibility,
       refreshExpiredTiles: this.refreshExpiredTiles
     });
