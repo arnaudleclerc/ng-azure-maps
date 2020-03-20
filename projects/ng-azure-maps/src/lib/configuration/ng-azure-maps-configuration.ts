@@ -10,4 +10,5 @@ export const AZUREMAPS_CONFIG = new InjectionToken("AZUREMAPS_CONFIG");
 export class AzureMapsConfiguration {
   authOptions: AuthenticationOptions;
   pipelineRetryOptions?: IRetryOptions;
+  domain?: string;
 }
