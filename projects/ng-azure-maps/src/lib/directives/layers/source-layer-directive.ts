@@ -14,7 +14,7 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
 
     this.initializeEvents(map);
 
-    map.layers.add(this.layer);
+    map.layers.add(this.layer, this.before);
   };
 
   public clear(map: Map) {
