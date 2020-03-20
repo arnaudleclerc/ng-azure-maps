@@ -172,7 +172,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: '<azure-map (onReady)="mapReady()">' +
-    '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">' +
+    '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true" (onDrag)="reverseMove($event)">' +
     '</html-marker>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
@@ -186,10 +186,43 @@ export class AppComponent {
       this.markerPositions.push([i * 5, i * 5]);
     }
   }
+  
+  public reverseMove(markerEvent: IMarkerEvent) {
+    markerEvent.marker.setOptions({
+      position: [-markerEvent.event.target.options.position[0],-markerEvent.event.target.options.position[1]]
+    });
+  }
 }
 ```
 
 ![HTML Markers](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/markers/html-markers.png) 
+
+## React to events on HTMLMarkers
+
+The HTMLMarkers events are supported on the `html-marker` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `htmlMarker` and the `event` is given to the method. 
+
+Dragging events are triggered only if the HTMLMarker is set to `draggable: true`.
+
+The events and their description are defined on the following table.
+
+| Native event key | HTMLMarker event | Description |
+| -- | -- | -- |
+| `click` | `onClick` | Fired when a pointing device is pressed and released at the same point on the marker. |
+| `contextmenu` | `onContextMenu` | Fired when the right button of the mouse is clicked on the marker. |
+| `dblclick` | `onDbClick` | Fired when a pointing device is clicked twice at the same point on the marker. |
+| `drag` | `onDrag` | Fired repeatedly during a "drag to pan" interaction on the HTML marker. |
+| `dragend` | `onDragEnd` | Fired when a "drag to pan" interaction ends on the HTML marker. |
+| `dragstart` | `onDragStart` | Fired when a "drag to pan" interaction starts on the HTML marker. |
+| `keydown` | `onKeyDown` | Fired when key is pressed down on the HTML marker. |
+| `keypress` | `onKeyPress` | Fired when key is pressed on the HTML marker. |
+| `keyup` | `onKeyUp` | Fired when key is pressed up on the HTML marker. |
+| `mousedown` | `onMouseDown` | Fired when a pointing device is pressed within the HTML marker or when on top of an element. |
+| `mouseenter` | `onMouseEnter` | Fired when a pointing device is initially moved over the HTML marker or an element. |
+| `mouseleave` | `onMouseLeave` | Fired when a pointing device is moved out the HTML marker or an element. |
+| `mousemove` | `onMouseMove` | Fired when a pointing device is moved within the HTML marker or an element. |
+| `mouseout` | `onMouseOut` | Fired when a point device leaves the HTML marker's canvas our leaves an element. |
+| `mouseover` | `onMouseOver` | Fired when a pointing device is moved over the HTML marker or an element. |
+| `mouseup` | `onMouseUp` | Fired when a pointing device is released within the HTML Marker or when on top of an element. |
 
 ## Drawing toolbar
 
