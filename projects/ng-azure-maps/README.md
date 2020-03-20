@@ -230,8 +230,8 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onReady)="mapReady()">' +
-    '<symbol-layer dataSourceId="blue"></symbol-layer>' +
-    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
+    '<symbol-layer dataSourceId="blue" (onMouseEnter)="mouseInteraction(\'blue\')"></symbol-layer>' +
+    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions" (onMouseLeave)="mouseInteraction(\'red\')"></symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -253,6 +253,10 @@ export class AppComponent {
       const redPoint = new atlas.Shape(new atlas.data.Point([i * -5, i * 5]));
       this.dataSourceRed.add([redPoint]);
     }
+  }
+  
+  public mouseInteraction(color: string): void {
+    console.log(color);
   }
 
 }
@@ -576,6 +580,32 @@ export class AppComponent {
 ```
 
 ![Tile Layer](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/layers/tile-layer.png)
+
+### React to events on a layer
+
+The layer events are supported on all `*-layer` directives. Every event starts with on and is followed by the key of the event in PascalCase. A parameter containing the layer and the event is given to the method.
+
+The heatmap and tile layers support only onAdded and onRemoved events.
+
+| Native event key | azure-map event | Description |
+| -- | -- | -- |
+| `click` | `onClick` | Fired when a pointing device is pressed and released at the same point on the layer. |
+| `contextmenu` | `onContextMenu` | Fired when the right button of the mouse is clicked. |
+| `dbclick` | `onDbClick` | Fired when a pointing device is clicked twice at the same point on the layer. |
+| `layeradded` | `onAdded` | Fired when the layer is added to the map. |
+| `layerremoved` | `onRemoved` | `Fire when the layer has been removed from the map. |
+| `mousedown` | `onMouseDown` | Fired when a pointing divice is pressed within the layer or on top of an element. |
+| `mouseenter` | `onMouseEnter` | Fired when a pointing device is initially moved over the layer or an element. |
+| `mouseleave` | `onMouseLeave` | Fired when a pointing device is moved out of the layer or an element. |
+| `mousemove` | `onMouseMove` | Fired when a pointing device is moving within the layer or an element. |
+| `mouseout` | `onMouseOut` | Fired when a pointing device leaves the layer's canvas or leaves an element. |
+| `mouseover` | `onMouseOver` | Fired when a pointing device is moved over the layer or an element. |
+| `mouseup` | `onMouseUp` | Fired when a pointing divice is released within the layer or on top of an element. |
+| `touchcancel` | `onTouchCancel` | Fired when a touchcancel event occurs within the layer. |
+| `touchend` | `onTouchEnd` | Fired when a touchend event occurs within the layer. |
+| `touchmove` | `onTouchMove` | Fired when a touchmove event occurs within the layer. |
+| `touchstart` | `onTouchStart` | Fired when a touchstart event occurs within the layer. |
+| `wheel` | `onWheel` | Fired when a mouse wheel event occurs within the layer. |
 
 ## Search
 
