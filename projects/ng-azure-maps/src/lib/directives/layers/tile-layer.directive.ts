@@ -74,10 +74,10 @@ export class TileLayerDirective
       tileUrl: this.tileUrl,
       visible: this.visible
     });
-    
+
     this.initializeEvents(map);
-    
-    map.layers.add(this.layer);
+
+    map.layers.add(this.layer, this.before);
   }
 
 }

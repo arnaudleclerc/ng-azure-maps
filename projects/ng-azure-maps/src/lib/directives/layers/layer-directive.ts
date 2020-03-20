@@ -1,12 +1,12 @@
 import * as atlas from 'azure-maps-control';
-import { OnDestroy, Input, Output } from '@angular/core';
+import { OnDestroy, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { ILayerEvent } from '../../contracts';
 import { Subject } from 'rxjs';
 
 export abstract class LayerDirective<T extends atlas.layer.Layer>
   implements OnDestroy {
-  
-    private readonly _layerEvents = new Map<any, (e: any) => void>(
+
+  private readonly _layerEvents = new Map<any, (e: any) => void>(
     [
       ["click", e => this.onClick.next(this.toLayerEvent(this.layer, e))],
       ["contextmenu", e => this.onContextMenu.next(this.toLayerEvent(this.layer, e))],
@@ -31,7 +31,8 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
   protected layer: T;
 
   @Input() public id: string;
-    
+  @Input() public before: string;
+
   @Output() public onAdded = new Subject<ILayerEvent>();
   @Output() public onClick = new Subject<ILayerEvent>();
   @Output() public onContextMenu = new Subject<ILayerEvent>();
@@ -54,15 +55,9 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
     return !!this.layer;
   }
 
-  protected initializeEvents(map: atlas.Map): void {
-    this._layerEvents.forEach((value, key) => {
-      map.events.add(key, this.layer, value);
-    });
-  }
-
   ngOnDestroy(): void {
     this.layer.getMap().layers.remove(this.layer);
-    
+
     this.onAdded.unsubscribe();
     this.onClick.unsubscribe();
     this.onContextMenu.unsubscribe();
@@ -80,6 +75,12 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
     this.onTouchMove.unsubscribe();
     this.onTouchStart.unsubscribe();
     this.onWheel.unsubscribe();
+  }
+
+  protected initializeEvents(map: atlas.Map): void {
+    this._layerEvents.forEach((value, key) => {
+      map.events.add(key, this.layer, value);
+    });
   }
 
   private toLayerEvent(layer: atlas.layer.Layer | atlas.layer.Layer[], e: any): ILayerEvent {

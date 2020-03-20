@@ -62,7 +62,7 @@ export class ImageLayerDirective
 
     this.initializeEvents(map);
 
-    map.layers.add(this.layer);
+    map.layers.add(this.layer, this.before);
   }
 
 }
