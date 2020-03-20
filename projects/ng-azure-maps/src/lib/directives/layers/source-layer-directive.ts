@@ -11,6 +11,9 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
 
   public initialize(map: Map, dataSource: atlas.source.DataSource): void {
     this.layer = this.buildLayer(dataSource);
+
+    this.initializeEvents(map);
+
     map.layers.add(this.layer);
   };
 

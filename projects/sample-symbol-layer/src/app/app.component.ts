@@ -4,8 +4,8 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onReady)="mapReady()">' +
-    '<symbol-layer dataSourceId="blue"></symbol-layer>' +
-    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions"></symbol-layer>' +
+    '<symbol-layer dataSourceId="blue" (onMouseEnter)="mouseInteraction(\'blue\')"></symbol-layer>' +
+    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions" (onMouseLeave)="mouseInteraction(\'red\')"></symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -27,6 +27,10 @@ export class AppComponent {
       const redPoint = new atlas.Shape(new atlas.data.Point([i * -5, i * 5]));
       this.dataSourceRed.add([redPoint]);
     }
+  }
+
+  public mouseInteraction(color: string): void {
+    console.log(color);
   }
 
 }
