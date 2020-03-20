@@ -587,7 +587,9 @@ The layer events are supported on all `*-layer` directives. Every event starts w
 
 The heatmap and tile layers support only onAdded and onRemoved events.
 
-| Native event key | azure-map event | Description |
+The events and their description are defined on the following table.
+
+| Native event key | azure-layer event | Description |
 | -- | -- | -- |
 | `click` | `onClick` | Fired when a pointing device is pressed and released at the same point on the layer. |
 | `contextmenu` | `onContextMenu` | Fired when the right button of the mouse is clicked. |

@@ -9,7 +9,4 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public added(e: any): void {
-    console.log(e);
-  }
 }

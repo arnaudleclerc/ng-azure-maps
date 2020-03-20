@@ -1,5 +1,5 @@
 import * as atlas from 'azure-maps-control';
-import { OnDestroy, Input, Output, AfterViewInit } from '@angular/core';
+import { OnDestroy, Input, Output } from '@angular/core';
 import { ILayerEvent } from '../../contracts';
 import { Subject } from 'rxjs';
 
@@ -33,21 +33,21 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
   @Input() public id: string;
     
   @Output() public onAdded = new Subject<ILayerEvent>();
-  @Output() public onRemoved = new Subject<ILayerEvent>();
-  @Output() public onMouseDown = new Subject<ILayerEvent>();
-  @Output() public onMouseUp = new Subject<ILayerEvent>();
-  @Output() public onMouseOver = new Subject<ILayerEvent>();
-  @Output() public onMouseMove = new Subject<ILayerEvent>();
   @Output() public onClick = new Subject<ILayerEvent>();
+  @Output() public onContextMenu = new Subject<ILayerEvent>();
   @Output() public onDbClick = new Subject<ILayerEvent>();
-  @Output() public onMouseOut = new Subject<ILayerEvent>();
+  @Output() public onMouseDown = new Subject<ILayerEvent>();
   @Output() public onMouseEnter = new Subject<ILayerEvent>();
   @Output() public onMouseLeave = new Subject<ILayerEvent>();
-  @Output() public onContextMenu = new Subject<ILayerEvent>();
-  @Output() public onTouchStart = new Subject<ILayerEvent>();
+  @Output() public onMouseMove = new Subject<ILayerEvent>();
+  @Output() public onMouseOut = new Subject<ILayerEvent>();
+  @Output() public onMouseOver = new Subject<ILayerEvent>();
+  @Output() public onMouseUp = new Subject<ILayerEvent>();
+  @Output() public onRemoved = new Subject<ILayerEvent>();
+  @Output() public onTouchCancel = new Subject<ILayerEvent>();
   @Output() public onTouchEnd = new Subject<ILayerEvent>();
   @Output() public onTouchMove = new Subject<ILayerEvent>();
-  @Output() public onTouchCancel = new Subject<ILayerEvent>();
+  @Output() public onTouchStart = new Subject<ILayerEvent>();
   @Output() public onWheel = new Subject<ILayerEvent>();
 
   public get hasLayer(): boolean {
@@ -64,21 +64,21 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
     this.layer.getMap().layers.remove(this.layer);
     
     this.onAdded.unsubscribe();
-    this.onRemoved.unsubscribe();
-    this.onMouseDown.unsubscribe();
-    this.onMouseUp.unsubscribe();
-    this.onMouseOver.unsubscribe();
-    this.onMouseMove.unsubscribe();
     this.onClick.unsubscribe();
+    this.onContextMenu.unsubscribe();
     this.onDbClick.unsubscribe();
-    this.onMouseOut.unsubscribe();
+    this.onMouseDown.unsubscribe();
     this.onMouseEnter.unsubscribe();
     this.onMouseLeave.unsubscribe();
-    this.onContextMenu.unsubscribe();
-    this.onTouchStart.unsubscribe();
+    this.onMouseMove.unsubscribe();
+    this.onMouseOut.unsubscribe();
+    this.onMouseOver.unsubscribe();
+    this.onMouseUp.unsubscribe();
+    this.onRemoved.unsubscribe();
+    this.onTouchCancel.unsubscribe();
     this.onTouchEnd.unsubscribe();
     this.onTouchMove.unsubscribe();
-    this.onTouchCancel.unsubscribe();
+    this.onTouchStart.unsubscribe();
     this.onWheel.unsubscribe();
   }
 
