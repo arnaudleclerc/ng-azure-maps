@@ -16,7 +16,6 @@ export {
   ImageLayerDirective,
   TileLayerDirective
 } from './lib/directives';
-export { IMapEvent } from './lib/contracts';
-export { ILayerEvent } from './lib/contracts';
+export { ILayerEvent, IMapEvent, IMarkerEvent } from './lib/contracts';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService } from './lib/services';
