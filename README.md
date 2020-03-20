@@ -758,15 +758,15 @@ You can add Popups to the map using the popup directive. Please refer to the [Az
 
 ```
 import { Component } from '@angular/core';
-import { IMarkerEvent, IMapEvent } from 'ng-azure-maps';
+import { IMapEvent } from 'ng-azure-maps';
 
 @Component({
   selector: 'app-root',
   template: '<azure-map (onClick)="clickedMap($event)">' +
     '<popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></popup>'+
     '<html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></html-marker>' +
-    '<popup [content]="fixedContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" '+
-      '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedOpened"></popup>'+
+    '<popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" '+
+      '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></popup>'+
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -778,16 +778,16 @@ export class AppComponent {
   public popupPosition: [number, number];
   public opened: boolean;
 
-  public fixedContent: string = '<span class="infobox-2">Shows on mouse over<span>';
   public fixedPosition: [number, number] = [0, 50];
-  public fixedOpened: boolean;
+  public fixedPopupContent: string = '<span class="infobox-2">Shows on mouse over<span>';
+  public fixedPopupOpened: boolean;
 
   enterMarker(): void {
-    this.fixedOpened = true;
+    this.fixedPopupOpened = true;
   }
   
   leaveMarker(): void {
-    this.fixedOpened = false;
+    this.fixedPopupOpened = false;
   }
 
   clickedMap(clickEvent: IMapEvent): void {
