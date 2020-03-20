@@ -15,7 +15,8 @@ import {
   PolygonExtrusionLayerDirective,
   HeatmapLayerDirective,
   ImageLayerDirective,
-  TileLayerDirective
+  TileLayerDirective,
+  PopupDirective
 } from '../directives';
 import {
   PipelineProvider,
@@ -53,7 +54,8 @@ export function setAtlasOptions(configuration: AzureMapsConfiguration) {
     PolygonExtrusionLayerDirective,
     HeatmapLayerDirective,
     ImageLayerDirective,
-    TileLayerDirective
+    TileLayerDirective,
+    PopupDirective
   ],
   exports: [
     AzureMapDirective,
@@ -70,7 +72,8 @@ export function setAtlasOptions(configuration: AzureMapsConfiguration) {
     PolygonExtrusionLayerDirective,
     HeatmapLayerDirective,
     ImageLayerDirective,
-    TileLayerDirective
+    TileLayerDirective,
+    PopupDirective
   ]
 })
 export class AzureMapsModule {
