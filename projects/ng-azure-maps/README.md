@@ -754,4 +754,74 @@ export class AppComponent {
 }
 ```
 
+
+
 ![Route](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/routes/routes.png)
+
+
+## Popups
+
+You can add Popups to the map using the popup directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-popup) concerning the available options. The map and the popups listen to the changes on the provided markers and will update them accordingly.
+
+```
+import { Component } from '@angular/core';
+import { IMapEvent } from 'ng-azure-maps';
+
+@Component({
+  selector: 'app-root',
+  template: '<azure-map (onClick)="clickedMap($event)">' +
+    '<popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></popup>'+
+    '<html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></html-marker>' +
+    '<popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" '+
+      '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></popup>'+
+    '</azure-map>',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+
+  private popupTemplate = '<div class="infobox"><b>Coordinates</b><br>Longitude: {longitude}<br>Latitude: {latitude}</div>';
+
+  public content: string;
+  public popupPosition: [number, number];
+  public opened: boolean;
+
+  public fixedPosition: [number, number] = [0, 50];
+  public fixedPopupContent: string = '<span class="infobox-2">Shows on mouse over<span>';
+  public fixedPopupOpened: boolean;
+
+  enterMarker(): void {
+    this.fixedPopupOpened = true;
+  }
+  
+  leaveMarker(): void {
+    this.fixedPopupOpened = false;
+  }
+
+  clickedMap(clickEvent: IMapEvent): void {
+    this.popupPosition = clickEvent.event.position;
+    this.popupPosition[0].toFixed(3)
+    this.content = this.popupTemplate.replace(/{longitude}/g, this.popupPosition[0].toFixed(3)).replace(/{latitude}/g, this.popupPosition[1].toFixed(3))
+    this.opened = true;
+  }
+
+  closed(): void {
+    this.opened = false;
+  }
+}
+```
+
+![Route](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/popups/popup.png)
+
+## React to events on the popup
+
+The popup events are supported on the `popup` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `popup` and the `event` is given to the method. 
+
+The events and their description are defined on the following table.
+
+| Native event key | popup event | Description |
+| -- | -- | -- |
+| `close` | `onBoxZoomEnd` | Fired when the popup closes. |
+| `drag` | `onDrag` | Fired repeatedly during a "drag to pan" interaction on the popup. |
+| `dragend` | `onDragEnd` | Fired when a "drag to pan" interaction ends on the popup. |
+| `dragstart` | `onDragStart` | Fired when a "drag to pan" interaction starts on popup. |
+| `open` | `onBoxZoomEnd` | Fired when the popup opens. |

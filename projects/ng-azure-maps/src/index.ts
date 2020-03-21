@@ -14,8 +14,9 @@ export {
   PolygonExtrusionLayerDirective,
   HeatmapLayerDirective,
   ImageLayerDirective,
-  TileLayerDirective
+  TileLayerDirective,
+  PopupDirective
 } from './lib/directives';
-export { ILayerEvent, IMapEvent, IMarkerEvent } from './lib/contracts';
+export { ILayerEvent, IMapEvent, IMarkerEvent, IPopupEvent } from './lib/contracts';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService } from './lib/services';

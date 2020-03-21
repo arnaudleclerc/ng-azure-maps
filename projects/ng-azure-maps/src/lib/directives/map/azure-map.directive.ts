@@ -19,6 +19,7 @@ import { HeatmapLayerDirective } from '../layers/heatmap-layer.directive';
 import { ImageLayerDirective } from '../layers/image-layer.directive';
 import { TileLayerDirective } from '../layers/tile-layer.directive';
 import { IMapEvent } from '../../contracts';
+import { PopupDirective } from '../popups/popup.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -36,7 +37,8 @@ import { IMapEvent } from '../../contracts';
     polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective),
     heatmapLayers: new ContentChildren(HeatmapLayerDirective),
     imageLayers: new ContentChildren(ImageLayerDirective),
-    tileLayers: new ContentChildren(TileLayerDirective)
+    tileLayers: new ContentChildren(TileLayerDirective),
+    popups: new ContentChildren(PopupDirective)
   }
 })
 export class AzureMapDirective
@@ -197,6 +199,8 @@ export class AzureMapDirective
   public imageLayers: QueryList<ImageLayerDirective>;
   public tileLayers: QueryList<TileLayerDirective>;
 
+  public popups: QueryList<PopupDirective>;
+
   private get sourceLayers(): SourceLayerDirective<atlas.layer.Layer>[] {
     const result = [];
     if (this.symbolLayers.length > 0) {
@@ -309,6 +313,12 @@ export class AzureMapDirective
       if (this.tileLayers.length > 0) {
         for (const layer of this.tileLayers.filter(l => !l.hasLayer)) {
           layer.initialize(this._map);
+        }
+      }
+      
+      if (this.popups) {
+        for (const popup of this.popups.filter(m => !m.hasMap)) {
+          popup.addToMap(this._map);
         }
       }
     }

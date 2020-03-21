@@ -13,3 +13,4 @@ export { PolygonExtrusionLayerDirective } from './layers/polygon-extrusion-layer
 export { HeatmapLayerDirective } from './layers/heatmap-layer.directive';
 export { ImageLayerDirective } from './layers/image-layer.directive';
 export { TileLayerDirective } from './layers/tile-layer.directive';
+export { PopupDirective } from './popups/popup.directive';
