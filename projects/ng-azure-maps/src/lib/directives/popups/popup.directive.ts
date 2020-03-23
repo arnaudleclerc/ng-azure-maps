@@ -4,14 +4,14 @@ import { IPopupEvent } from '../../contracts/popup-event';
 import { Subject } from 'rxjs';
 
 @Directive({
-  selector: '[popup], popup'
+  selector: '[map-popup], map-popup'
 })
 export class PopupDirective
   implements OnChanges, OnDestroy {
 
   private _map: atlas.Map;
   private _popup: atlas.Popup;
-  
+
   private readonly _popupEvents = new Map<any, (e: any) => void>(
     [
       ["close", e => this.onClose.next(this.toPopupEvent(e))],
@@ -54,11 +54,11 @@ export class PopupDirective
         showPointer: this.showPointer
       });
 
-      if(changes.opened) {
-        if(changes.opened.currentValue && !this._popup.isOpen()) {
+      if (changes.opened) {
+        if (changes.opened.currentValue && !this._popup.isOpen()) {
           this._popup.open(this._map);
         }
-        if(!changes.opened.currentValue && this._popup.isOpen()) {
+        if (!changes.opened.currentValue && this._popup.isOpen()) {
           this._popup.close();
         }
       }

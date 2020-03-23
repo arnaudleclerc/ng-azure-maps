@@ -3,9 +3,17 @@
 
 # ng-azure-maps 
 
-This is a WIP of an Angular wrapper around the azure-maps-control package. It exposes some directives making it easy to integrate azure-maps on an Angular application.
+`ng-azure-maps` is a mostly HTML driven wrapper of the `azure-maps-controls` package allowing to easilly integrate its functionalities into an Angular application.
 
 ![4 Maps sample](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/4mapssample.png)
+
+## Install the package
+
+The package is available on npm. You need to install the dependencies to the azure-maps-* packages by yourself.
+
+```
+npm i --save azure-maps-control azure-maps-drawing-tools azure-maps-rest ng-azure-maps
+```
 
 ## Register the module
 
@@ -67,7 +75,7 @@ NB: To avoid conflict with the `style` html tag, the style to apply to the map c
 
 For now, only the `ready` and `error` events are available as Output of the `azure-map` directive.
 
-## React to events on the map
+### React to events on the map
 
 The map events are supported on the `azure-map` directive. In order to avoid conflicts with the names of some input (like pitch or zoom), every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `map` and the `event` is given to the method. 
 
@@ -128,10 +136,10 @@ Compass, pitch, style and zoom controls have their own directive, each of them a
 
 ```
 <azure-map>
-  <zoom-control position='top-left'></zoom-control>
-  <pitch-control position="top-right"></pitch-control>
-  <compass-control position="bottom-left"></compass-control>
-  <style-control position="bottom-right"></style-control>
+  <map-zoom-control position='top-left'></map-zoom-control>
+  <map-pitch-control position="top-right"></map-pitch-control>
+  <map-compass-control position="bottom-left"></map-compass-control>
+  <map-style-control position="bottom-right"></map-style-control>
 </azure-map>
 ```
 
@@ -164,7 +172,7 @@ export class AppComponent {
 
 ## HtmlMarkers
 
-You can add HTML Markers to the map using the `html-marker` directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-custom-html) concerning the available options. The map and the HTML Markers listen to the changes on the provided markers and will update them accordingly.
+You can add HTML Markers to the map using the `map-html-marker` directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-custom-html) concerning the available options. The map and the HTML Markers listen to the changes on the provided markers and will update them accordingly.
 
 ```
 import { Component } from '@angular/core';
@@ -172,8 +180,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: '<azure-map (onReady)="mapReady()">' +
-    '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true" (onDrag)="reverseMove($event)">' +
-    '</html-marker>' +
+    '<map-html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true" (onDrag)="reverseMove($event)">' +
+    '</map-html-marker>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -197,9 +205,9 @@ export class AppComponent {
 
 ![HTML Markers](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/markers/html-markers.png) 
 
-## React to events on HTMLMarkers
+### React to events on HTMLMarkers
 
-The HTMLMarkers events are supported on the `html-marker` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `htmlMarker` and the `event` is given to the method. 
+The HTMLMarkers events are supported on the `map-html-marker` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `htmlMarker` and the `event` is given to the method. 
 
 Dragging events are triggered only if the HTMLMarker is set to `draggable: true`.
 
@@ -226,13 +234,13 @@ The events and their description are defined on the following table.
 
 ## Drawing toolbar
 
-The drawing toolbar can be added using the `drawing-toolbar` directive. 
+The drawing toolbar can be added using the `map-drawing-toolbar` directive. 
 
 The `drawingChanged`, `drawingChanging`, `drawingComplete`, `drawingModeChanged` and `drawingStarted` events are available as Output of the directive.
 
 ```
 <azure-map>
-  <drawing-toolbar position="top-right" toolbarStyle="dark"></drawing-toolbar>
+  <map-drawing-toolbar position="top-right" toolbarStyle="dark"></map-drawing-toolbar>
 </azure-map>
 ```
 
@@ -252,7 +260,7 @@ The layers are directly linked to the map and one of its datasources. A data sou
 
 ### Symbol Layers
 
-A symbol layer can be added using the `symbol-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+A symbol layer can be added using the `map-symbol-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
 
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-pin).
 
@@ -263,8 +271,8 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onReady)="mapReady()">' +
-    '<symbol-layer dataSourceId="blue" (onMouseEnter)="mouseInteraction(\'blue\')"></symbol-layer>' +
-    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions" (onMouseLeave)="mouseInteraction(\'red\')"></symbol-layer>' +
+    '<map-symbol-layer dataSourceId="blue" (onMouseEnter)="mouseInteraction(\'blue\')"></map-symbol-layer>' +
+    '<map-symbol-layer dataSourceId="red" [iconOptions]="redIconOptions" (onMouseLeave)="mouseInteraction(\'red\')"></map-symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -299,9 +307,9 @@ export class AppComponent {
 
 ### Bubble layers
 
-A bubble layer can be added using the `bubble-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+A bubble layer can be added using the `map-bubble-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
 
-For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-bubble-layer).
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-map-bubble-layer).
 
 ```
 import { Component } from '@angular/core';
@@ -310,7 +318,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
-    '<bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></bubble-layer>' +
+    '<map-bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></map-bubble-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -337,9 +345,9 @@ export class AppComponent {
 
 ### Line layers
 
-A line layer can be added using the `line-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+A line layer can be added using the `map-line-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
 
-For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-line-layer).
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-map-line-layer).
 
 ```
 import { Component } from '@angular/core';
@@ -348,7 +356,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map [zoom]="zoom" [center]="center" [mapStyle]="mapStyle" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
-    '<line-layer dataSourceId="source" [strokeGradient]="strokeGradient" [strokeWidth]="strokeWidth"></line-layer>' +
+    '<map-line-layer dataSourceId="source" [strokeGradient]="strokeGradient" [strokeWidth]="strokeWidth"></map-line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -408,7 +416,7 @@ export class AppComponent {
 
 ### Polyon layers
 
-A polygon layer can be added using the `polygon-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+A polygon layer can be added using the `map-polygon-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
 
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-shape).
 
@@ -419,7 +427,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
-    '<polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></polygon-layer>' +
+    '<map-polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></map-polygon-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -448,14 +456,14 @@ export class AppComponent {
 
 ### Polyon extrusion layers
 
-A polygon extrusion layer can be added using the `polygon-extrusion-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+A polygon extrusion layer can be added using the `map-polygon-extrusion-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
 
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-extruded-polygon).
 
 ```
 <azure-map [center]="[11.47, 48.18]" zoom="4" pitch="45" view="Auto" (onReady)="mapReady()" [dataSources]="[dataSource]">
-  <polygon-extrusion-layer dataSourceId="source" [base]="base" [fillColor]="fillColor" [fillOpacity]="fillOpacity"
-    [height]="height"></polygon-extrusion-layer>
+  <map-polygon-extrusion-layer dataSourceId="source" [base]="base" [fillColor]="fillColor" [fillOpacity]="fillOpacity"
+    [height]="height"></map-polygon-extrusion-layer>
   <div class="legend">
     Population Density (people/km<sup>2</sup>)
     <p>
@@ -529,7 +537,7 @@ export class AppComponent {
 
 ### Heatmap layers
 
-A heatmap layer can be added using the `heatmap-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
+A heatmap layer can be added using the `map-heatmap-layer` directive. The id of the data source to display on the layer can be specified on the `dataSourceId` binding on the directive.
 
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-heat-map-layer).
 
@@ -540,7 +548,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map zoom="2" [mapStyle]="mapStyle" (onReady)="mapReady()" [dataSources]="[dataSource]">' +
-    '<heatmap-layer [weight]="weight" [radius]="radius" dataSourceId="source"></heatmap-layer>' +
+    '<map-heatmap-layer [weight]="weight" [radius]="radius" dataSourceId="source"></map-heatmap-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -563,9 +571,9 @@ export class AppComponent {
 
 ### Image layers
 
-An image layer can be added using the `image-layer` directive.
+An image layer can be added using the `map-image-layer` directive.
 
-For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-image-layer).
+For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-map-image-layer).
 
 ```
 import { Component } from '@angular/core';
@@ -573,8 +581,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: '<azure-map [center]="[11.575454, 48.137392]" zoom="13">' +
-    '<image-layer url="https://ngazuremaps.blob.core.windows.net/images/munich_1858.jpg" [coordinates]="coordinates">' +
-    '</image-layer>' +
+    '<map-image-layer url="https://ngazuremaps.blob.core.windows.net/images/munich_1858.jpg" [coordinates]="coordinates">' +
+    '</map-image-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -592,7 +600,7 @@ export class AppComponent {
 
 ### Tile layers
 
-A tile layer can be added using the `tile-layer` directive.
+A tile layer can be added using the `map-tile-layer` directive.
 
 For more information on the customization of the layer, please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-tile-layer).
 
@@ -602,8 +610,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: '<azure-map [center]="[-99.47, 40.75]" zoom="4">' +
-    '<tile-layer tileUrl="https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png">' +
-    '</tile-layer>' +
+    '<map-tile-layer tileUrl="https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png">' +
+    '</map-tile-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -654,7 +662,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map mapStyle="grayscale_dark" [dataSources]="[dataSource]" (onReady)="mapReady($event)">' +
-    '<symbol-layer dataSourceId="search" [iconOptions]="iconOptions"></symbol-layer>' +
+    '<map-symbol-layer dataSourceId="search" [iconOptions]="iconOptions"></map-symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -708,8 +716,8 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map [trafficOptions]="trafficOptions" (onClick)="mapClick($event)" [center]="center" [zoom]="zoom" cursor="pointer" [dataSources]="[route]">' +
-    '<html-marker *ngFor="let point of points" [position]="point"></html-marker>' +
-    '<line-layer dataSourceId="route" [strokeWidth]="strokeWidth"></line-layer>' +
+    '<map-html-marker *ngFor="let point of points" [position]="point"></map-html-marker>' +
+    '<map-line-layer dataSourceId="route" [strokeWidth]="strokeWidth"></map-line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -761,7 +769,7 @@ export class AppComponent {
 
 ## Popups
 
-You can add Popups to the map using the popup directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-popup) concerning the available options. The map and the popups listen to the changes on the provided markers and will update them accordingly.
+You can add Popups to the map using the map-popup directive. Please refer to the [Azure Maps Documentation](https://docs.microsoft.com/en-us/azure/azure-maps/map-add-popup) concerning the available options. The map and the popups listen to the changes on the provided markers and will update them accordingly.
 
 ```
 import { Component } from '@angular/core';
@@ -770,10 +778,10 @@ import { IMapEvent } from 'ng-azure-maps';
 @Component({
   selector: 'app-root',
   template: '<azure-map (onClick)="clickedMap($event)">' +
-    '<popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></popup>'+
-    '<html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></html-marker>' +
-    '<popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" '+
-      '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></popup>'+
+    '<map-popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></map-popup>'+
+    '<map-html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></map-html-marker>' +
+    '<map-popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" '+
+      '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></map-popup>'+
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -812,9 +820,9 @@ export class AppComponent {
 
 ![Route](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/popups/popup.png)
 
-## React to events on the popup
+### React to events on the popup
 
-The popup events are supported on the `popup` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `popup` and the `event` is given to the method. 
+The popup events are supported on the `map-popup` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `popup` and the `event` is given to the method. 
 
 The events and their description are defined on the following table.
 

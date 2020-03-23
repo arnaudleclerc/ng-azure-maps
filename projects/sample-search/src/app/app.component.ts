@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map mapStyle="grayscale_dark" [dataSources]="[dataSource]" (onReady)="mapReady($event)">' +
-    '<symbol-layer dataSourceId="search" [iconOptions]="iconOptions"></symbol-layer>' +
+    '<map-symbol-layer dataSourceId="search" [iconOptions]="iconOptions"></map-symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })

@@ -5,14 +5,14 @@ import { Subject } from 'rxjs';
 import { IMarkerEvent } from '../../contracts';
 
 @Directive({
-  selector: '[html-marker], html-marker'
+  selector: '[map-html-marker], map-html-marker'
 })
 export class HtmlMarkerDirective
   implements OnChanges, OnDestroy {
 
   private _map: atlas.Map;
   private _marker: atlas.HtmlMarker;
-  
+
   private readonly _markerEvents = new Map<any, (e: any) => void>(
     [
       ["click", e => this.onClick.next(this.toMarkerEvent(e))],
@@ -43,7 +43,7 @@ export class HtmlMarkerDirective
   @Input() public secondaryColor: string;
   @Input() public text: string;
   @Input() public visible: boolean;
-  
+
   @Output() public onClick = new Subject<IMarkerEvent>();
   @Output() public onContextMenu = new Subject<IMarkerEvent>();
   @Output() public onDbClick = new Subject<IMarkerEvent>();

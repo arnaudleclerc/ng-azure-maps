@@ -4,8 +4,8 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map zoom="2" [dataSources]="[dataSource, dataSourceRed]" (onReady)="mapReady()">' +
-    '<symbol-layer dataSourceId="blue" (onMouseEnter)="mouseInteraction(\'blue\')"></symbol-layer>' +
-    '<symbol-layer dataSourceId="red" [iconOptions]="redIconOptions" (onMouseLeave)="mouseInteraction(\'red\')"></symbol-layer>' +
+    '<map-symbol-layer dataSourceId="blue" (onMouseEnter)="mouseInteraction(\'blue\')"></map-symbol-layer>' +
+    '<map-symbol-layer dataSourceId="red" [iconOptions]="redIconOptions" (onMouseLeave)="mouseInteraction(\'red\')"></map-symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })

@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: '<azure-map [center]="[11.575454, 48.137392]" zoom="13">' +
-    '<image-layer url="https://ngazuremaps.blob.core.windows.net/images/munich_1858.jpg" [coordinates]="coordinates">' +
-    '</image-layer>' +
+    '<map-image-layer url="https://ngazuremaps.blob.core.windows.net/images/munich_1858.jpg" [coordinates]="coordinates">' +
+    '</map-image-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })

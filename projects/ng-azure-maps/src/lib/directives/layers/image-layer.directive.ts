@@ -3,7 +3,7 @@ import * as atlas from 'azure-maps-control';
 import { LayerDirective } from './layer-directive';
 
 @Directive({
-  selector: '[image-layer], image-layer'
+  selector: '[map-image-layer], map-image-layer'
 })
 export class ImageLayerDirective
   extends LayerDirective<atlas.layer.ImageLayer>
