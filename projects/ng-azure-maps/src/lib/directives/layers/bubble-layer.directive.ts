@@ -3,7 +3,7 @@ import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[bubble-layer], bubble-layer'
+  selector: '[map-bubble-layer], map-bubble-layer'
 })
 export class BubbleLayerDirective
   extends SourceLayerDirective<atlas.layer.BubbleLayer>

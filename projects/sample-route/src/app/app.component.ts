@@ -6,8 +6,8 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map [trafficOptions]="trafficOptions" (onClick)="mapClick($event)" [center]="center" [zoom]="zoom" cursor="pointer" [dataSources]="[route]">' +
-    '<html-marker *ngFor="let point of points" [position]="point"></html-marker>' +
-    '<line-layer dataSourceId="route" [strokeWidth]="strokeWidth"></line-layer>' +
+    '<map-html-marker *ngFor="let point of points" [position]="point"></map-html-marker>' +
+    '<map-line-layer dataSourceId="route" [strokeWidth]="strokeWidth"></map-line-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })

@@ -4,7 +4,7 @@ import * as atlas from 'azure-maps-control';
 @Component({
   selector: 'app-root',
   template: '<azure-map [zoom]="zoom" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
-    '<polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></polygon-layer>' +
+    '<map-polygon-layer dataSourceId="source" [fillColor]="fillColor" [fillOpacity]="fillOpacity"></map-polygon-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })

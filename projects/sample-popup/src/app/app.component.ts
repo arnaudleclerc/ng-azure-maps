@@ -4,10 +4,10 @@ import { IMapEvent } from 'ng-azure-maps';
 @Component({
   selector: 'app-root',
   template: '<azure-map (onClick)="clickedMap($event)">' +
-    '<popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></popup>'+
-    '<html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></html-marker>' +
-    '<popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" '+
-      '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></popup>'+
+    '<map-popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></map-popup>' +
+    '<map-html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></map-html-marker>' +
+    '<map-popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" ' +
+    '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></map-popup>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -26,7 +26,7 @@ export class AppComponent {
   enterMarker(): void {
     this.fixedPopupOpened = true;
   }
-  
+
   leaveMarker(): void {
     this.fixedPopupOpened = false;
   }

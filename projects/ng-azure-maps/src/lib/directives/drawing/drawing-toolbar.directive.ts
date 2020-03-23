@@ -4,7 +4,7 @@ import * as atlasdrawing from 'azure-maps-drawing-tools';
 import { Subject } from 'rxjs';
 
 @Directive({
-  selector: '[drawing-toolbar], drawing-toolbar'
+  selector: '[map-drawing-toolbar], map-drawing-toolbar'
 })
 export class DrawingToolbarDirective
   implements OnChanges, OnDestroy {

@@ -4,8 +4,8 @@ import { IMarkerEvent } from 'ng-azure-maps';
 @Component({
   selector: 'app-root',
   template: '<azure-map (onReady)="mapReady()">' +
-    '<html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true" (onDrag)="reverseMove($event)">' +
-    '</html-marker>' +
+    '<map-html-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [draggable]="true" (onDrag)="reverseMove($event)">' +
+    '</map-html-marker>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -21,7 +21,7 @@ export class AppComponent {
 
   public reverseMove(markerEvent: IMarkerEvent) {
     markerEvent.marker.setOptions({
-      position: [-markerEvent.event.target.options.position[0],-markerEvent.event.target.options.position[1]]
+      position: [-markerEvent.event.target.options.position[0], -markerEvent.event.target.options.position[1]]
     });
   }
 }
