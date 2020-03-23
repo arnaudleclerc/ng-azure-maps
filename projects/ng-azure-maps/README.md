@@ -75,7 +75,7 @@ NB: To avoid conflict with the `style` html tag, the style to apply to the map c
 
 For now, only the `ready` and `error` events are available as Output of the `azure-map` directive.
 
-## React to events on the map
+### React to events on the map
 
 The map events are supported on the `azure-map` directive. In order to avoid conflicts with the names of some input (like pitch or zoom), every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `map` and the `event` is given to the method. 
 
@@ -205,7 +205,7 @@ export class AppComponent {
 
 ![HTML Markers](https://raw.githubusercontent.com/arnaudleclerc/ng-azure-maps/master/assets/markers/html-markers.png) 
 
-## React to events on HTMLMarkers
+### React to events on HTMLMarkers
 
 The HTMLMarkers events are supported on the `map-html-marker` directive. Every event starts with `on` and is followed by the key of the event in PascalCase. A parameter containing the `htmlMarker` and the `event` is given to the method. 
 
