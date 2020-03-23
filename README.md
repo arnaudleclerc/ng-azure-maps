@@ -3,9 +3,17 @@
 
 # ng-azure-maps 
 
-This is a WIP of an Angular wrapper around the azure-maps-control package. It exposes some directives making it easy to integrate azure-maps on an Angular application.
+`ng-azure-maps` is an Angular library, mostly HTML driven wrapper of the `azure-maps-controls` package allowing to easilly integrate its functionalities into an Angular application.
 
 ![4 Maps sample](./assets/4mapssample.png)
+
+## Install the package
+
+The package is available on npm. You need to install the dependencies to the azure-maps-* packages by yourself.
+
+```
+npm i --save azure-maps-control azure-maps-drawing-tools azure-maps-rest ng-azure-maps
+```
 
 ## Register the module
 
