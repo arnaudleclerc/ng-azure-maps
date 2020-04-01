@@ -56,8 +56,9 @@ export class AzureMapDirective
       ["dragend", e => this.onDragEnd.next(this.toMapEvent(e))],
       ["dragstart", e => this.onDragStart.next(this.toMapEvent(e))],
       ["idle", e => this.onIdle.next(this.toMapEvent(e))],
+      ["layeradded", e => this.onLayerAdded.next(this.toMapEvent(e))],
+      ["layerremoved", e => this.onLayerRemoved.next(this.toMapEvent(e))],
       ["mousedown", e => this.onMouseDown.next(this.toMapEvent(e))],
-      ["mouseenter", e => this.onMouseEnter.next(this.toMapEvent(e))],
       ["mouseleave", e => this.onMouseLeave.next(this.toMapEvent(e))],
       ["mousemove", e => this.onMouseMove.next(this.toMapEvent(e))],
       ["mouseout", e => this.onMouseOut.next(this.toMapEvent(e))],
@@ -146,9 +147,10 @@ export class AzureMapDirective
   @Output() public onDragStart = new Subject<IMapEvent>();
   @Output() public onError = new Subject<IMapEvent>();
   @Output() public onIdle = new Subject<IMapEvent>();
+  @Output() public onLayerAdded = new Subject<IMapEvent>();
+  @Output() public onLayerRemoved = new Subject<IMapEvent>();
   @Output() public onLoad = new Subject<IMapEvent>();
   @Output() public onMouseDown = new Subject<IMapEvent>();
-  @Output() public onMouseEnter = new Subject<IMapEvent>();
   @Output() public onMouseLeave = new Subject<IMapEvent>();
   @Output() public onMouseMove = new Subject<IMapEvent>();
   @Output() public onMouseOut = new Subject<IMapEvent>();
@@ -315,7 +317,7 @@ export class AzureMapDirective
           layer.initialize(this._map);
         }
       }
-      
+
       if (this.popups) {
         for (const popup of this.popups.filter(m => !m.hasMap)) {
           popup.addToMap(this._map);
@@ -351,9 +353,10 @@ export class AzureMapDirective
     this.onDragStart.unsubscribe();
     this.onError.unsubscribe();
     this.onIdle.unsubscribe();
+    this.onLayerAdded.unsubscribe();
+    this.onLayerRemoved.unsubscribe();
     this.onLoad.unsubscribe();
     this.onMouseDown.unsubscribe();
-    this.onMouseEnter.unsubscribe();
     this.onMouseLeave.unsubscribe();
     this.onMouseMove.unsubscribe();
     this.onMouseOut.unsubscribe();

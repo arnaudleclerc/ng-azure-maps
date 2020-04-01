@@ -94,9 +94,10 @@ The events and their description are defined on the following table.
 | `dragstart` | `onDragStart` | Fired when a "drag to pan" interaction starts on the map, popup, or HTML marker. |
 | `error` | `onError` | Fired when an error occurs. |
 | `idle` | `onIdle` | <p>Fired after the last frame rendered before the map enters an "idle" state:<ul><li>No camera transitions are in progress.</li><li>All currently requested tiles have loaded.</li><li>All fade/transition animations have completed.</li></ul></p> |
-| `load` | `onLoad` | Fired immediately after all necessary resources have been downloaded and the first visually complete rendering of the map has occurred.
+| `layeradded` | `onLayerAdded` | Fired after a layer has been added to the map |
+| `layerremoved` | `onLayerRemoved` | Fired after a layer has been removed from the map |
+| `load` | `onLoad` | Fired immediately after all necessary resources have been downloaded and the first visually complete rendering of the map has occurred. |
 | `mousedown` | `onMouseDown` | Fired when a pointing device is pressed within the map or when on top of an element. |
-| `mouseenter` | `onMouseEnter` | Fired when a pointing device is initially moved over the map or an element. |
 | `mouseleave` | `onMouseLeave` | Fired when a pointing device is moved out the map or an element. |
 | `mousemove` | `onMouseMove` | Fired when a pointing device is moved within the map or an element. |
 | `mouseout` | `onMouseOut` | Fired when a point device leaves the map's canvas our leaves an element. |
@@ -832,4 +833,4 @@ The events and their description are defined on the following table.
 | `drag` | `onDrag` | Fired repeatedly during a "drag to pan" interaction on the popup. |
 | `dragend` | `onDragEnd` | Fired when a "drag to pan" interaction ends on the popup. |
 | `dragstart` | `onDragStart` | Fired when a "drag to pan" interaction starts on popup. |
-| `open` | `onBoxZoomEnd` | Fired when the popup opens. |
+| `open` | `onOpen` | Fired when the popup opens. |
