@@ -77,7 +77,7 @@ export function setAtlasOptions(configuration: AzureMapsConfiguration) {
   ]
 })
 export class AzureMapsModule {
-  static forRoot(configuration: AzureMapsConfiguration): ModuleWithProviders {
+  static forRoot(configuration: AzureMapsConfiguration): ModuleWithProviders<AzureMapsModule> {
     return {
       ngModule: AzureMapsModule,
       providers: [

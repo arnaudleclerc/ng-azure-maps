@@ -1,6 +1,7 @@
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 import { ControlPosition, Map } from 'azure-maps-control';
 
+@Directive()
 export abstract class ControlDirective {
 
   @Input() public position: ControlPosition;
