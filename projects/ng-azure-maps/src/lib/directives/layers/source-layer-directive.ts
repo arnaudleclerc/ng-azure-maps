@@ -1,8 +1,9 @@
 import * as atlas from 'azure-maps-control';
 import { Map } from 'azure-maps-control';
-import { OnDestroy, Input } from '@angular/core';
+import { OnDestroy, Input, Directive } from '@angular/core';
 import { LayerDirective } from './layer-directive';
 
+@Directive()
 export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
   extends LayerDirective<T>
   implements OnDestroy {

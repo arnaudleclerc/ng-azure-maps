@@ -1,8 +1,9 @@
 import * as atlas from 'azure-maps-control';
-import { OnDestroy, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { OnDestroy, Input, Output, OnChanges, SimpleChanges, Directive } from '@angular/core';
 import { ILayerEvent } from '../../contracts';
 import { Subject } from 'rxjs';
 
+@Directive()
 export abstract class LayerDirective<T extends atlas.layer.Layer>
   implements OnDestroy {
 
