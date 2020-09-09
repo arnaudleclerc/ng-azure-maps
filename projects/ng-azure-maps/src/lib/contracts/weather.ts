@@ -4,7 +4,7 @@ export interface CurrentConditionsResponse {
   results: CurrentConditions[];
 }
 
-interface CurrentConditions {
+export interface CurrentConditions {
   /**
    * Perceived outdoor WeatherUnit caused by the combination of air WeatherUnit, relative humidity, and wind speed in specified unit.
    */
@@ -116,7 +116,7 @@ interface CurrentConditions {
   windGust: Wind;
 }
 
-interface TemperatureSummary {
+export interface TemperatureSummary {
   /**
    * Summary of temperature fluctuations over the past 6 hours.
    */
@@ -134,7 +134,7 @@ interface TemperatureSummary {
 /**
  * Summary of temperature fluctuations over the past 6 hours.
  */
-interface Past6Hours {
+export interface Past6Hours {
   /**
    * minimum
    */
@@ -148,7 +148,7 @@ interface Past6Hours {
 /**
  * Summary of temperature fluctuations over the past 12 hours.
  */
-interface Past12Hours {
+export interface Past12Hours {
   /**
    * minimum
    */
@@ -162,7 +162,7 @@ interface Past12Hours {
 /**
  * Summary of temperature fluctuations over the past 24 hours.
  */
-interface Past24Hours {
+export interface Past24Hours {
   /**
    * minimum
    */
@@ -173,7 +173,7 @@ interface Past24Hours {
   maximum: WeatherUnit;
 }
 
-interface PrecipitationSummary {
+export interface PrecipitationSummary {
   /**
    * The amount of precipitation (liquid equivalent) that has fallen in the past hour.
    */
@@ -204,7 +204,7 @@ interface PrecipitationSummary {
   past24Hours: WeatherUnit;
 }
 
-interface PressureTendency {
+export interface PressureTendency {
   /**
    * Description of the pressure tendency in specified language
    */
@@ -218,7 +218,7 @@ interface PressureTendency {
 /**
  * Wind details being returned including speed and direction.
  */
-interface Wind {
+export interface Wind {
   /**
    * Wind direction
    */
@@ -232,7 +232,7 @@ interface Wind {
 /**
  * Wind direction
  */
-interface WindDirection {
+export interface WindDirection {
   /**
    * Wind direction in Azimuth degrees, starting at true North and continuing in clockwise direction. North is 0 degrees, east is 90 degrees, south is 180 degrees, west is 270 degrees. Possible values 0-359.
    */
@@ -246,7 +246,7 @@ interface WindDirection {
 /**
  * Speed of wind in specified unit.
  */
-interface WindSpeed {
+export interface WindSpeed {
   /**
    * Rounded value of the speed.
    */
@@ -261,7 +261,7 @@ interface WindSpeed {
   unitType: number;
 }
 
-interface WeatherUnit {
+export interface WeatherUnit {
   /**
    * Rounded value.
    */

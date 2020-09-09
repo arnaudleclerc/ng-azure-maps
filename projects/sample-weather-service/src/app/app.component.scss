@@ -4,3 +4,16 @@ azure-map {
   min-width:290px;
   height:100%;
 }
+
+:host ::ng-deep .infobox {
+  max-width: 250px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+:host ::ng-deep .infobox-2 {
+  max-width: 250px;
+  padding: 10px;
+  font-size: 12px;
+  color: white;
+}
