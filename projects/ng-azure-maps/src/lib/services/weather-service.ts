@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CurrentConditionsResponse, DailyForecastResponse, HourlyForecastResponse, MinuteForecastResponse, Unit } from '../contracts';
+import { CurrentConditionsResponse, DailyForecastResponse, HourlyForecastResponse, MinuteForecastResponse, QuarterDayForecastResponse, Unit } from '../contracts';
+import { NumberSymbol } from '@angular/common';
 
 @Injectable()
 export class WeatherService {
@@ -159,6 +160,41 @@ export class WeatherService {
     }
 
     return this.httpClient.get<MinuteForecastResponse>(url);
+  }
+
+  /**
+   * Service returns detailed weather forecast by quarter-day for the next 1, 5, 10, or 15 days for a given location. Response data is presented by quarters of the day - morning, afternoon, evening, and overnight. Details such as temperature, humidity, wind, precipitation, and UV index are returned.Service returns detailed weather forecast by quarter-day for the next 1, 5, 10, or 15 days for a given location. Response data is presented by quarters of the day - morning, afternoon, evening, and overnight. Details such as temperature, humidity, wind, precipitation, and UV index are returned.
+   * @param latitude Latitude
+   * @param longitude Longitude
+   * @param duration Specifies for how many days the quester-day forecast responses are returned. Supported values are:
+                      1 - Return forecast data for the next day. Returned by default.
+                      5 - Return forecast data for the next 5 days.
+                      10 - Return forecast data for next 10 days.
+                      15 - Return forecast data for the next 15 days.
+   * @param language Language in which search results should be returned. Should be one of supported IETF language tags, case insensitive. When data in specified language is not available for a specific field, default language is used. Default value is en-us.
+   * @param unit Specifies to return the data in either metric units or imperial units. Default value is metric.
+   */
+  public getQuarterDayForecast(latitude: number,
+    longitude: number,
+    duration: 1 | 5 | 10 | 15,
+    language: string,
+    unit: Unit
+  ): Observable<QuarterDayForecastResponse> {
+    let url = `${this._rootUrl}/weather/forecast/quarterDay/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
+
+    if (!(duration === null || duration === undefined)) {
+      url += `&duration=${duration}`;
+    }
+
+    if (!(language === null || language === undefined)) {
+      url += `&language=${language}`;
+    }
+
+    if (!(unit === null || unit === undefined)) {
+      url += `&unit=${unit};`
+    }
+
+    return this.httpClient.get<QuarterDayForecastResponse>(url);
   }
 
 }

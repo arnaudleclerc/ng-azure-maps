@@ -1,5 +1,10 @@
 export type Unit = 'imperial' | 'metric';
 
+/**
+ * Quarter of the day.
+ */
+export type Quarter = 0 | 1 | 2 | 3;
+
 export interface CurrentConditionsResponse {
   results: CurrentConditions[];
 }
@@ -759,4 +764,106 @@ export interface MinuteForecastSummary {
    * Numeric value representing an image that displays the iconPhrase.
    */
   iconCode: number;
+}
+
+export interface QuarterDayForecastResponse {
+  /**
+   * Forecast data for each quarter in the response.
+   */
+  forecasts: QuarterDayForecast[];
+}
+
+export interface QuarterDayForecast {
+  /**
+   * Date and time of the forecast in ISO 8601 format, for example, 2019-10-27T19:39:57-08:00.
+   */
+  date: string;
+  /**
+   * Date and time of the beginning of the forecast quarter displayed in ISO 8601 format, for example, 2019-10-27T19:39:57-08:00.
+   */
+  effectiveDate: string;
+  /**
+   * Quarter of the day.
+   */
+  quarter: Quarter;
+  /**
+   * Numeric value representing an image that displays the iconPhrase.
+   */
+  iconCode: number;
+  /**
+   * Phrase description of the icon. Displayed in specified language. For example, 'Sunny'.
+   */
+  iconPhrase: string;
+  /**
+   * Short summary phrase summary for quarter.
+   */
+  phrase: string;
+  /**
+   * Temperature values for the quarter.
+   */
+  temperature: WeatherUnitRange;
+  /**
+   * RealFeel™ Temperature values for the quarter.
+   */
+  realFeelTemperature: WeatherUnitRange;
+  /**
+   * The dewpoint temperature in specified unit. The dewpoint temperature is the temperature that the air must be cooled to in order to reach saturation.
+   */
+  dewPoint: WeatherUnit;
+  /**
+   * Relative humidity is the amount of water vapor present in air expressed as a percentage of the amount needed for saturation at the same temperature.
+   */
+  relativeHumidity: number;
+  /**
+   * Wind details being returned including speed and direction.
+   */
+  wind: Wind;
+  /**
+   * Wind gust. Wind gust is a sudden, brief increase in speed of the wind.
+   */
+  windGust: Wind;
+  /**
+   * Visibility in specified unit. A measure of the distance at which an object or light can be clearly discerned.
+   */
+  visibility: WeatherUnit;
+  /**
+   * Percent representing cloud cover.
+   */
+  cloudCover: number;
+  /**
+   * Indicates the presence or absence of precipitation. True indicates the presence of precipitation, false indicates the absence of precipitation.
+   */
+  hasPrecipitation: boolean;
+  /**
+   * Specifies the type of precipitation ("rain" "snow" "ice" or "mix"). If dbz = zero, precipitationType is not present in the response.
+   */
+  precipitationType?: string;
+  /**
+   * Description of the intensity.
+   */
+  precipitationIntensity?: string;
+  /**
+   * Percent representing the probability of precipitation. For example, '20'.
+   */
+  precipitationProbability: number;
+  /**
+   * Percent representing the probability of a thunderstorm. For example, '10'.
+   */
+  thunderstormProbability: number;
+  /**
+   * Total liquid equivalent of precipitation during the forecast period.
+   */
+  totalLiquid: WeatherUnit;
+  /**
+   * Rain
+   */
+  rain: WeatherUnit;
+  /**
+   * Snow
+   */
+  snow: WeatherUnit;
+  /**
+   * Ice
+   */
+  ice: WeatherUnit;
 }
