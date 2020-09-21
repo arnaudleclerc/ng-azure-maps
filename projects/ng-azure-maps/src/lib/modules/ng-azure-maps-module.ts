@@ -21,9 +21,11 @@ import {
 import {
   PipelineProvider,
   SearchService,
-  RouteService
+  RouteService, WeatherService
 } from '../services';
 import * as atlas from 'azure-maps-control';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AtlasRestAuthenticationInterceptor } from '../interceptors';
 
 export function setAtlasOptions(configuration: AzureMapsConfiguration) {
   return (): Promise<any> => {
@@ -74,6 +76,9 @@ export function setAtlasOptions(configuration: AzureMapsConfiguration) {
     ImageLayerDirective,
     TileLayerDirective,
     PopupDirective
+  ],
+  imports: [
+    HttpClientModule
   ]
 })
 export class AzureMapsModule {
@@ -91,9 +96,15 @@ export class AzureMapsModule {
           deps: [AZUREMAPS_CONFIG],
           multi: true
         },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AtlasRestAuthenticationInterceptor,
+          multi: true
+        },
         PipelineProvider,
         SearchService,
-        RouteService
+        RouteService,
+        WeatherService
       ]
     };
   }
