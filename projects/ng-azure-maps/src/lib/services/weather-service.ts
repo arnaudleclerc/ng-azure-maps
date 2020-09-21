@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CurrentConditionsResponse, DailyForecastResponse, HourlyForecastResponse, MinuteForecastResponse, QuarterDayForecastResponse, Unit } from '../contracts';
+import { CurrentConditionsResponse, DailyForecastResponse, HourlyForecastResponse, MinuteForecastResponse, QuarterDayForecastResponse, Unit, WaypointInput, WeatherAlongRouteResponse } from '../contracts';
 import { NumberSymbol } from '@angular/common';
 
 @Injectable()
@@ -176,9 +176,9 @@ export class WeatherService {
    */
   public getQuarterDayForecast(latitude: number,
     longitude: number,
-    duration: 1 | 5 | 10 | 15,
-    language: string,
-    unit: Unit
+    duration?: 1 | 5 | 10 | 15,
+    language?: string,
+    unit?: Unit
   ): Observable<QuarterDayForecastResponse> {
     let url = `${this._rootUrl}/weather/forecast/quarterDay/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
 
@@ -195,6 +195,43 @@ export class WeatherService {
     }
 
     return this.httpClient.get<QuarterDayForecastResponse>(url);
+  }
+
+  /**
+   * Weather along a route API returns hyper local (one kilometer or less), up-to-the-minute weather nowcasts, weather hazard assessments, and notifications along a route described as a sequence of waypoints. This includes a list of weather hazards affecting the waypoint or route, and the aggregated hazard index for each waypoint might be used to paint each portion of a route according to how safe it is for the driver. When submitting the waypoints, it is recommended to stay within, or close to, the distance that can be traveled within 120-mins or shortly after. Data is updated every five minutes.
+    The service supplements Azure Maps Route Service that allows you to first request a route between an origin and a destination and use that as an input for Weather Along Route endpoint.
+    In addition, the service supports scenarios to generate weather notifications for waypoints that experience an increase in intensity of a weather hazard. For example, if the vehicle is expected to begin experiencing heavy rain as it reaches a waypoint, a weather notification for heavy rain will be generated for that waypoint allowing the end product to display a heavy rain notification before the driver reaches that waypoint. The trigger for when to display the notification for a waypoint could be based, for example, on a geofence, or selectable distance to the waypoint.
+    The API covers all regions of the planet except latitudes above Greenland and Antarctica.
+   * @param waypoints Coordinates through which the route is calculated, separated by colon (:) and entered in chronological order. A minimum of two waypoints is required. A single API call may contain up to 60 waypoints. A waypoint indicates location, ETA, and optional heading.
+   * @param language Language in which search results should be returned. Should be one of supported IETF language tags, case insensitive. When data in specified language is not available for a specific field, default language is used. Default value is en-us.
+   */
+  public getWeatherAlongRoute(waypoints: WaypointInput[],
+    language?: string
+  ): Observable<WeatherAlongRouteResponse> {
+    if (waypoints === null || waypoints === undefined || waypoints.length < 2) {
+      throw new Error("A minimum of two waypoints is required");
+    }
+
+    if (waypoints.length > 60) {
+      throw new Error("A single API call may contain up to 60 waypoints");
+    }
+
+    let query = waypoints.map(waypoint => {
+      let query = `${waypoint.latitude},${waypoint.longitude},${waypoint.eta}`;
+      if (waypoint.heading !== null && waypoint.heading !== undefined) {
+        query += `,${waypoint.heading}`;
+      }
+
+      return query;
+    }).join(':');
+
+    let url = `${this._rootUrl}/weather/route/json?api-version=${this._apiVersion}&query=${query}`;
+
+    if (!(language === null || language === undefined)) {
+      url += `&language=${language}`;
+    }
+
+    return this.httpClient.get<WeatherAlongRouteResponse>(url);
   }
 
 }

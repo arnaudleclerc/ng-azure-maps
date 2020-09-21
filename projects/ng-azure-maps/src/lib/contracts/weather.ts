@@ -867,3 +867,175 @@ export interface QuarterDayForecast {
    */
   ice: WeatherUnit;
 }
+
+/**
+ * A waypoint indicates location, ETA, and optional heading
+ */
+export interface WaypointInput {
+  /**
+   * Latitude coordinate in decimal degrees.
+   */
+  latitude: number;
+  /**
+   * Longitude coordinate in decimal degrees
+   */
+  longitude: number;
+  /**
+   * The number of minutes from the present time that it will take for the vehicle to reach the waypoint. Allowed range is from 0.0 to 120.0 minutes.
+   */
+  eta: number;
+  /**
+   * An optional value indicating the vehicle heading as it passes the waypoint.
+   * Expressed in clockwise degrees relative to true north.
+   * This is issued to calculate sun glare as a driving hazard.
+   * Allowed range is from 0.0 to 360.0 degrees.
+   * If not provided, a heading will automatically be derived based on the position of neighboring waypoints.
+   * It is recommended to stay within, or close to, the distance that can be traveled within 120-mins or shortly after.
+   * This way a more accurate assessment can be provided for the trip and prevent isolated events not being captured between waypoints.
+   * Information can and should be updated along the route (especially for trips greater than 2 hours) to continuously pull new waypoints moving forward, but also to ensure that forecast information for content such as precipitation type and intensity is accurate as storms develop and dissipate over time.
+   */
+  heading?: number;
+}
+
+export interface HazardDetail {
+  /**
+   * A unique identifier (non-displayable) for each type of hazard: LightRain, ModerateRain, HeavyRain, LightMix, ModerateMix, HeavyMix, LightSnow, ModerateSnow, HeavySnow, LightIce, ModerateIce, HeavyIce, Hail, LargeHail, SunGlare, SunGlareHigh, Lightning, SevereLightning, WindModerate, WindHigh, WindExtreme, FloodWarning, FlashFloodWarning, TornadoWarning, TsunamiWarning, SevereThunderstormWarning.
+   */
+  hazardCode: string;
+  /**
+   * A severity/hazard index.
+    0 - No hazard.
+    1 - Be informed, be aware.
+    2 - Pay attention, be prepared.
+    3 - Take action.
+    4 - Life threatening, emergency.
+   */
+  hazardIndex: number;
+  /**
+   * A displayable short phrase describing the forecasted conditions and precipitation intensity/type.
+   */
+  shortPhrase: string;
+}
+
+export interface Hazards {
+  /**
+   * Details of the weather hazards affecting the trip.
+   */
+  hazardDetails: HazardDetail[];
+  /**
+   * A severity/hazard index.
+    0 - No hazard.
+    1 - Be informed, be aware.
+    2 - Pay attention, be prepared.
+    3 - Take action.
+    4 - Life threatening, emergency.
+   */
+  maxHazardIndex: number;
+}
+
+export interface Notification {
+  /**
+   * A unique identifier (non-displayable) for each type of hazard: LightRain, ModerateRain, HeavyRain, LightMix, ModerateMix, HeavyMix, LightSnow, ModerateSnow, HeavySnow, LightIce, ModerateIce, HeavyIce, Hail, LargeHail, SunGlare, SunGlareHigh, Lightning, SevereLightning, WindModerate, WindHigh, WindExtreme, FloodWarning, FlashFloodWarning, TornadoWarning, TsunamiWarning, SevereThunderstormWarning.
+   */
+  hazardCode: string;
+  /**
+   * A severity/hazard index.
+    0 - No hazard.
+    1 - Be informed, be aware.
+    2 - Pay attention, be prepared.
+    3 - Take action.
+    4 - Life threatening, emergency.
+   */
+  hazardIndex: number;
+  /**
+   * A displayable short phrase describing the forecasted conditions and precipitation intensity/type.
+   */
+  shortPhrase: string;
+  /**
+   * A type of notification generated to warn drivers of the onset of a hazard, or increase in intensity of a hazard.
+   */
+  type: string;
+}
+
+/**
+ * A rating that indicates how blinding the sun is for the driver.
+ */
+export interface SunGlare {
+  /**
+   * If the vehicle heading value is not provided for a waypoint, then the service will calculate a heading based upon the location of neighboring waypoints if provided.
+   */
+  calculatedVehicleHeading: number;
+  /**
+   * An index from 0 to 100 indicating sun glare intensity for a driver. A value of 50 and above can be considered a hazard for some drivers and a value of 100 signifies the driver is driving straight into the sun and atmospheric conditions are clear allowing for the full intensity of the sun to blind the driver.
+   */
+  glareIndex: number;
+}
+
+export interface Waypoint {
+  /**
+   * Percent representing cloud cover.
+   */
+  cloudCover: number;
+  hazards: Hazards;
+  /**
+   * Numeric value representing an image that displays the iconPhrase.
+   */
+  iconCode: number;
+  /**
+   * Indicates the time of the day. True indicates 'day',', false indicates 'night.
+   */
+  isDayTime: boolean;
+  /**
+   * Estimation of thunderstorm intensity on an open scale. A value of 0 means there is no thunderstorm; values of 1 and higher mean there is a thunderstorm in increasing intensity.
+   */
+  lightningCount: number;
+  notifications: Notification[];
+  precipitation: WeatherAlongRoutePrecipitation;
+  /**
+   * A displayable short phrase describing the forecasted conditions and precipitation intensity/type.
+   */
+  shortPhrase: string;
+  /**
+   * A rating that indicates how blinding the sun is for the driver.
+   */
+  sunGlare: SunGlare;
+  temperature: WeatherUnit;
+  /**
+   * Wind details being returned including speed and direction.
+   */
+  wind: Wind;
+  /**
+   * Wind details being returned including speed and direction.
+   */
+  windGust: Wind;
+}
+
+export interface WeatherAlongRoutePrecipitation {
+  /**
+   * The forecasted precipitation intensity in dBZ (decibels relative to Z) from 0.0 to 100.0.
+   */
+  dbz: number;
+  /**
+   * Precipitation type. If precipitation should occur, the type that it will be: "RAIN," "HAIL," "SNOW," "ICE," or "MIX."
+   */
+  type: string;
+}
+
+/**
+ * This object is returned from a successful Weather Along Route.
+ */
+export interface WeatherAlongRouteResponse {
+  summary: WeatherAlongRouteSummary;
+  /**
+   * Data for each waypoint returned in the same order as specified in the request.
+   */
+  waypoints: Waypoint[];
+}
+
+export interface WeatherAlongRouteSummary {
+  hazards: Hazards;
+  /**
+   * Numeric value representing an image that displays the iconPhrase.
+   */
+  iconCode: number;
+}
