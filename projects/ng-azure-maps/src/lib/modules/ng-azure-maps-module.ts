@@ -21,7 +21,9 @@ import {
 import {
   PipelineProvider,
   SearchService,
-  RouteService, WeatherService
+  RouteService,
+  WeatherService,
+  TokenCredentialProvider
 } from '../services';
 import * as atlas from 'azure-maps-control';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -104,7 +106,8 @@ export class AzureMapsModule {
         PipelineProvider,
         SearchService,
         RouteService,
-        WeatherService
+        WeatherService,
+        TokenCredentialProvider
       ]
     };
   }
