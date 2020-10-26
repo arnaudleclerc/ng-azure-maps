@@ -73,7 +73,7 @@ export class TileLayerDirective
       tileSize: this.tileSize,
       tileUrl: this.tileUrl,
       visible: this.visible
-    });
+    }, this.id);
 
     this.initializeEvents(map);
 
