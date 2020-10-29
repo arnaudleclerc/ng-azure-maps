@@ -17,7 +17,7 @@ export class HtmlMarkerDirective
     [
       ["click", e => this.onClick.next(this.toMarkerEvent(e))],
       ["contextmenu", e => this.onContextMenu.next(this.toMarkerEvent(e))],
-      ["dblclick", e => this.onDbClick.next(this.toMarkerEvent(e))],
+      ["dblclick", e => this.onDblClick.next(this.toMarkerEvent(e))],
       ["drag", e => this.onDrag.next(this.toMarkerEvent(e))],
       ["dragstart", e => this.onDragStart.next(this.toMarkerEvent(e))],
       ["dragend", e => this.onDragEnd.next(this.toMarkerEvent(e))],
@@ -46,7 +46,7 @@ export class HtmlMarkerDirective
 
   @Output() public onClick = new Subject<IMarkerEvent>();
   @Output() public onContextMenu = new Subject<IMarkerEvent>();
-  @Output() public onDbClick = new Subject<IMarkerEvent>();
+  @Output() public onDblClick = new Subject<IMarkerEvent>();
   @Output() public onDrag = new Subject<IMarkerEvent>();
   @Output() public onDragStart = new Subject<IMarkerEvent>();
   @Output() public onDragEnd = new Subject<IMarkerEvent>();
@@ -88,7 +88,7 @@ export class HtmlMarkerDirective
 
     this.onClick.unsubscribe();
     this.onContextMenu.unsubscribe();
-    this.onDbClick.unsubscribe();
+    this.onDblClick.unsubscribe();
     this.onDrag.unsubscribe();
     this.onDragStart.unsubscribe();
     this.onDragEnd.unsubscribe();
