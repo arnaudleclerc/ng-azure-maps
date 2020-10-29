@@ -11,7 +11,7 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
     [
       ["click", e => this.onClick.next(this.toLayerEvent(this.layer, e))],
       ["contextmenu", e => this.onContextMenu.next(this.toLayerEvent(this.layer, e))],
-      ["dbclick", e => this.onDbClick.next(this.toLayerEvent(this.layer, e))],
+      ["dblclick", e => this.onDblClick.next(this.toLayerEvent(this.layer, e))],
       ["layeradded", e => this.onAdded.next(this.toLayerEvent(this.layer, e))],
       ["layerremoved", e => this.onRemoved.next(this.toLayerEvent(this.layer, e))],
       ["mousedown", e => this.onMouseDown.next(this.toLayerEvent(this.layer, e))],
@@ -37,7 +37,7 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
   @Output() public onAdded = new Subject<ILayerEvent>();
   @Output() public onClick = new Subject<ILayerEvent>();
   @Output() public onContextMenu = new Subject<ILayerEvent>();
-  @Output() public onDbClick = new Subject<ILayerEvent>();
+  @Output() public onDblClick = new Subject<ILayerEvent>();
   @Output() public onMouseDown = new Subject<ILayerEvent>();
   @Output() public onMouseEnter = new Subject<ILayerEvent>();
   @Output() public onMouseLeave = new Subject<ILayerEvent>();
@@ -62,7 +62,7 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
     this.onAdded.unsubscribe();
     this.onClick.unsubscribe();
     this.onContextMenu.unsubscribe();
-    this.onDbClick.unsubscribe();
+    this.onDblClick.unsubscribe();
     this.onMouseDown.unsubscribe();
     this.onMouseEnter.unsubscribe();
     this.onMouseLeave.unsubscribe();

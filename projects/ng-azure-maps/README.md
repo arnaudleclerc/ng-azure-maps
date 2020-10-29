@@ -218,7 +218,7 @@ The events and their description are defined on the following table.
 | -- | -- | -- |
 | `click` | `onClick` | Fired when a pointing device is pressed and released at the same point on the marker. |
 | `contextmenu` | `onContextMenu` | Fired when the right button of the mouse is clicked on the marker. |
-| `dblclick` | `onDbClick` | Fired when a pointing device is clicked twice at the same point on the marker. |
+| `dblclick` | `onDblClick` | Fired when a pointing device is clicked twice at the same point on the marker. |
 | `drag` | `onDrag` | Fired repeatedly during a "drag to pan" interaction on the HTML marker. |
 | `dragend` | `onDragEnd` | Fired when a "drag to pan" interaction ends on the HTML marker. |
 | `dragstart` | `onDragStart` | Fired when a "drag to pan" interaction starts on the HTML marker. |
@@ -635,7 +635,7 @@ The events and their description are defined on the following table.
 | -- | -- | -- |
 | `click` | `onClick` | Fired when a pointing device is pressed and released at the same point on the layer. |
 | `contextmenu` | `onContextMenu` | Fired when the right button of the mouse is clicked. |
-| `dbclick` | `onDbClick` | Fired when a pointing device is clicked twice at the same point on the layer. |
+| `dblclick` | `onDblClick` | Fired when a pointing device is clicked twice at the same point on the layer. |
 | `layeradded` | `onAdded` | Fired when the layer is added to the map. |
 | `layerremoved` | `onRemoved` | `Fire when the layer has been removed from the map. |
 | `mousedown` | `onMouseDown` | Fired when a pointing divice is pressed within the layer or on top of an element. |
