@@ -9,8 +9,7 @@ export class SearchService {
   private readonly _searchUrl: SearchURL;
   private readonly _defaultTimeout = 10000;
 
-  constructor(pipelineProvider: PipelineProvider,
-    httpClient: HttpClient) {
+  constructor(pipelineProvider: PipelineProvider) {
     this._searchUrl = new SearchURL(pipelineProvider.getPipeline());
   }
 
