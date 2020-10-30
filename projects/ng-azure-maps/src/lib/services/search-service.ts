@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { PipelineProvider } from './pipeline-provider';
 import { SearchURL, Aborter } from 'azure-maps-rest';
 import * as atlas from 'azure-maps-rest';
+import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class SearchService {
 
   private readonly _searchUrl: SearchURL;
   private readonly _defaultTimeout = 10000;
 
-  constructor(pipelineProvider: PipelineProvider) {
+  constructor(pipelineProvider: PipelineProvider,
+    httpClient: HttpClient) {
     this._searchUrl = new SearchURL(pipelineProvider.getPipeline());
   }
 
@@ -24,12 +26,11 @@ export class SearchService {
    * It will also handle everything from exact street addresses or street or intersections
    * as well as higher level geographies such as city centers, counties, states etc.
    * Uses the Get Search Address API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddress
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {string} query The address to search for (e.g., "1 Microsoft way, Redmond, WA").
-   * @param {SearchAddressOptions} [options] The optional parameters
-   * @returns {Promise<SearchAddressResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchAddressOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressResponse, atlas.Models.SearchGetSearchAddressResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchAddress(query: string,
     options?: atlas.Models.SearchGetSearchAddressOptionalParams,
@@ -48,13 +49,12 @@ export class SearchService {
    * asset and wish to know what address where the coordinate is located.
    * This endpoint will return address information for a given coordinate.
    * Uses the Get Search Address Reverse API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddressreverse
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {GeoJSON.Position} position The position to reverse search,
    * a coordinate array of `[longitude, latitude]` e.g. `[-122.125679, 47.641268]`.
-   * @param {SearchAddressReverseOptions} [options] The optional parameters
-   * @returns {Promise<SearchFuzzyResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchAddressReverseOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressReverseResponse, atlas.Models.SearchGetSearchAddressReverseResponse, atlas.SearchReverseGeojson>>}
+   * @memberof SearchService
    */
   public searchAddressReverse(position: GeoJSON.Position,
     options?: atlas.Models.SearchGetSearchAddressReverseOptionalParams,
@@ -73,13 +73,12 @@ export class SearchService {
    * and wish to know what address where the coordinate is located.
    * This endpoint will return cross street information for a given coordinate.
    * Uses the Get Search Address Reverse Cross Street API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddressreversecrossstreet
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {GeoJSON.Position} position The position to reverse search,
    * a coordinate array of `[longitude, latitude]` e.g. `[-122.125679, 47.641268]`.
-   * @param {SearchAddressReverseCrossStreetOptions} [options] The optional parameters
-   * @returns {Promise<SearchAddressReverseCrossStreetResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchAddressReverseCrossStreetOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressReverseCrossStreetResponse, atlas.Models.SearchGetSearchAddressReverseCrossStreetResponse, atlas.SearchReverseGeojson>>}
+   * @memberof SearchService
    */
   public searchAddressReverseCrossStreet(
     position: GeoJSON.Position,
@@ -101,14 +100,13 @@ export class SearchService {
    * It will also handle everything from exact street addresses or street or intersections as well as
    * higher level geographies such as city centers, counties, states etc.
    * Uses the Get Search Address Structured API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddressstructured
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {string} countryCode The 2 or 3 letter
    * [ISO3166-1](https://www.iso.org/iso-3166-country-codes.html) country code portion of an address.
    * E.g. US.
-   * @param {SearchAddressStructuredOptions} [options] The optional parameters
-   * @returns {Promise<SearchAddressStructuredResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchAddressStructuredOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressStructuredResponse, atlas.Models.SearchGetSearchAddressStructuredResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchAddressStructured(
     countryCode: string,
@@ -134,17 +132,16 @@ export class SearchService {
    * If the route that passes through the found point is faster than the original one, the `detourTime` value in
    * the response is negative.
    * Uses the Post Search Along Route API: https://docs.microsoft.com/rest/api/maps/search/postsearchalongroute
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
-   * @param {string | number[]} query The applicable query string (e.g., "seattle", "pizza").
+   * @param {string} query The applicable query string (e.g., "seattle", "pizza").
    * @param {number} maxDetourTime Maximum detour time of the point of interest in seconds. Max value is 3600
    * seconds
    * @param {SearchAlongRouteRequestBody} body This represents the route to search along and should be a
    * valid `GeoJSON LineString` type. Please refer to [RFC
    * 7946](https://tools.ietf.org/html/rfc7946#section-3.1.4) for details.
-   * @param {SearchAlongRouteOptions} [options] The optional parameters
-   * @returns {Promise<SearchAlongRouteResponse>}
-   * @memberof SearchURL
+   * @param {SearchPostSearchAlongRouteOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchAlongRouteResponse, atlas.Models.SearchPostSearchAlongRouteResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchAlongRoute(
     query: string,
@@ -178,13 +175,12 @@ export class SearchService {
    * Most Search queries default to `maxFuzzyLevel`=2 to gain performance and also reduce unusual results.
    * This new default can be overridden as needed per request by passing in the query param `maxFuzzyLevel`=3 or 4.
    * Uses the Get Search Fuzzy API: https://docs.microsoft.com/rest/api/maps/search/getsearchfuzzy
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {string | GeoJSON.Position} query The applicable query string (e.g., "seattle", "pizza").
    * Can _also_ be specified as a coordinate array of `[longitude, latitude]` (e.g., `[-122.125679, 47.641268]`).
    * @param {SearchFuzzyOptions} [options] The optional parameters
-   * @returns {Promise<SearchFuzzyResponse>}
-   * @memberof SearchURL
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchFuzzyResponse, atlas.Models.SearchGetSearchFuzzyResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchFuzzy(query: string | GeoJSON.Position,
     options?: atlas.Models.SearchGetSearchFuzzyOptionalParams,
@@ -220,15 +216,14 @@ export class SearchService {
    * This is the recommended option if the geometry contains a single Polygon.
    * The `Polygon` object can have a max of 50 coordinates.
    * Uses the Post Search Inside Geometry API: https://docs.microsoft.com/rest/api/maps/search/postsearchinsidegeometry
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
-   * @param {string | number[]} query The applicable query string (e.g., "seattle", "pizza").
+   * @param {string} query The applicable query string (e.g., "seattle", "pizza").
    * @param {SearchInsideGeometryRequestBody} body This represents the geometry for one or more geographical
    * features (parks, state boundary etc.) to search in and should be a GeoJSON compliant type.
    * Please refer to [RFC 7946](https://tools.ietf.org/html/rfc7946) for details.
-   * @param {SearchInsideGeometryOptions} [options] The optional parameters
-   * @returns {Promise<SearchInsideGeometryResponse>}
-   * @memberof SearchURL
+   * @param {SearchPostSearchInsideGeometryOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchPostSearchInsideGeometryResponse, atlas.Models.SearchPostSearchInsideGeometryResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchInsideGeometry(query: string,
     body: atlas.Models.SearchInsideGeometryRequestBody,
@@ -247,13 +242,12 @@ export class SearchService {
    * specific location, the nearby search method may be the right choice.
    * This endpoint will only return POI results, and does not take in a search query parameter.
    * Uses the Get Search Nearby API: https://docs.microsoft.com/rest/api/maps/search/getsearchnearby
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {GeoJSON.Position} location Location where results should be biased.
    * Should be an array of `[longitude, latitude]`, E.g. `[-121.89, 37.337]`.
-   * @param {SearchNearbyOptions} [options] The optional parameters
-   * @returns {Promise<SearchNearbyResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchNearbyOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchNearbyResponse, atlas.Models.SearchGetSearchNearbyResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchNearby(location: GeoJSON.Position,
     options?: atlas.Models.SearchGetSearchNearbyOptionalParams,
@@ -270,12 +264,11 @@ export class SearchService {
    * POI endpoint for searching.
    * This endpoint will only return POI results.
    * Uses the Get Search POI API: https://docs.microsoft.com/rest/api/maps/search/getsearchpoi
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {string} query The POI name to search for (e.g., "statue of liberty", "starbucks").
-   * @param {SearchPOIOptions} [options] The optional parameters
-   * @returns {Promise<SearchPOIResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchPOIOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchPoiResponse, atlas.Models.SearchGetSearchPOICategoryResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchPOI(query: string,
     options?: atlas.Models.SearchGetSearchPOIOptionalParams,
@@ -293,12 +286,11 @@ export class SearchService {
    * This endpoint will only return POI results which are categorized as specified.
    * List of available categories can be found [here](https://docs.microsoft.com/azure/azure-maps/search-categories).
    * Uses the Get Search POI Category API: https://docs.microsoft.com/rest/api/maps/search/getsearchpoicategory
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {string} query The POI category to search for (e.g., "AIRPORT", "BEACH").
-   * @param {SearchPOICategoryOptions} [options] The optional parameters
-   * @returns {Promise<SearchPOICategoryResponse>}
-   * @memberof SearchURL
+   * @param {SearchGetSearchPOICategoryOptionalParams} [options] The optional parameters
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchPoiCategoryResponse, atlas.Models.SearchGetSearchPOICategoryResponse, atlas.SearchGeojson>>}
+   * @memberof SearchService
    */
   public searchPOICategory(query: string,
     options?: atlas.Models.SearchGetSearchPOICategoryOptionalParams,
@@ -324,12 +316,11 @@ export class SearchService {
    *
    * Uses the Get Search Polygon API: https://docs.microsoft.com/rest/api/maps/search/getsearchpolygon
    *
-   * @param {Aborter} aborter Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-   * goto documents of Aborter for more examples about request cancellation.
    * @param {string} geometries Comma separated list of geometry UUIDs, previously retrieved from an Online
    * Search request.
-   * @returns {Promise<SearchPolygonResponse>}
-   * @memberof SearchURL
+   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
+   * @returns {Promise<atlas.Response<atlas.Models.SearchPolygonResponse, atlas.Models.SearchGetSearchPolygonResponse, atlas.SearchPolygonGeojson>>}
+   * @memberof SearchService
    */
   public searchPolygons(geometries: string[],
     timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchPolygonResponse, atlas.Models.SearchGetSearchPolygonResponse, atlas.SearchPolygonGeojson>> {

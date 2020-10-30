@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CurrentConditionsResponse, DailyForecastResponse, HourlyForecastResponse, MinuteForecastResponse, QuarterDayForecastResponse, Unit, WaypointInput, WeatherAlongRouteResponse } from '../contracts';
-import { NumberSymbol } from '@angular/common';
+import { AtlasHttpService } from './atlas-http.service';
 
 @Injectable()
-export class WeatherService {
+export class WeatherService
+  extends AtlasHttpService {
 
-  private readonly _rootUrl = "https://atlas.microsoft.com";
-  private readonly _apiVersion = "1.0";
-
-  constructor(private readonly httpClient: HttpClient) {
-
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
   }
 
   /**
@@ -39,7 +37,8 @@ export class WeatherService {
     unit?: Unit
   ): Observable<CurrentConditionsResponse> {
 
-    let url = `${this._rootUrl}/weather/currentConditions/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
+    let url = this.buildUrl('weather/currentConditions/json');
+    url += `&query=${latitude},${longitude}`;
 
     if (!(details === null || details === undefined)) {
       url += `&details=${details}`;
@@ -80,7 +79,9 @@ export class WeatherService {
     language?: string,
     unit?: Unit
   ): Observable<DailyForecastResponse> {
-    let url = `${this._rootUrl}/weather/forecast/daily/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
+
+    let url = this.buildUrl('weather/forecast/daily/json');
+    url += `&query=${latitude},${longitude}`;
 
     if (!(duration === null || duration === undefined)) {
       url += `&duration=${duration}`;
@@ -117,7 +118,9 @@ export class WeatherService {
     language?: string,
     unit?: Unit
   ): Observable<HourlyForecastResponse> {
-    let url = `${this._rootUrl}/weather/forecast/hourly/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
+
+    let url = this.buildUrl('weather/forecast/hourly/json');
+    url += `&query=${latitude},${longitude}`;
 
     if (!(duration === null || duration === undefined)) {
       url += `&duration=${duration}`;
@@ -149,7 +152,8 @@ export class WeatherService {
     interval?: 1 | 5 | 15,
     language?: string
   ): Observable<MinuteForecastResponse> {
-    let url = `${this._rootUrl}/weather/forecast/minute/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
+    let url = this.buildUrl('weather/forecast/minute/json');
+    url += `&query=${latitude},${longitude}`;
 
     if (!(interval === null || interval === undefined)) {
       url += `&interval=${interval}`;
@@ -180,7 +184,8 @@ export class WeatherService {
     language?: string,
     unit?: Unit
   ): Observable<QuarterDayForecastResponse> {
-    let url = `${this._rootUrl}/weather/forecast/quarterDay/json?api-version=${this._apiVersion}&query=${latitude},${longitude}`;
+    let url = this.buildUrl('weather/forecast/quarterDay/json');
+    url += `&query=${latitude},${longitude}`;
 
     if (!(duration === null || duration === undefined)) {
       url += `&duration=${duration}`;
@@ -225,7 +230,8 @@ export class WeatherService {
       return query;
     }).join(':');
 
-    let url = `${this._rootUrl}/weather/route/json?api-version=${this._apiVersion}&query=${query}`;
+    let url = this.buildUrl('weather/route/json');
+    url += `&query=${query}`;
 
     if (!(language === null || language === undefined)) {
       url += `&language=${language}`;
