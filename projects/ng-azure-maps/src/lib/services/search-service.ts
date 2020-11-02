@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -58,19 +58,22 @@ export class SearchService
    * Uses the Get Search Address Reverse API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddressreverse
    * @param {GeoJSON.Position} position The position to reverse search,
    * a coordinate array of `[longitude, latitude]` e.g. `[-122.125679, 47.641268]`.
-   * @param {SearchGetSearchAddressReverseOptionalParams} [options] The optional parameters
+   * @param {SearchAddressReverseOptionalParams} [options] The optional parameters
    * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressReverseResponse, atlas.Models.SearchGetSearchAddressReverseResponse, atlas.SearchReverseGeojson>>}
+   * @returns {Observable<atlas.Models.SearchAddressReverseResponse>}
    * @memberof SearchService
    */
   public searchAddressReverse(position: GeoJSON.Position,
-    options?: atlas.Models.SearchGetSearchAddressReverseOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchAddressReverseResponse, atlas.Models.SearchGetSearchAddressReverseResponse, atlas.SearchReverseGeojson>> {
-    return this
-      ._searchUrl
-      .searchAddressReverse(Aborter.timeout(timeout),
-        position,
-        options);
+    options?: SearchAddressReverseOptionalParams): Observable<atlas.Models.SearchAddressReverseResponse> {
+
+    let url = this.buildUrl('search/address/reverse/json');
+    url += `&query=${position[0]},${position[1]}`;
+
+    if (options) {
+      url += `&${searchAddressReverseOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchAddressReverseResponse>(url);
   }
 
   /**

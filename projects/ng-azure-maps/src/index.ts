@@ -18,5 +18,9 @@ export {
   PopupDirective
 } from './lib/directives';
 export * from './lib/contracts';
+export {
+  SearchAddressOptionalParams,
+  ExtendedPostalCodes
+} from './lib/models';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';
