@@ -3,13 +3,20 @@ import { PipelineProvider } from './pipeline-provider';
 import { SearchURL, Aborter } from 'azure-maps-rest';
 import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AtlasHttpService } from './atlas-http.service';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString } from '../models';
+
 @Injectable()
-export class SearchService {
+export class SearchService
+  extends AtlasHttpService {
 
   private readonly _searchUrl: SearchURL;
   private readonly _defaultTimeout = 10000;
 
-  constructor(pipelineProvider: PipelineProvider) {
+  constructor(pipelineProvider: PipelineProvider,
+    httpClient: HttpClient) {
+    super(httpClient);
     this._searchUrl = new SearchURL(pipelineProvider.getPipeline());
   }
 
@@ -26,19 +33,20 @@ export class SearchService {
    * as well as higher level geographies such as city centers, counties, states etc.
    * Uses the Get Search Address API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddress
    * @param {string} query The address to search for (e.g., "1 Microsoft way, Redmond, WA").
-   * @param {SearchGetSearchAddressOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressResponse, atlas.Models.SearchGetSearchAddressResponse, atlas.SearchGeojson>>}
+   * @param {SearchAddressOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchAddressResponse>}
    * @memberof SearchService
    */
   public searchAddress(query: string,
-    options?: atlas.Models.SearchGetSearchAddressOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchAddressResponse, atlas.Models.SearchGetSearchAddressResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchAddress(Aborter.timeout(timeout),
-        query,
-        options);
+    options?: SearchAddressOptionalParams): Observable<atlas.Models.SearchAddressResponse> {
+    let url = this.buildUrl('search/address/json');
+    url += `&query=${query}`;
+
+    if (options) {
+      url += `&${searchAddressOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchAddressResponse>(url);
   }
 
   /**
