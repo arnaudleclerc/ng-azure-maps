@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -85,21 +85,22 @@ export class SearchService
    * Uses the Get Search Address Reverse Cross Street API: https://docs.microsoft.com/rest/api/maps/search/getsearchaddressreversecrossstreet
    * @param {GeoJSON.Position} position The position to reverse search,
    * a coordinate array of `[longitude, latitude]` e.g. `[-122.125679, 47.641268]`.
-   * @param {SearchGetSearchAddressReverseCrossStreetOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressReverseCrossStreetResponse, atlas.Models.SearchGetSearchAddressReverseCrossStreetResponse, atlas.SearchReverseGeojson>>}
+   * @param {SearchAddressReverseCrossStreetOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchAddressReverseCrossStreetResponse>}
    * @memberof SearchService
    */
   public searchAddressReverseCrossStreet(
     position: GeoJSON.Position,
-    options?: atlas.Models.SearchGetSearchAddressReverseCrossStreetOptionalParams,
-    timeout: number = this._defaultTimeout
-  ): Promise<atlas.Response<atlas.Models.SearchAddressReverseCrossStreetResponse, atlas.Models.SearchGetSearchAddressReverseCrossStreetResponse, atlas.SearchReverseGeojson>> {
-    return this
-      ._searchUrl
-      .searchAddressReverseCrossStreet(Aborter.timeout(timeout),
-        position,
-        options);
+    options?: SearchAddressReverseCrossStreetOptionalParams): Observable<atlas.Models.SearchAddressReverseCrossStreetResponse> {
+
+    let url = this.buildUrl('search/address/reverse/crossStreet/json');
+    url += `&query=${position[0]},${position[1]}`;
+
+    if (options) {
+      url += `&${searchAddressReverseCrossStreetOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchAddressReverseCrossStreetResponse>(url);
   }
 
   /**
