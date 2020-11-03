@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -114,20 +114,22 @@ export class SearchService
    * @param {string} countryCode The 2 or 3 letter
    * [ISO3166-1](https://www.iso.org/iso-3166-country-codes.html) country code portion of an address.
    * E.g. US.
-   * @param {SearchGetSearchAddressStructuredOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchAddressStructuredResponse, atlas.Models.SearchGetSearchAddressStructuredResponse, atlas.SearchGeojson>>}
+   * @param {SearchAddressStructuredOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchAddressStructuredResponse>}
    * @memberof SearchService
    */
   public searchAddressStructured(
     countryCode: string,
-    options?: atlas.Models.SearchGetSearchAddressStructuredOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchAddressStructuredResponse, atlas.Models.SearchGetSearchAddressStructuredResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchAddressStructured(Aborter.timeout(timeout),
-        countryCode,
-        options);
+    options?: SearchAddressStructuredOptionalParams): Observable<atlas.Models.SearchAddressStructuredResponse> {
+
+    let url = this.buildUrl('search/address/structured/json');
+    url += `&countryCode=${countryCode}`;
+
+    if (options) {
+      url += `&${searchAddressStructuredOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchAddressStructuredResponse>(url);
   }
 
   /**

@@ -23,7 +23,8 @@ export {
   ExtendedPostalCodes,
   SearchAddressReverseOptionalParams,
   RoadUse,
-  SearchAddressReverseCrossStreetOptionalParams
+  SearchAddressReverseCrossStreetOptionalParams,
+  SearchAddressStructuredOptionalParams
 } from './lib/models';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';
