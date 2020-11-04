@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -286,19 +286,21 @@ export class SearchService
    * This endpoint will only return POI results.
    * Uses the Get Search POI API: https://docs.microsoft.com/rest/api/maps/search/getsearchpoi
    * @param {string} query The POI name to search for (e.g., "statue of liberty", "starbucks").
-   * @param {SearchGetSearchPOIOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchPoiResponse, atlas.Models.SearchGetSearchPOICategoryResponse, atlas.SearchGeojson>>}
+   * @param {SearchPOIOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchPoiResponse>}
    * @memberof SearchService
    */
   public searchPOI(query: string,
-    options?: atlas.Models.SearchGetSearchPOIOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchPoiResponse, atlas.Models.SearchGetSearchPOICategoryResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchPOI(Aborter.timeout(timeout),
-        query,
-        options);
+    options?: SearchPOIOptionalParams): Observable<atlas.Models.SearchPoiResponse> {
+
+    let url = this.buildUrl('search/poi/json');
+    url += `&query=${query}`;
+
+    if (options) {
+      url += `&${searchPOIOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchPoiResponse>(url);
   }
 
   /**

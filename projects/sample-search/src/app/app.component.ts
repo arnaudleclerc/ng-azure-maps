@@ -17,7 +17,11 @@ export class AppComponent {
   }
 
   mapReady(event: IMapEvent) {
-    this.searchService.searchNearby([74.011454, 40.70627], {
+    this.searchService.searchPOI('juice bars', {
+      lon: 122.333345,
+      lat: 47.60603,
+      openingHours: 'nextSevenDays',
+      radius: 8046
     }).subscribe(response => {
 
       const features = [];

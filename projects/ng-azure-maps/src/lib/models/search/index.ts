@@ -6,3 +6,4 @@ export * from './search-address-structured-optional-params';
 export * from './connector-set';
 export * from './search-fuzzy-optional-params';
 export * from './search-nearby-optional-params';
+export * from './search-poi-optional-params';
