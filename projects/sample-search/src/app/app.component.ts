@@ -4,8 +4,8 @@ import * as atlas from 'azure-maps-control';
 
 @Component({
   selector: 'app-root',
-  template: '<azure-map mapStyle="grayscale_dark" [dataSources]="[dataSource]" (onReady)="mapReady($event)">' +
-    '<map-symbol-layer dataSourceId="search" [iconOptions]="iconOptions"></map-symbol-layer>' +
+  template: '<azure-map mapStyle="grayscale_dark" (onReady)="mapReady($event)">' +
+    '<map-symbol-layer dataSourceId="search"></map-symbol-layer>' +
     '</azure-map>',
   styleUrls: ['./app.component.scss']
 })
@@ -13,28 +13,77 @@ export class AppComponent {
 
   public dataSource: atlas.source.DataSource;
 
-  public iconOptions: atlas.IconOptions = {
-    image: 'beer',
-    size: 0.2
-  };
-
   constructor(private readonly searchService: SearchService) {
   }
 
   mapReady(event: IMapEvent) {
-    event.map.imageSprite.add('beer', 'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678063-beer-128.png').then(() => {
-      this.dataSource = new atlas.source.DataSource('search');
-      this.searchService.searchFuzzy("Biergarten", {
-        lat: 48.143534,
-        lon: 11.581990,
-        radius: 100000
-      }).then(results => {
-        const features = results.geojson.getFeatures();
-        this.dataSource.add(features);
-        event.map.setCamera({
-          bounds: features.bbox,
-          padding: 35
-        });
+
+    this.searchService.searchInsideGeometry('pizza', {
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": [
+          {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -122.43576049804686,
+                  37.7524152343544
+                ],
+                [
+                  -122.43301391601563,
+                  37.706604725423119
+                ],
+                [
+                  -122.36434936523438,
+                  37.712059855877314
+                ],
+                [
+                  -122.43576049804686,
+                  37.7524152343544
+                ]
+              ]
+            ]
+          },
+          {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -123.43576049804686,
+                  37.7524152343544
+                ],
+                [
+                  -123.43301391601563,
+                  37.706604725423119
+                ],
+                [
+                  -123.36434936523438,
+                  37.712059855877314
+                ],
+                [
+                  -123.43576049804686,
+                  37.7524152343544
+                ]
+              ]
+            ]
+          }
+        ]
+      }
+    }, {
+      limit: 2,
+      openingHours: "nextSevenDays"
+    }).subscribe(response => {
+      const features = [];
+      for (const result of response.results) {
+        event.map.markers.add(new atlas.HtmlMarker({
+          position: [result.position.lon, result.position.lat]
+        }));
+        features.push(new atlas.data.Point([result.position.lon, result.position.lat]));
+      }
+
+      event.map.setCamera({
+        bounds: atlas.data.BoundingBox.fromData(features)
       });
     });
   }
