@@ -17,9 +17,7 @@ export class AppComponent {
   }
 
   mapReady(event: IMapEvent) {
-    this.searchService.searchFuzzy("Restaurants", {
-      lat: 48.18,
-      lon: 11.47
+    this.searchService.searchNearby([74.011454, 40.70627], {
     }).subscribe(response => {
 
       const features = [];

@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -201,7 +201,7 @@ export class SearchService
     if (typeof query === "string") {
       url += `&query=${query}`;
     } else {
-      url += `&query=${query[0], query[1]}`;
+      url += `&query=${query[0]},${query[1]}`;
     }
 
     if (options) {
@@ -263,19 +263,21 @@ export class SearchService
    * Uses the Get Search Nearby API: https://docs.microsoft.com/rest/api/maps/search/getsearchnearby
    * @param {GeoJSON.Position} location Location where results should be biased.
    * Should be an array of `[longitude, latitude]`, E.g. `[-121.89, 37.337]`.
-   * @param {SearchGetSearchNearbyOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchNearbyResponse, atlas.Models.SearchGetSearchNearbyResponse, atlas.SearchGeojson>>}
+   * @param {SearchNearbyOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchNearbyResponse>}
    * @memberof SearchService
    */
   public searchNearby(location: GeoJSON.Position,
-    options?: atlas.Models.SearchGetSearchNearbyOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchNearbyResponse, atlas.Models.SearchGetSearchNearbyResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchNearby(Aborter.timeout(timeout),
-        location,
-        options);
+    options?: SearchNearbyOptionalParams): Observable<atlas.Models.SearchNearbyResponse> {
+
+    let url = this.buildUrl(`search/nearby/json`);
+    url += `&lon=${location[0]}&lat=${location[1]}`;
+
+    if (options) {
+      url += `&${searchNearbyOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchNearbyResponse>(url);
   }
 
   /**

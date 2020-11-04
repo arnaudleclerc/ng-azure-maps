@@ -1,16 +1,11 @@
 import { ConnectorSet } from './connector-set';
 import { ExtendedPostalCodes } from './extended-postal-codes';
 
-export interface SearchFuzzyOptionalParams {
+export interface SearchNearbyOptionalParams {
   /**
    * List of brand names which could be used to restrict the result to specific brands. Item order does not matter. When multiple brands are provided, only results that belong to (at least) one of the provided list will be returned.
    */
   brandSet?: string[];
-
-  /**
-   * Bottom right position of the bounding box. E.g. 37.553,-122.453
-   */
-  btmRight?: string;
 
   /**
    * List of category set IDs which could be used to restrict the result to specific Points of Interest categories. ID order does not matter. When multiple category identifiers are provided, only POIs that belong to (at least) one of the categories from the provided list will be returned.
@@ -33,19 +28,9 @@ export interface SearchFuzzyOptionalParams {
   extendedPostalCodesFor?: ExtendedPostalCodes[];
 
   /**
-   * List of indexes which should be utilized for the search. Item order does not matter.
-   */
-  idxSet?: ExtendedPostalCodes[];
-
-  /**
    * Language in which search results should be returned. Should be one of supported IETF language tags, case insensitive. When data in specified language is not available for a specific field, default language is used.
    */
   language?: string;
-
-  /**
-   * Latitude where results should be biased. E.g. 37.337
-   */
-  lat?: number;
 
   /**
    * Maximum number of responses that will be returned. Default: 10, minimum: 1 and maximum: 100
@@ -53,39 +38,9 @@ export interface SearchFuzzyOptionalParams {
   limit?: number;
 
   /**
-   * Longitude where results should be biased. E.g. -121.89
-   */
-  lon?: number;
-
-  /**
-   * Maximum fuzziness level to be used. Default: 2, minimum: 1 and maximum: 4
-   * Level 1 has no spell checking.
-   * Level 2 uses normal n-gram spell checking. For example, query "restrant" can be matched to "restaurant."
-   * Level 3 uses sound-like spell checking, and shingle spell checking. Sound-like spell checking is for "rstrnt" to "restaurant" matching. Shingle spell checking is for "mountainview" to "mountain view" matching.
-   * Level 4 doesn’t add any more spell checking functions.
-   * The search engine will start looking for a match on the level defined by minFuzzyLevel, and will stop searching at the level specified by maxFuzzyLevel.
-   */
-  maxFuzzyLevel?: number;
-
-  /**
-   * Minimum fuzziness level to be used. Default: 2, minimum: 1 and maximum: 4
-   * Level 1 has no spell checking.
-   * Level 2 uses normal n-gram spell checking. For example, query "restrant" can be matched to "restaurant."
-   * Level 3 uses sound-like spell checking, and shingle spell checking. Sound-like spell checking is for "rstrnt" to "restaurant" matching. Shingle spell checking is for "mountainview" to "mountain view" matching.
-   * Level 4 doesn’t add any more spell checking functions.
-   * The search engine will start looking for a match on the level defined by minFuzzyLevel, and will stop searching at the level specified by maxFuzzyLevel.
-   */
-  minFuzzyLevel?: number;
-
-  /**
    * Starting offset of the returned results within the full result set. Default: 0, minimum: 0 and maximum: 1900
    */
   ofs?: number;
-
-  /**
-   * Hours of operation for a POI (Points of Interest). The availability of hours of operation will vary based on the data available. Supported value: nextSevenDays
-   */
-  openingHours?: "nextSevenDays";
 
   /**
    * The radius in meters to for the results to be constrained to the defined area
@@ -93,22 +48,12 @@ export interface SearchFuzzyOptionalParams {
   radius?: number;
 
   /**
-   * Top left position of the bounding box. E.g. 37.553,-122.453
-   */
-  topLeft?: string;
-
-  /**
-   * If the typeahead flag is set, the query will be interpreted as a partial input and the search will enter predictive mode
-   */
-  typeahead?: boolean;
-
-  /**
    * The View parameter specifies which set of geopolitically disputed content is returned via Azure Maps services, including borders and labels displayed on the map. The View parameter (also referred to as “user region parameter”) will show the correct maps for that country/region. By default, the View parameter is set to “Unified” even if you haven’t defined it in the request. It is your responsibility to determine the location of your users, and then set the View parameter correctly for that location. Alternatively, you have the option to set ‘View=Auto’, which will return the map data based on the IP address of the request. The View parameter in Azure Maps must be used in compliance with applicable laws, including those regarding mapping, of the country where maps, images and other data and third party content that you are authorized to access via Azure Maps is made available. Example: view=IN.
    */
   view?: string;
 }
 
-export function searchFuzzyOptionalParamsToQueryString(options?: SearchFuzzyOptionalParams): string {
+export function searchNearbyOptionalParamsToQueryString(options?: SearchNearbyOptionalParams): string {
   if (!options) {
     return '';
   }
@@ -117,10 +62,6 @@ export function searchFuzzyOptionalParamsToQueryString(options?: SearchFuzzyOpti
 
   if (options.brandSet) {
     queryParameters.push(`brandSet=${options.brandSet.join(',')}`);
-  }
-
-  if (options.btmRight) {
-    queryParameters.push(`btmRight=${options.btmRight}`);
   }
 
   if (options.categorySet) {
@@ -139,52 +80,20 @@ export function searchFuzzyOptionalParamsToQueryString(options?: SearchFuzzyOpti
     queryParameters.push(`extendedPostalCodesFor=${options.extendedPostalCodesFor.map(epc => epc.toString()).join(',')}`);
   }
 
-  if (options.idxSet) {
-    queryParameters.push(`idxSet=${options.idxSet.map(id => id.toString()).join(',')}`);
-  }
-
   if (options.language) {
     queryParameters.push(`language=${options.language}`);
-  }
-
-  if (options.lat) {
-    queryParameters.push(`lat=${options.lat}`);
   }
 
   if (options.limit) {
     queryParameters.push(`limit=${options.limit}`);
   }
 
-  if (options.lon) {
-    queryParameters.push(`lon=${options.lon}`);
-  }
-
-  if (options.maxFuzzyLevel) {
-    queryParameters.push(`maxFuzzyLevel=${options.maxFuzzyLevel}`);
-  }
-
-  if (options.minFuzzyLevel) {
-    queryParameters.push(`minFuzzyLevel=${options.minFuzzyLevel}`);
-  }
-
   if (options.ofs) {
     queryParameters.push(`ofs=${options.ofs}`);
   }
 
-  if (options.openingHours) {
-    queryParameters.push(`openingHours=${options.openingHours}`);
-  }
-
   if (options.radius) {
     queryParameters.push(`radius=${options.radius}`);
-  }
-
-  if (options.topLeft) {
-    queryParameters.push(`topLeft=${options.topLeft}`);
-  }
-
-  if (options.typeahead) {
-    queryParameters.push(`typeahead=${options.typeahead}`);
   }
 
   if (options.view) {
