@@ -8,3 +8,5 @@ export * from './search-fuzzy-optional-params';
 export * from './search-nearby-optional-params';
 export * from './search-poi-optional-params';
 export * from './search-poi-category-optional-params';
+export * from './search-poi-category-tree-optional-params';
+export * from './search-poi-category-tree-response';

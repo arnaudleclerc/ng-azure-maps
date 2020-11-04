@@ -29,7 +29,10 @@ export {
   SearchFuzzyOptionalParams,
   SearchNearbyOptionalParams,
   SearchPOIOptionalParams,
-  SearchPOICategoryOptionalParams
+  SearchPOICategoryOptionalParams,
+  SearchPOICategoryTreeOptionalParams,
+  SearchPOICategoryTreeResponse,
+  SearchPOICategoryTreeResult
 } from './lib/models';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';

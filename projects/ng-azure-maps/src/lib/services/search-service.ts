@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOICategoryTreeOptionalParams, searchPOICategoryTreeOptionalParamsToQueryString, SearchPOICategoryTreeResponse, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -325,6 +325,22 @@ export class SearchService
     }
 
     return this.httpClient.get<atlas.Models.SearchPoiCategoryResponse>(url);
+  }
+
+  /**
+   * POI Category API provides a full list of supported Points of Interest (POI) categories and subcategories together with their translations and synonyms. The returned content can be used to provide more meaningful results through other Search Service APIs, like Get Search POI.
+   * @param {SearchPOICategoryTreeOptionalParams} [options] The optional parameters.
+   * @returns {Observable<SearchPOICategoryTreeResponse>}
+   * @memberof SearchService
+   */
+  public searchPOICategoryTree(options?: SearchPOICategoryTreeOptionalParams): Observable<SearchPOICategoryTreeResponse> {
+    let url = this.buildUrl('search/poi/category/tree/json');
+
+    if (options) {
+      url += `&${searchPOICategoryTreeOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<SearchPOICategoryTreeResponse>(url);
   }
 
   /**

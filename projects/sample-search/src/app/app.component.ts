@@ -18,6 +18,10 @@ export class AppComponent {
 
   mapReady(event: IMapEvent) {
 
+    this.searchService.searchPOICategoryTree().subscribe(response => {
+      console.log(response);
+    });
+
     this.searchService.searchPOI('atm', {
       limit: 3,
       lat: 40.758953,
