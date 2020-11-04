@@ -357,17 +357,14 @@ export class SearchService
    *
    * Uses the Get Search Polygon API: https://docs.microsoft.com/rest/api/maps/search/getsearchpolygon
    *
-   * @param {string} geometries Comma separated list of geometry UUIDs, previously retrieved from an Online
+   * @param {string} geometries List of geometry UUIDs, previously retrieved from an Online
    * Search request.
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchPolygonResponse, atlas.Models.SearchGetSearchPolygonResponse, atlas.SearchPolygonGeojson>>}
+   * @returns {Observable<atlas.Models.SearchPolygonResponse>}
    * @memberof SearchService
    */
-  public searchPolygons(geometries: string[],
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchPolygonResponse, atlas.Models.SearchGetSearchPolygonResponse, atlas.SearchPolygonGeojson>> {
-    return this
-      ._searchUrl
-      .searchPolygon(Aborter.timeout(timeout), geometries);
+  public searchPolygons(geometries: string[]): Observable<atlas.Models.SearchPolygonResponse> {
+    const url = this.buildUrl('search/polygon/json') + `&geometries=${geometries.join(',')}`;
+    return this.httpClient.get<atlas.Models.SearchPolygonResponse>(url);
   }
 
 }
