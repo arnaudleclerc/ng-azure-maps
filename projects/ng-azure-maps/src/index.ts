@@ -28,7 +28,8 @@ export {
   ConnectorSet,
   SearchFuzzyOptionalParams,
   SearchNearbyOptionalParams,
-  SearchPOIOptionalParams
+  SearchPOIOptionalParams,
+  SearchPOICategoryOptionalParams
 } from './lib/models';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';

@@ -17,13 +17,13 @@ export class AppComponent {
   }
 
   mapReady(event: IMapEvent) {
-    this.searchService.searchPOI('juice bars', {
-      lon: 122.333345,
-      lat: 47.60603,
-      openingHours: 'nextSevenDays',
-      radius: 8046
-    }).subscribe(response => {
 
+    this.searchService.searchPOI('atm', {
+      limit: 3,
+      lat: 40.758953,
+      lon: -73.985263,
+      radius: 3200
+    }).subscribe(response => {
       const features = [];
       for (const result of response.results) {
         event.map.markers.add(new atlas.HtmlMarker({

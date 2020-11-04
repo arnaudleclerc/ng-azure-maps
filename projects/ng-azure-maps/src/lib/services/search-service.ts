@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -310,19 +310,21 @@ export class SearchService
    * List of available categories can be found [here](https://docs.microsoft.com/azure/azure-maps/search-categories).
    * Uses the Get Search POI Category API: https://docs.microsoft.com/rest/api/maps/search/getsearchpoicategory
    * @param {string} query The POI category to search for (e.g., "AIRPORT", "BEACH").
-   * @param {SearchGetSearchPOICategoryOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchPoiCategoryResponse, atlas.Models.SearchGetSearchPOICategoryResponse, atlas.SearchGeojson>>}
+   * @param {SearchPOICategoryOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchPoiCategoryResponse>}
    * @memberof SearchService
    */
   public searchPOICategory(query: string,
-    options?: atlas.Models.SearchGetSearchPOICategoryOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchPoiCategoryResponse, atlas.Models.SearchGetSearchPOICategoryResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchPOICategory(Aborter.timeout(timeout),
-        query,
-        options);
+    options?: SearchPOICategoryOptionalParams): Observable<atlas.Models.SearchPoiCategoryResponse> {
+
+    let url = this.buildUrl('search/poi/category/json');
+    url += `&query=${query}`;
+
+    if (options) {
+      url += `&${searchPOICategoryOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchPoiCategoryResponse>(url);
   }
 
   /**
