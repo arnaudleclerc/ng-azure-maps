@@ -17,7 +17,10 @@ export class AppComponent {
   }
 
   mapReady(event: IMapEvent) {
-    this.searchService.searchAddress("Marienplatz, Munich").subscribe(response => {
+    this.searchService.searchFuzzy("Restaurants", {
+      lat: 48.18,
+      lon: 11.47
+    }).subscribe(response => {
 
       const features = [];
       for (const result of response.results) {

@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -190,19 +190,25 @@ export class SearchService
    * Uses the Get Search Fuzzy API: https://docs.microsoft.com/rest/api/maps/search/getsearchfuzzy
    * @param {string | GeoJSON.Position} query The applicable query string (e.g., "seattle", "pizza").
    * Can _also_ be specified as a coordinate array of `[longitude, latitude]` (e.g., `[-122.125679, 47.641268]`).
-   * @param {SearchFuzzyOptions} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchFuzzyResponse, atlas.Models.SearchGetSearchFuzzyResponse, atlas.SearchGeojson>>}
+   * @param {SearchFuzzyOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchFuzzyResponse>}
    * @memberof SearchService
    */
   public searchFuzzy(query: string | GeoJSON.Position,
-    options?: atlas.Models.SearchGetSearchFuzzyOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchFuzzyResponse, atlas.Models.SearchGetSearchFuzzyResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchFuzzy(Aborter.timeout(timeout),
-        query,
-        options);
+    options?: SearchFuzzyOptionalParams): Observable<atlas.Models.SearchFuzzyResponse> {
+
+    let url = this.buildUrl('search/fuzzy/json');
+    if (typeof query === "string") {
+      url += `&query=${query}`;
+    } else {
+      url += `&query=${query[0], query[1]}`;
+    }
+
+    if (options) {
+      url += `&${searchFuzzyOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.get<atlas.Models.SearchFuzzyResponse>(url);
   }
 
   /**

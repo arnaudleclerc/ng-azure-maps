@@ -24,7 +24,9 @@ export {
   SearchAddressReverseOptionalParams,
   RoadUse,
   SearchAddressReverseCrossStreetOptionalParams,
-  SearchAddressStructuredOptionalParams
+  SearchAddressStructuredOptionalParams,
+  ConnectorSet,
+  SearchFuzzyOptionalParams
 } from './lib/models';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';
