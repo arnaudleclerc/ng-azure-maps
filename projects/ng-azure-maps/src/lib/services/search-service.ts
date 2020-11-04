@@ -1,23 +1,16 @@
 import { Injectable } from '@angular/core';
-import { PipelineProvider } from './pipeline-provider';
-import { SearchURL, Aborter } from 'azure-maps-rest';
 import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchAlongRouteOptionalParams, searchAlongRouteOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOICategoryTreeOptionalParams, searchPOICategoryTreeOptionalParamsToQueryString, SearchPOICategoryTreeResponse, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchAlongRouteOptionalParams, searchAlongRouteOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchInsideGeometryOptionalParams, searchInsideGeometryOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOICategoryTreeOptionalParams, searchPOICategoryTreeOptionalParamsToQueryString, SearchPOICategoryTreeResponse, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
   extends AtlasHttpService {
 
-  private readonly _searchUrl: SearchURL;
-  private readonly _defaultTimeout = 10000;
-
-  constructor(pipelineProvider: PipelineProvider,
-    httpClient: HttpClient) {
+  constructor(httpClient: HttpClient) {
     super(httpClient);
-    this._searchUrl = new SearchURL(pipelineProvider.getPipeline());
   }
 
   /**
@@ -236,21 +229,22 @@ export class SearchService
    * @param {SearchInsideGeometryRequestBody} body This represents the geometry for one or more geographical
    * features (parks, state boundary etc.) to search in and should be a GeoJSON compliant type.
    * Please refer to [RFC 7946](https://tools.ietf.org/html/rfc7946) for details.
-   * @param {SearchPostSearchInsideGeometryOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchPostSearchInsideGeometryResponse, atlas.Models.SearchPostSearchInsideGeometryResponse, atlas.SearchGeojson>>}
+   * @param {SearchInsideGeometryOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchPostSearchInsideGeometryResponse>}
    * @memberof SearchService
    */
   public searchInsideGeometry(query: string,
     body: atlas.Models.SearchInsideGeometryRequestBody,
-    options?: atlas.Models.SearchPostSearchInsideGeometryOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchPostSearchInsideGeometryResponse, atlas.Models.SearchPostSearchInsideGeometryResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchInsideGeometry(Aborter.timeout(timeout),
-        query,
-        body,
-        options);
+    options?: SearchInsideGeometryOptionalParams): Observable<atlas.Models.SearchPostSearchInsideGeometryResponse> {
+
+    let url = this.buildUrl('search/geometry/json');
+    url += `&query=${query}`;
+
+    if (options) {
+      url += `&${searchInsideGeometryOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.post<atlas.Models.SearchPostSearchInsideGeometryResponse>(url, body);
   }
 
   /**

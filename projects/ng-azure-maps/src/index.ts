@@ -33,7 +33,8 @@ export {
   SearchPOICategoryTreeOptionalParams,
   SearchPOICategoryTreeResponse,
   SearchPOICategoryTreeResult,
-  SearchAlongRouteOptionalParams
+  SearchAlongRouteOptionalParams,
+  SearchInsideGeometryOptionalParams
 } from './lib/models';
 export { AzureMapsModule } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';
