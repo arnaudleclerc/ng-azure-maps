@@ -5,7 +5,7 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOICategoryTreeOptionalParams, searchPOICategoryTreeOptionalParamsToQueryString, SearchPOICategoryTreeResponse, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
+import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchAlongRouteOptionalParams, searchAlongRouteOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOICategoryTreeOptionalParams, searchPOICategoryTreeOptionalParamsToQueryString, SearchPOICategoryTreeResponse, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
 
 @Injectable()
 export class SearchService
@@ -145,31 +145,28 @@ export class SearchService
    * If the route that passes through the found point is faster than the original one, the `detourTime` value in
    * the response is negative.
    * Uses the Post Search Along Route API: https://docs.microsoft.com/rest/api/maps/search/postsearchalongroute
-   * @param {string} query The applicable query string (e.g., "seattle", "pizza").
-   * @param {number} maxDetourTime Maximum detour time of the point of interest in seconds. Max value is 3600
-   * seconds
+   * @param {string} query The POI name to search for (e.g., "statue of liberty", "starbucks", "pizza").
+   * @param {number} maxDetourTime Maximum detour time of the point of interest in seconds. Max value is 3600 seconds
    * @param {SearchAlongRouteRequestBody} body This represents the route to search along and should be a
    * valid `GeoJSON LineString` type. Please refer to [RFC
    * 7946](https://tools.ietf.org/html/rfc7946#section-3.1.4) for details.
-   * @param {SearchPostSearchAlongRouteOptionalParams} [options] The optional parameters
-   * @param {number} timeout Create a new Aborter instance with the given timeout (in ms).
-   * @returns {Promise<atlas.Response<atlas.Models.SearchAlongRouteResponse, atlas.Models.SearchPostSearchAlongRouteResponse, atlas.SearchGeojson>>}
+   * @param {SearchAlongRouteOptionalParams} [options] The optional parameters
+   * @returns {Observable<atlas.Models.SearchAlongRouteResponse>}
    * @memberof SearchService
    */
-  public searchAlongRoute(
-    query: string,
+  public searchAlongRoute(query: string,
     maxDetourTime: number,
     body: atlas.Models.SearchAlongRouteRequestBody,
-    options?: atlas.Models.SearchPostSearchAlongRouteOptionalParams,
-    timeout: number = this._defaultTimeout): Promise<atlas.Response<atlas.Models.SearchAlongRouteResponse, atlas.Models.SearchPostSearchAlongRouteResponse, atlas.SearchGeojson>> {
-    return this
-      ._searchUrl
-      .searchAlongRoute(Aborter.timeout(timeout),
-        query,
-        maxDetourTime,
-        body,
-        options
-      );
+    options?: SearchAlongRouteOptionalParams): Observable<atlas.Models.SearchAlongRouteResponse> {
+
+    let url = this.buildUrl('search/alongRoute/json');
+    url += `&query=${query}&maxDetourTime=${maxDetourTime}`;
+
+    if (options) {
+      url += `&${searchAlongRouteOptionalParamsToQueryString(options)}`;
+    }
+
+    return this.httpClient.post<atlas.Models.SearchAlongRouteResponse>(url, body);
   }
 
   /**

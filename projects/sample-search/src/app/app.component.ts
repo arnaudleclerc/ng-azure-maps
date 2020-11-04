@@ -18,15 +18,31 @@ export class AppComponent {
 
   mapReady(event: IMapEvent) {
 
-    this.searchService.searchPOICategoryTree().subscribe(response => {
-      console.log(response);
-    });
-
-    this.searchService.searchPOI('atm', {
-      limit: 3,
-      lat: 40.758953,
-      lon: -73.985263,
-      radius: 3200
+    this.searchService.searchAlongRoute('burger', 1000, {
+      route: {
+        type: "LineString",
+        coordinates: [
+          [
+            -122.143035,
+            47.653536
+          ],
+          [
+            -122.187164,
+            47.617556
+          ],
+          [
+            -122.114981,
+            47.570599
+          ],
+          [
+            -122.132756,
+            47.654009
+          ]
+        ]
+      }
+    }, {
+      limit: 2,
+      openingHours: "nextSevenDays"
     }).subscribe(response => {
       const features = [];
       for (const result of response.results) {
