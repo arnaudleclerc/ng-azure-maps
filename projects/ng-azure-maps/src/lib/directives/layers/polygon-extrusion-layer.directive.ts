@@ -33,6 +33,8 @@ export class PolygonExtrusionLayerDirective
         height: this.height,
         maxZoom: this.maxZoom,
         minZoom: this.minZoom,
+        source: this.dataSourceId,
+        sourceLayer: this.sourceLayer,
         translate: this.translate,
         translateAnchor: this.translateAnchor,
         verticalGradient: this.verticalGradient,
@@ -41,7 +43,7 @@ export class PolygonExtrusionLayerDirective
     }
   }
 
-  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.PolygonExtrusionLayer {
+  protected buildLayer(dataSource: atlas.source.Source): atlas.layer.PolygonExtrusionLayer {
     return new atlas.layer.PolygonExtrusionLayer(dataSource, this.id, {
       base: this.base,
       fillColor: this.fillColor,
@@ -51,6 +53,8 @@ export class PolygonExtrusionLayerDirective
       height: this.height,
       maxZoom: this.maxZoom,
       minZoom: this.minZoom,
+      source: this.dataSourceId,
+      sourceLayer: this.sourceLayer,
       translate: this.translate,
       translateAnchor: this.translateAnchor,
       verticalGradient: this.verticalGradient,
