@@ -26,10 +26,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 8
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.5
-      with:
-        versionSpec: '5.3.x'
     - name: npm install
       run: npm install
     - name: Build

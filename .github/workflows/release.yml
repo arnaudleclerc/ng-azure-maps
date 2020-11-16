@@ -21,14 +21,14 @@ jobs:
       with:
         node-version: 8
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.5
+      uses: gittools/actions/gitversion/setup@v0.9.6
       with:
         versionSpec: '5.3.x'
     - name: npm install
       run: npm install
     - name: Use GitVersion
       id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.9.5
+      uses: gittools/actions/gitversion/execute@v0.9.6
     - run: |
         echo "Major: ${{ steps.gitversion.outputs.major }}"
         echo "Minor: ${{ steps.gitversion.outputs.minor }}"
