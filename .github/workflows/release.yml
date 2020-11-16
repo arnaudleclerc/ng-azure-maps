@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - projects/ng-azure-maps/**
+      - .github/**
 
 jobs:
   build:
@@ -64,14 +65,26 @@ jobs:
         echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
         echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
         echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
-    - name: npm version
+    - name: npm version prerelease
       run: cd projects/ng-azure-maps && npm version ${{ steps.gitversion.outputs.semVer }}
+      if: ${{ steps.gitversion.outputs.branchName != 'master' && steps.gitversion.outputs.branchName != 'main' }}
+    - name: npm version
+      run: cd projects/ng-azure-maps && npm version ${{ steps.gitversion.outputs.majorMinorPatch }}
+      if: ${{ steps.gitversion.outputs.branchName == 'master' || steps.gitversion.outputs.branchName == 'main' }}
     - name: npm custom
       run: npm run build ng-azure-maps --prod
-    - name: Tag Repo
+    - name: Tag Repo Prerelease
+      if: ${{ steps.gitversion.outputs.branchName != 'master' && steps.gitversion.outputs.branchName != 'main' }}
       uses: richardsimko/update-tag@v1
       with:
         tag_name: ${{ steps.gitversion.outputs.semVer }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Tag Repo
+      if: ${{ steps.gitversion.outputs.branchName == 'master' || steps.gitversion.outputs.branchName == 'main' }}
+      uses: richardsimko/update-tag@v1
+      with:
+        tag_name: ${{ steps.gitversion.outputs.majorMinorPatch }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: npm publish
