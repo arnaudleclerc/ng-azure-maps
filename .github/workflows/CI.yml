@@ -7,14 +7,12 @@ on:
       - hotfix/**
     paths:
       - projects/ng-azure-maps/**
-      - .github/**
   pull_request:
     branches:
       - develop
       - main
     paths:
       - projects/ng-azure-maps/**
-      - .github/**
 
 jobs:
   build:

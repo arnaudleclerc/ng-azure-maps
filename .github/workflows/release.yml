@@ -8,7 +8,6 @@ on:
       - main
     paths:
       - projects/ng-azure-maps/**
-      - .github/**
 
 jobs:
   build:
@@ -76,6 +75,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: npm publish
-      run: cd dist/ng-azure-maps && npm publish --access public --dry-run
+      run: cd dist/ng-azure-maps && npm publish --access public
       env:
          NODE_AUTH_TOKEN: ${{secrets.NPMTOKEN}}
