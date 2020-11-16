@@ -1,4 +1,4 @@
-[![NPM Version](https://img.shields.io/npm/v/ng-azure-maps.svg?style=flat)](https://www.npmjs.com/package/ng-azure-maps)
+[![NPM Version](https://img.shields.io/npm/v/ng-azure-maps.svg?style=flat)](https://www.npmjs.com/package/ng-azure-maps) ![CI](https://github.com/arnaudleclerc/ng-azure-maps/workflows/CI/badge.svg?branch=main)
 ![release](https://github.com/arnaudleclerc/ng-azure-maps/workflows/release/badge.svg?branch=main)
 
 # ng-azure-maps 
