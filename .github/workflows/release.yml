@@ -68,8 +68,8 @@ jobs:
     - name: npm version prerelease
       run: cd projects/ng-azure-maps && npm version ${{ steps.gitversion.outputs.semVer }}
       if: ${{ steps.gitversion.outputs.branchName != 'master' && steps.gitversion.outputs.branchName != 'main' }}
-    - name: npm version prerelease
-      run: cd projects/ng-azure-maps && npm version ${{ steps.gitversion.outputs.semVer }}
+    - name: npm version
+      run: cd projects/ng-azure-maps && npm version ${{ steps.gitversion.outputs.majorMinorPatch }}
       if: ${{ steps.gitversion.outputs.branchName == 'master' || steps.gitversion.outputs.branchName == 'main' }}
     - name: npm custom
       run: npm run build ng-azure-maps --prod
@@ -77,7 +77,7 @@ jobs:
       if: ${{ steps.gitversion.outputs.branchName != 'master' && steps.gitversion.outputs.branchName != 'main' }}
       uses: richardsimko/update-tag@v1
       with:
-        tag_name: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        tag_name: ${{ steps.gitversion.outputs.semVer }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Tag Repo
