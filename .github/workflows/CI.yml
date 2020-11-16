@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - features/**
+      - hotfix/**
+    paths:
+      - projects/ng-azure-maps/**
+      - .github/**
+  pull_request:
+    branches:
+      - develop
+      - main
+    paths:
+      - projects/ng-azure-maps/**
+      - .github/**
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 8
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.5
+      with:
+        versionSpec: '5.3.x'
+    - name: npm install
+      run: npm install
+    - name: Build
+      run: npm run build ng-azure-maps --prod
+
