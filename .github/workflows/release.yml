@@ -23,7 +23,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 8
+        node-version: 12
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.6
       with:
