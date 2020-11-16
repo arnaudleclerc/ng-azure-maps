@@ -132,7 +132,7 @@ export class AzureMapDirective
   @Input() public wheelZoomRate: number;
   @Input() public zoom: number;
 
-  @Input() public dataSources: atlas.source.DataSource[];
+  @Input() public dataSources: atlas.source.Source[];
 
   @Input() public trafficOptions: atlas.TrafficOptions;
 

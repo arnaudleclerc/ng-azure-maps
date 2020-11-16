@@ -27,6 +27,8 @@ export class SymbolLayerDirective
         lineSpacing: this.lineSpacing,
         maxZoom: this.maxZoom,
         minZoom: this.minZoom,
+        source: this.dataSourceId,
+        sourceLayer: this.sourceLayer,
         placement: this.placement,
         textOptions: this.textOptions,
         visible: this.visible
@@ -34,13 +36,15 @@ export class SymbolLayerDirective
     }
   }
 
-  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.SymbolLayer {
+  protected buildLayer(dataSource: atlas.source.Source): atlas.layer.SymbolLayer {
     return new atlas.layer.SymbolLayer(dataSource, this.id, {
       filter: this.filter,
       iconOptions: this.iconOptions,
       lineSpacing: this.lineSpacing,
       maxZoom: this.maxZoom,
       minZoom: this.minZoom,
+      source: this.dataSourceId,
+      sourceLayer: this.sourceLayer,
       placement: this.placement,
       textOptions: this.textOptions,
       visible: this.visible

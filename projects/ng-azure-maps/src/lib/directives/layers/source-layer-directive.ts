@@ -9,8 +9,9 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
   implements OnDestroy {
 
   @Input() public dataSourceId: string;
+  @Input() public sourceLayer: string;
 
-  public initialize(map: Map, dataSource: atlas.source.DataSource): void {
+  public initialize(map: Map, dataSource: atlas.source.Source): void {
     this.layer = this.buildLayer(dataSource);
 
     this.initializeEvents(map);
@@ -23,6 +24,6 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
     this.layer = null;
   }
 
-  protected abstract buildLayer(dataSource: atlas.source.DataSource): T;
+  protected abstract buildLayer(dataSource: atlas.source.Source): T;
 
 }

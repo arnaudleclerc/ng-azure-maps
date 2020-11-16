@@ -35,6 +35,8 @@ export class LineLayerDirective
         maxZoom: this.maxZoom,
         minZoom: this.minZoom,
         offset: this.offset,
+        source: this.dataSourceId,
+        sourceLayer: this.sourceLayer,
         strokeColor: this.strokeColor,
         strokeDashArray: this.strokeDashArray,
         strokeGradient: this.strokeGradient,
@@ -47,9 +49,9 @@ export class LineLayerDirective
     }
   }
 
-  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.LineLayer {
-    if (this.strokeGradient) {
-      dataSource.setOptions({
+  protected buildLayer(dataSource: atlas.source.Source): atlas.layer.LineLayer {
+    if (this.strokeGradient && (<any>dataSource).setOptions) {
+      (<atlas.source.DataSource>dataSource).setOptions({
         lineMetrics: true
       });
     }
@@ -62,6 +64,8 @@ export class LineLayerDirective
       maxZoom: this.maxZoom,
       minZoom: this.minZoom,
       offset: this.offset,
+      source: this.dataSourceId,
+      sourceLayer: this.sourceLayer,
       strokeColor: this.strokeColor,
       strokeDashArray: this.strokeDashArray,
       strokeGradient: this.strokeGradient,

@@ -26,12 +26,14 @@ export class PolygonLayerDirective
         filter: this.filter,
         maxZoom: this.maxZoom,
         minZoom: this.minZoom,
+        source: this.dataSourceId,
+        sourceLayer: this.sourceLayer,
         visible: this.visible
       });
     }
   }
 
-  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.PolygonLayer {
+  protected buildLayer(dataSource: atlas.source.Source): atlas.layer.PolygonLayer {
     return new atlas.layer.PolygonLayer(dataSource, this.id, {
       fillColor: this.fillColor,
       fillOpacity: this.fillOpacity,
@@ -39,6 +41,8 @@ export class PolygonLayerDirective
       filter: this.filter,
       maxZoom: this.maxZoom,
       minZoom: this.minZoom,
+      source: this.dataSourceId,
+      sourceLayer: this.sourceLayer,
       visible: this.visible
     });
   }

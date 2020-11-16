@@ -33,6 +33,8 @@ export class BubbleLayerDirective
         opacity: this.opacity,
         pitchAlignment: this.pitchAlignment,
         radius: this.radius,
+        source: this.dataSourceId,
+        sourceLayer: this.sourceLayer,
         strokeColor: this.strokeColor,
         strokeOpacity: this.strokeOpacity,
         strokeWidth: this.strokeWidth,
@@ -41,7 +43,7 @@ export class BubbleLayerDirective
     }
   }
 
-  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.BubbleLayer {
+  protected buildLayer(dataSource: atlas.source.Source): atlas.layer.BubbleLayer {
     return new atlas.layer.BubbleLayer(dataSource, this.id, {
       blur: this.blur,
       color: this.color,
@@ -51,6 +53,8 @@ export class BubbleLayerDirective
       opacity: this.opacity,
       pitchAlignment: this.pitchAlignment,
       radius: this.radius,
+      source: this.dataSourceId,
+      sourceLayer: this.sourceLayer,
       strokeColor: this.strokeColor,
       strokeOpacity: this.strokeOpacity,
       strokeWidth: this.strokeWidth,

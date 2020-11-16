@@ -29,12 +29,14 @@ export class HeatmapLayerDirective
         minZoom: this.minZoom,
         opacity: this.opacity,
         radius: this.radius,
+        source: this.dataSourceId,
+        sourceLayer: this.sourceLayer,
         visible: this.visible,
         weight: this.weight
       });
     }
   }
-  protected buildLayer(dataSource: atlas.source.DataSource): atlas.layer.HeatMapLayer {
+  protected buildLayer(dataSource: atlas.source.Source): atlas.layer.HeatMapLayer {
     return new atlas.layer.HeatMapLayer(dataSource, this.id, {
       color: this.color,
       filter: this.filter,
@@ -43,6 +45,8 @@ export class HeatmapLayerDirective
       minZoom: this.minZoom,
       opacity: this.opacity,
       radius: this.radius,
+      source: this.dataSourceId,
+      sourceLayer: this.sourceLayer,
       visible: this.visible,
       weight: this.weight
     });
