@@ -43,6 +43,31 @@ import { environment } from '../environments/environment';
 export class AppModule { }
 ```
 
+The module can also be lazy loaded using the `forChild` method. 
+
+```
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MapComponent } from './map/map.component';
+import { AzureMapsModule } from 'ng-azure-maps';
+import { environment } from '../../environments/environment';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [{ path: "", component: MapComponent }];
+
+@NgModule({
+  declarations: [MapComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    AzureMapsModule.forChild({
+      authOptions: environment.authOptions
+    })
+  ]
+})
+export class MapModule { }
+```
+
 AAD and SubscriptionKey authentication are supported.
 
 ## How to

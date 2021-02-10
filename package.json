@@ -16,6 +16,7 @@
     "@angular/core": "~11.0.0",
     "@angular/platform-browser": "~11.0.0",
     "@angular/platform-browser-dynamic": "~11.0.0",
+    "@angular/router": "^11.0.0",
     "azure-maps-control": "^2.0.23",
     "azure-maps-drawing-tools": "^0.1.4",
     "azure-maps-rest": "^2.0.5",

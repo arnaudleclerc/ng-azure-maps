@@ -18,24 +18,22 @@ import {
   TileLayerDirective,
   PopupDirective
 } from '../directives';
-import {
-  PipelineProvider,
-  SearchService,
-  RouteService,
-  WeatherService,
-  TokenCredentialProvider
-} from '../services';
 import * as atlas from 'azure-maps-control';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AtlasRestAuthenticationInterceptor } from '../interceptors';
+import { PipelineProvider, RouteService, SearchService, TokenCredentialProvider, WeatherService } from "../services";
+
+const setAtlasConfiguration = (configuration: AzureMapsConfiguration) => {
+  atlas.setAuthenticationOptions(configuration.authOptions);
+  if (configuration.domain) {
+    atlas.setDomain(configuration.domain);
+  }
+};
 
 export function setAtlasOptions(configuration: AzureMapsConfiguration) {
-  return (): Promise<any> => {
-    return new Promise<any>(resolve => {
-      atlas.setAuthenticationOptions(configuration.authOptions);
-      if (configuration.domain) {
-        atlas.setDomain(configuration.domain);
-      }
+  return (): Promise<void> => {
+    return new Promise<void>(resolve => {
+      setAtlasConfiguration(configuration);
       resolve();
     });
   };
@@ -97,6 +95,29 @@ export class AzureMapsModule {
           useFactory: setAtlasOptions,
           deps: [AZUREMAPS_CONFIG],
           multi: true
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AtlasRestAuthenticationInterceptor,
+          multi: true
+        },
+        PipelineProvider,
+        SearchService,
+        RouteService,
+        WeatherService,
+        TokenCredentialProvider
+      ]
+    };
+  }
+
+  static forChild(configuration: AzureMapsConfiguration): ModuleWithProviders<AzureMapsModule> {
+    setAtlasConfiguration(configuration);
+    return {
+      ngModule: AzureMapsModule,
+      providers: [
+        {
+          provide: AZUREMAPS_CONFIG,
+          useValue: configuration
         },
         {
           provide: HTTP_INTERCEPTORS,
