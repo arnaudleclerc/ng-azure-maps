@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { PipelineProvider } from './pipeline-provider';
 import * as atlas from 'azure-maps-rest';
+import { AzureMapsModule } from '../modules';
 
-@Injectable()
+@Injectable({
+  providedIn: AzureMapsModule
+})
 export class RouteService {
 
   private readonly _routeUrl: atlas.RouteURL;

@@ -21,7 +21,6 @@ import {
 import * as atlas from 'azure-maps-control';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AtlasRestAuthenticationInterceptor } from '../interceptors';
-import { PipelineProvider, RouteService, SearchService, TokenCredentialProvider, WeatherService } from '../services';
 
 const setAtlasConfiguration = (configuration: AzureMapsConfiguration) => {
   atlas.setAuthenticationOptions(configuration.authOptions);
@@ -96,12 +95,7 @@ export class AzureMapsModule {
           provide: HTTP_INTERCEPTORS,
           useClass: AtlasRestAuthenticationInterceptor,
           multi: true
-        },
-        PipelineProvider,
-        SearchService,
-        RouteService,
-        WeatherService,
-        TokenCredentialProvider
+        }
       ]
     };
   }
@@ -119,12 +113,7 @@ export class AzureMapsModule {
           provide: HTTP_INTERCEPTORS,
           useClass: AtlasRestAuthenticationInterceptor,
           multi: true
-        },
-        PipelineProvider,
-        SearchService,
-        RouteService,
-        WeatherService,
-        TokenCredentialProvider
+        }
       ]
     };
   }

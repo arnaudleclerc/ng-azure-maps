@@ -3,14 +3,13 @@ import { Inject, Injectable } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 import { Observable } from 'rxjs';
 import { AzureMapsConfiguration, AZUREMAPS_CONFIG } from '../configuration';
-import { TokenCredentialProvider } from '../services';
+import { getAtlasToken } from '../helpers';
 
 @Injectable()
 export class AtlasRestAuthenticationInterceptor
   implements HttpInterceptor {
 
-  constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,
-    private readonly tokenCredentialProvider: TokenCredentialProvider) {
+  constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration) {
 
   }
 
@@ -29,7 +28,7 @@ export class AtlasRestAuthenticationInterceptor
         const aadClone = req.clone({
           setHeaders: {
             'x-ms-client-id': this.azureMapsConfiguration.authOptions.clientId,
-            authorization: `Bearer ${this.tokenCredentialProvider.getAtlasToken()}`
+            authorization: `Bearer ${getAtlasToken()}`
           }
         });
 

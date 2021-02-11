@@ -12,8 +12,11 @@ import {
   WeatherAlongRouteResponse
 } from '../contracts';
 import { AtlasHttpService } from './atlas-http.service';
+import { AzureMapsModule } from '../modules';
 
-@Injectable()
+@Injectable({
+  providedIn: AzureMapsModule
+})
 export class WeatherService
   extends AtlasHttpService {
 

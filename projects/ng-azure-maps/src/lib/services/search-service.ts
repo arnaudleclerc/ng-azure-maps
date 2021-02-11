@@ -28,8 +28,11 @@ import {
   SearchPOIOptionalParams,
   searchPOIOptionalParamsToQueryString
 } from '../models';
+import { AzureMapsModule } from '../modules';
 
-@Injectable()
+@Injectable({
+  providedIn: AzureMapsModule
+})
 export class SearchService
   extends AtlasHttpService {
 

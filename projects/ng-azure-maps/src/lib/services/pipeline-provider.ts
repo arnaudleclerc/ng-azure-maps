@@ -2,13 +2,15 @@ import { Injectable, Inject } from '@angular/core';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../configuration';
 import * as atlas from 'azure-maps-rest';
 import { AuthenticationType } from 'azure-maps-control';
-import { TokenCredentialProvider } from './token-credential-provider';
+import { AzureMapsModule } from '../modules';
+import { getAtlasToken } from '../helpers';
 
-@Injectable()
+@Injectable({
+  providedIn: AzureMapsModule
+})
 export class PipelineProvider {
 
-  constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,
-    private readonly tokenCredentialsProvider: TokenCredentialProvider) {
+  constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration) {
 
   }
 
@@ -21,7 +23,7 @@ export class PipelineProvider {
 
     if (this.azureMapsConfiguration.authOptions.authType === AuthenticationType.aad) {
       return atlas.MapsURL.newPipeline(
-        new atlas.TokenCredential(this.azureMapsConfiguration.authOptions.clientId, this.tokenCredentialsProvider.getAtlasToken()),
+        new atlas.TokenCredential(this.azureMapsConfiguration.authOptions.clientId, getAtlasToken()),
         {
           retryOptions: this.azureMapsConfiguration.pipelineRetryOptions
         }
