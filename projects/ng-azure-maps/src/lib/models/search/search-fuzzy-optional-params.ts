@@ -108,7 +108,7 @@ export interface SearchFuzzyOptionalParams {
   view?: string;
 }
 
-export function searchFuzzyOptionalParamsToQueryString(options?: SearchFuzzyOptionalParams): string {
+export const searchFuzzyOptionalParamsToQueryString = (options?: SearchFuzzyOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -192,4 +192,4 @@ export function searchFuzzyOptionalParamsToQueryString(options?: SearchFuzzyOpti
   }
 
   return queryParameters.join('&');
-}
+};

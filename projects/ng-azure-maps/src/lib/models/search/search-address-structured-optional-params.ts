@@ -72,7 +72,7 @@ export interface SearchAddressStructuredOptionalParams {
   view?: string;
 }
 
-export function searchAddressStructuredOptionalParamsToQueryString(options?: SearchAddressStructuredOptionalParams): string {
+export const searchAddressStructuredOptionalParamsToQueryString = (options?: SearchAddressStructuredOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -136,4 +136,4 @@ export function searchAddressStructuredOptionalParamsToQueryString(options?: Sea
   }
 
   return queryParameters.join('&');
-}
+};

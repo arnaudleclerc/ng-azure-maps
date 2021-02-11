@@ -3,7 +3,31 @@ import * as atlas from 'azure-maps-rest';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AtlasHttpService } from './atlas-http.service';
-import { SearchAddressOptionalParams, searchAddressOptionalParamsToQueryString, SearchAddressReverseCrossStreetOptionalParams, searchAddressReverseCrossStreetOptionalParamsToQueryString, SearchAddressReverseOptionalParams, searchAddressReverseOptionalParamsToQueryString, SearchAddressStructuredOptionalParams, searchAddressStructuredOptionalParamsToQueryString, SearchAlongRouteOptionalParams, searchAlongRouteOptionalParamsToQueryString, SearchFuzzyOptionalParams, searchFuzzyOptionalParamsToQueryString, SearchInsideGeometryOptionalParams, searchInsideGeometryOptionalParamsToQueryString, SearchNearbyOptionalParams, searchNearbyOptionalParamsToQueryString, SearchPOICategoryOptionalParams, searchPOICategoryOptionalParamsToQueryString, SearchPOICategoryTreeOptionalParams, searchPOICategoryTreeOptionalParamsToQueryString, SearchPOICategoryTreeResponse, SearchPOIOptionalParams, searchPOIOptionalParamsToQueryString } from '../models';
+import {
+  SearchAddressOptionalParams,
+  searchAddressOptionalParamsToQueryString,
+  SearchAddressReverseCrossStreetOptionalParams,
+  searchAddressReverseCrossStreetOptionalParamsToQueryString,
+  SearchAddressReverseOptionalParams,
+  searchAddressReverseOptionalParamsToQueryString,
+  SearchAddressStructuredOptionalParams,
+  searchAddressStructuredOptionalParamsToQueryString,
+  SearchAlongRouteOptionalParams,
+  searchAlongRouteOptionalParamsToQueryString,
+  SearchFuzzyOptionalParams,
+  searchFuzzyOptionalParamsToQueryString,
+  SearchInsideGeometryOptionalParams,
+  searchInsideGeometryOptionalParamsToQueryString,
+  SearchNearbyOptionalParams,
+  searchNearbyOptionalParamsToQueryString,
+  SearchPOICategoryOptionalParams,
+  searchPOICategoryOptionalParamsToQueryString,
+  SearchPOICategoryTreeOptionalParams,
+  searchPOICategoryTreeOptionalParamsToQueryString,
+  SearchPOICategoryTreeResponse,
+  SearchPOIOptionalParams,
+  searchPOIOptionalParamsToQueryString
+} from '../models';
 
 @Injectable()
 export class SearchService

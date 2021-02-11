@@ -50,8 +50,8 @@ export class LineLayerDirective
   }
 
   protected buildLayer(dataSource: atlas.source.Source): atlas.layer.LineLayer {
-    if (this.strokeGradient && (<any>dataSource).setOptions) {
-      (<atlas.source.DataSource>dataSource).setOptions({
+    if (this.strokeGradient && (dataSource as any).setOptions) {
+      (dataSource as atlas.source.DataSource).setOptions({
         lineMetrics: true
       });
     }

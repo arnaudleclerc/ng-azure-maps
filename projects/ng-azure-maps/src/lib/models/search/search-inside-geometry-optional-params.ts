@@ -39,7 +39,7 @@ export interface SearchInsideGeometryOptionalParams {
   view?: string;
 }
 
-export function searchInsideGeometryOptionalParamsToQueryString(options?: SearchInsideGeometryOptionalParams): string {
+export const searchInsideGeometryOptionalParamsToQueryString = (options?: SearchInsideGeometryOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -75,4 +75,4 @@ export function searchInsideGeometryOptionalParamsToQueryString(options?: Search
   }
 
   return queryParameters.join('&');
-}
+};

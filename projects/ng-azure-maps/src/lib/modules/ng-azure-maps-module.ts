@@ -30,12 +30,10 @@ const setAtlasConfiguration = (configuration: AzureMapsConfiguration) => {
   }
 };
 
-export function setAtlasOptions(configuration: AzureMapsConfiguration) {
-  return (): Promise<void> => new Promise<void>(resolve => {
-      setAtlasConfiguration(configuration);
-      resolve();
-    });
-}
+export const setAtlasOptions = (configuration: AzureMapsConfiguration) => (): Promise<void> => new Promise<void>(resolve => {
+  setAtlasConfiguration(configuration);
+  resolve();
+});
 
 //@dynamic
 @NgModule({

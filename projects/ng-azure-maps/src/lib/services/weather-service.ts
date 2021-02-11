@@ -1,7 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CurrentConditionsResponse, DailyForecastResponse, HourlyForecastResponse, MinuteForecastResponse, QuarterDayForecastResponse, Unit, WaypointInput, WeatherAlongRouteResponse } from '../contracts';
+import {
+  CurrentConditionsResponse,
+  DailyForecastResponse,
+  HourlyForecastResponse,
+  MinuteForecastResponse,
+  QuarterDayForecastResponse,
+  Unit,
+  WaypointInput,
+  WeatherAlongRouteResponse
+} from '../contracts';
 import { AtlasHttpService } from './atlas-http.service';
 
 @Injectable()
@@ -228,12 +237,12 @@ export class WeatherService
     }
 
     const query = waypoints.map(waypoint => {
-      let query = `${waypoint.latitude},${waypoint.longitude},${waypoint.eta}`;
+      let waypointQuery = `${waypoint.latitude},${waypoint.longitude},${waypoint.eta}`;
       if (waypoint.heading !== null && waypoint.heading !== undefined) {
-        query += `,${waypoint.heading}`;
+        waypointQuery += `,${waypoint.heading}`;
       }
 
-      return query;
+      return waypointQuery;
     }).join(':');
 
     let url = this.buildUrl('weather/route/json');

@@ -5,10 +5,10 @@ export interface SearchPOICategoryTreeOptionalParams {
   language?: string;
 }
 
-export function searchPOICategoryTreeOptionalParamsToQueryString(options?: SearchPOICategoryTreeOptionalParams): string {
+export const searchPOICategoryTreeOptionalParamsToQueryString = (options?: SearchPOICategoryTreeOptionalParams): string => {
   if (!options && !options.language) {
     return '';
   }
 
   return `language=${options.language}`;
-}
+};

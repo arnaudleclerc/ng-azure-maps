@@ -20,9 +20,12 @@ export class PipelineProvider {
     }
 
     if (this.azureMapsConfiguration.authOptions.authType === AuthenticationType.aad) {
-      return atlas.MapsURL.newPipeline(new atlas.TokenCredential(this.azureMapsConfiguration.authOptions.clientId, this.tokenCredentialsProvider.getAtlasToken()), {
-        retryOptions: this.azureMapsConfiguration.pipelineRetryOptions
-      });
+      return atlas.MapsURL.newPipeline(
+        new atlas.TokenCredential(this.azureMapsConfiguration.authOptions.clientId, this.tokenCredentialsProvider.getAtlasToken()),
+        {
+          retryOptions: this.azureMapsConfiguration.pipelineRetryOptions
+        }
+      );
     }
 
     throw new Error('Authentication type not supported');

@@ -1,5 +1,19 @@
-import { Directive, AfterViewInit, ElementRef, Inject, Input, Output, OnDestroy, ContentChild, QueryList, AfterContentChecked, ContentChildren, OnChanges, SimpleChanges } from '@angular/core';
-import { LightOptions, MapEvent, MapErrorEvent, CameraOptions, CameraBoundsOptions, AnimationOptions, MapMouseEvent } from 'azure-maps-control';
+import {
+  Directive,
+  AfterViewInit,
+  ElementRef,
+  Inject,
+  Input,
+  Output,
+  OnDestroy,
+  ContentChild,
+  QueryList,
+  AfterContentChecked,
+  ContentChildren,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
+import { LightOptions, CameraOptions, CameraBoundsOptions, AnimationOptions, MapMouseEvent } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
@@ -233,11 +247,11 @@ export class AzureMapDirective
   }
 
   ngAfterViewInit(): void {
-    const map = new atlas.Map(this.elementRef.nativeElement, <atlas.ServiceOptions>{
+    const map = new atlas.Map(this.elementRef.nativeElement, {
       disableTelemetry: this.disableTelemetry,
       enableAccessibility: this.enableAccessibility,
       refreshExpiredTiles: this.refreshExpiredTiles
-    });
+    } as atlas.ServiceOptions);
 
     map.events.add('error', e => {
       this.onError.next({

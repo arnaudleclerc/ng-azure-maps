@@ -53,7 +53,7 @@ export interface SearchNearbyOptionalParams {
   view?: string;
 }
 
-export function searchNearbyOptionalParamsToQueryString(options?: SearchNearbyOptionalParams): string {
+export const searchNearbyOptionalParamsToQueryString = (options?: SearchNearbyOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -101,4 +101,4 @@ export function searchNearbyOptionalParamsToQueryString(options?: SearchNearbyOp
   }
 
   return queryParameters.join('&');
-}
+};

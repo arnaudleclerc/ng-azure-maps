@@ -83,7 +83,7 @@ export interface SearchPOIOptionalParams {
   view?: string;
 }
 
-export function searchPOIOptionalParamsToQueryString(options?: SearchPOIOptionalParams): string {
+export const searchPOIOptionalParamsToQueryString = (options?: SearchPOIOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -155,4 +155,4 @@ export function searchPOIOptionalParamsToQueryString(options?: SearchPOIOptional
   }
 
   return queryParameters.join('&');
-}
+};

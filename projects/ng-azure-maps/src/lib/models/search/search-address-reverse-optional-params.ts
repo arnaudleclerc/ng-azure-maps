@@ -31,6 +31,7 @@ export interface SearchAddressReverseOptionalParams {
   /**
    * If a number is sent in along with the request, the response may include the side of the street (Left/Right) and also an offset position for that number
    */
+  // eslint-disable-next-line id-blacklist
   number?: number;
 
   /**
@@ -73,7 +74,7 @@ export enum RoadUse {
   LocalStreet = 'LocalStreet'
 }
 
-export function searchAddressReverseOptionalParamsToQueryString(options: SearchAddressReverseOptionalParams): string {
+export const searchAddressReverseOptionalParamsToQueryString = (options: SearchAddressReverseOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -122,4 +123,4 @@ export function searchAddressReverseOptionalParamsToQueryString(options: SearchA
 
   return queryParameters.join('&');
 
-}
+};

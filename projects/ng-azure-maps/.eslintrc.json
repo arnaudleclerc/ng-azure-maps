@@ -20,10 +20,14 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "map",
-            "style": "camelCase"
+            "prefix": [
+              "map",
+              "azure-map"
+            ],
+            "style": "kebab-case"
           }
         ],
+        "@angular-eslint/no-output-on-prefix": "off",
         "@typescript-eslint/explicit-member-accessibility": [
           "off",
           {
@@ -34,7 +38,47 @@
           "off",
           "always"
         ],
-        "import/order": "off"
+        "@typescript-eslint/member-ordering": [
+          "warn",
+          {
+            "default": [
+              "static-field",
+              "static-field",
+              "abstract-field",
+              "decorated-field",
+              "constructor",
+              "static-method",
+              "static-method",
+              "abstract-method",
+              "decorated-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "warn",
+          {
+            "selector": "property",
+            "modifiers": [
+              "private"
+            ],
+            "format": [
+              "camelCase"
+            ],
+            "leadingUnderscore": "require"
+          }
+        ],
+        "@typescript-eslint/no-shadow": "error",
+        "import/order": "off",
+        "max-len": [
+          "warn",
+          {
+            "code": 140,
+            "ignoreComments": true,
+            "ignoreUrls": true
+          }
+        ],
+        "no-underscore-dangle": "off",
+        "no-shadow": "off"
       }
     },
     {

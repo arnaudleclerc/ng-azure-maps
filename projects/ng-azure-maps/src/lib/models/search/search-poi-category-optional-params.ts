@@ -83,7 +83,7 @@ export interface SearchPOICategoryOptionalParams {
   view?: string;
 }
 
-export function searchPOICategoryOptionalParamsToQueryString(options?: SearchPOICategoryOptionalParams): string {
+export const searchPOICategoryOptionalParamsToQueryString = (options?: SearchPOICategoryOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -155,4 +155,4 @@ export function searchPOICategoryOptionalParamsToQueryString(options?: SearchPOI
   }
 
   return queryParameters.join('&');
-}
+};

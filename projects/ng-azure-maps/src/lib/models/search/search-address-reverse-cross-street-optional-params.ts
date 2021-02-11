@@ -28,34 +28,35 @@ The View parameter specifies which set of geopolitically disputed content is ret
 
 }
 
-export function searchAddressReverseCrossStreetOptionalParamsToQueryString(options?: SearchAddressReverseCrossStreetOptionalParams): string {
+export const searchAddressReverseCrossStreetOptionalParamsToQueryString
+  = (options?: SearchAddressReverseCrossStreetOptionalParams): string => {
 
-  if (!options) {
-    return '';
-  }
+    if (!options) {
+      return '';
+    }
 
-  const queryParameters = [];
+    const queryParameters = [];
 
-  if (options.heading) {
-    queryParameters.push(`heading=${options.heading}`);
-  }
+    if (options.heading) {
+      queryParameters.push(`heading=${options.heading}`);
+    }
 
-  if (options.language) {
-    queryParameters.push(`language=${options.language}`);
-  }
+    if (options.language) {
+      queryParameters.push(`language=${options.language}`);
+    }
 
-  if (options.limit) {
-    queryParameters.push(`limit=${options.limit}`);
-  }
+    if (options.limit) {
+      queryParameters.push(`limit=${options.limit}`);
+    }
 
-  if (options.radius) {
-    queryParameters.push(`radius=${options.radius}`);
-  }
+    if (options.radius) {
+      queryParameters.push(`radius=${options.radius}`);
+    }
 
-  if (options.view) {
-    queryParameters.push(`view=${options.view}`);
-  }
+    if (options.view) {
+      queryParameters.push(`view=${options.view}`);
+    }
 
-  return queryParameters.join('&');
+    return queryParameters.join('&');
 
-}
+  };

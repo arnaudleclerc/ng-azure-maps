@@ -52,7 +52,7 @@ export interface SearchAddressOptionalParams {
   view?: string;
 }
 
-export function searchAddressOptionalParamsToQueryString(params?: SearchAddressOptionalParams): string {
+export const searchAddressOptionalParamsToQueryString = (params?: SearchAddressOptionalParams): string => {
   if (!params) {
     return '';
   }
@@ -108,4 +108,4 @@ export function searchAddressOptionalParamsToQueryString(params?: SearchAddressO
 
   return queryStringParameters.join('&');
 
-}
+};

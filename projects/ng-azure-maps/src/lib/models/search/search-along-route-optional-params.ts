@@ -32,7 +32,7 @@ export interface SearchAlongRouteOptionalParams {
   view?: string;
 }
 
-export function searchAlongRouteOptionalParamsToQueryString(options?: SearchAlongRouteOptionalParams): string {
+export const searchAlongRouteOptionalParamsToQueryString = (options?: SearchAlongRouteOptionalParams): string => {
   if (!options) {
     return '';
   }
@@ -64,4 +64,4 @@ export function searchAlongRouteOptionalParamsToQueryString(options?: SearchAlon
   }
 
   return queryParameters.join('&');
-}
+};
