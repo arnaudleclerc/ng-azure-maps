@@ -17,6 +17,7 @@ export class WeatherService
    * Also, observations from the past 6 or 24 hours for a particular location can be retrieved.
    * The basic information returned with the response include details such as observation date and time, brief description of the weather conditions, weather icon, precipitation indicator flags, and temperature.
    * Additional details such as RealFeel™ Temperature and UV index are also returned.
+   *
    * @param latitude Latitude
    * @param longitude Longitude
    * @param details Return full details for the current conditions. Available values are
@@ -53,7 +54,7 @@ export class WeatherService
     }
 
     if (!(unit === null || unit === undefined)) {
-      url += `&unit=${unit};`
+      url += `&unit=${unit};`;
     }
 
     return this.httpClient.get<CurrentConditionsResponse>(url);
@@ -62,6 +63,7 @@ export class WeatherService
 
   /**
    * The service returns detailed weather forecast such as temperature and wind by day for the next 1, 5, 10, 15, 25, or 45 days for a given coordinate location. The response include details such as temperature, wind, precipitation, air quality, and UV index.
+   *
    * @param latitude Latitude
    * @param longitude Longitude
    * @param duration Specifies for how many days the daily forecast responses are returned. Available values are
@@ -92,7 +94,7 @@ export class WeatherService
     }
 
     if (!(unit === null || unit === undefined)) {
-      url += `&unit=${unit};`
+      url += `&unit=${unit};`;
     }
 
     return this.httpClient.get<DailyForecastResponse>(url);
@@ -100,6 +102,7 @@ export class WeatherService
 
   /**
    * Request detailed weather forecast by the hour for the next 1, 12, 24 (1 day), 72 (3 days), 120 (5 days), and 240 hours (10 days) for the given the given coordinate location. The API returns details such as temperature, humidity, wind, precipitation, and ultraviolet (UV) index.
+   *
    * @param latitude Latitude
    * @param longitude Longitude
    * @param duration Time frame of the returned weather forecast. By default, the forecast data for next hour will be returned. Available values are
@@ -131,7 +134,7 @@ export class WeatherService
     }
 
     if (!(unit === null || unit === undefined)) {
-      url += `&unit=${unit};`
+      url += `&unit=${unit};`;
     }
 
     return this.httpClient.get<HourlyForecastResponse>(url);
@@ -139,6 +142,7 @@ export class WeatherService
 
   /**
    * Get Minute Forecast service returns minute-by-minute forecasts for a given location for the next 120 minutes. Users can request weather forecasts in the interval of 1, 5 and 15 minutes. The response will include details such as the type of precipitation (including rain, snow, or a mixture of both), start time, and precipitation intensity value (dBZ).
+   *
    * @param latitude Latitude
    * @param longitude Longitude
    * @param interval Specifies time interval in minutes for the returned weather forecast. Supported values are
@@ -168,6 +172,7 @@ export class WeatherService
 
   /**
    * Service returns detailed weather forecast by quarter-day for the next 1, 5, 10, or 15 days for a given location. Response data is presented by quarters of the day - morning, afternoon, evening, and overnight. Details such as temperature, humidity, wind, precipitation, and UV index are returned.Service returns detailed weather forecast by quarter-day for the next 1, 5, 10, or 15 days for a given location. Response data is presented by quarters of the day - morning, afternoon, evening, and overnight. Details such as temperature, humidity, wind, precipitation, and UV index are returned.
+   *
    * @param latitude Latitude
    * @param longitude Longitude
    * @param duration Specifies for how many days the quester-day forecast responses are returned. Supported values are:
@@ -196,7 +201,7 @@ export class WeatherService
     }
 
     if (!(unit === null || unit === undefined)) {
-      url += `&unit=${unit};`
+      url += `&unit=${unit};`;
     }
 
     return this.httpClient.get<QuarterDayForecastResponse>(url);
@@ -207,6 +212,7 @@ export class WeatherService
     The service supplements Azure Maps Route Service that allows you to first request a route between an origin and a destination and use that as an input for Weather Along Route endpoint.
     In addition, the service supports scenarios to generate weather notifications for waypoints that experience an increase in intensity of a weather hazard. For example, if the vehicle is expected to begin experiencing heavy rain as it reaches a waypoint, a weather notification for heavy rain will be generated for that waypoint allowing the end product to display a heavy rain notification before the driver reaches that waypoint. The trigger for when to display the notification for a waypoint could be based, for example, on a geofence, or selectable distance to the waypoint.
     The API covers all regions of the planet except latitudes above Greenland and Antarctica.
+   *
    * @param waypoints Coordinates through which the route is calculated, separated by colon (:) and entered in chronological order. A minimum of two waypoints is required. A single API call may contain up to 60 waypoints. A waypoint indicates location, ETA, and optional heading.
    * @param language Language in which search results should be returned. Should be one of supported IETF language tags, case insensitive. When data in specified language is not available for a specific field, default language is used. Default value is en-us.
    */
@@ -214,14 +220,14 @@ export class WeatherService
     language?: string
   ): Observable<WeatherAlongRouteResponse> {
     if (waypoints === null || waypoints === undefined || waypoints.length < 2) {
-      throw new Error("A minimum of two waypoints is required");
+      throw new Error('A minimum of two waypoints is required');
     }
 
     if (waypoints.length > 60) {
-      throw new Error("A single API call may contain up to 60 waypoints");
+      throw new Error('A single API call may contain up to 60 waypoints');
     }
 
-    let query = waypoints.map(waypoint => {
+    const query = waypoints.map(waypoint => {
       let query = `${waypoint.latitude},${waypoint.longitude},${waypoint.eta}`;
       if (waypoint.heading !== null && waypoint.heading !== undefined) {
         query += `,${waypoint.heading}`;

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlPosition } from 'azure-maps-control';
 import { ZoomControlDirective } from './zoom-control.directive';
 
-describe("map-zoom-control", () => {
+describe('map-zoom-control', () => {
 
   @Component({
     template: '<map-zoom-control [position]="mapCompassControlPosition"></map-zoom-control>'
@@ -30,7 +30,7 @@ describe("map-zoom-control", () => {
     fixture.detectChanges();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(fixture.componentInstance.directive).toBeTruthy();
     expect(fixture.componentInstance.directive.position).toBeUndefined();
   });

@@ -85,7 +85,7 @@ export interface SearchFuzzyOptionalParams {
   /**
    * Hours of operation for a POI (Points of Interest). The availability of hours of operation will vary based on the data available. Supported value: nextSevenDays
    */
-  openingHours?: "nextSevenDays";
+  openingHours?: 'nextSevenDays';
 
   /**
    * The radius in meters to for the results to be constrained to the defined area

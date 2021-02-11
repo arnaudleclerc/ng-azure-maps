@@ -15,7 +15,7 @@ export class SymbolLayerDirective
   @Input() public lineSpacing: Expression | number;
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
-  @Input() public placement: "point" | "line" | "line-center";
+  @Input() public placement: 'point' | 'line' | 'line-center';
   @Input() public textOptions: TextOptions;
   @Input() public visible: boolean;
 

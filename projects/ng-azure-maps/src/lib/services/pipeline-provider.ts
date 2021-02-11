@@ -25,7 +25,7 @@ export class PipelineProvider {
       });
     }
 
-    throw new Error("Authentication type not supported");
+    throw new Error('Authentication type not supported');
   }
 
 }

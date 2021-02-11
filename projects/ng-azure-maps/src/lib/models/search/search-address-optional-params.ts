@@ -63,7 +63,7 @@ export function searchAddressOptionalParamsToQueryString(params?: SearchAddressO
   }
 
   if (params.countrySet) {
-    queryStringParameters.push(`countrySet=${params.countrySet.join(',')}`)
+    queryStringParameters.push(`countrySet=${params.countrySet.join(',')}`);
   }
 
   if (params.extendedPostalCodesFor) {

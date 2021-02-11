@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, APP_INITIALIZER } from "@angular/core";
+import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
 import { AzureMapsConfiguration, AZUREMAPS_CONFIG } from '../configuration';
 import {
   AzureMapDirective,
@@ -21,7 +21,7 @@ import {
 import * as atlas from 'azure-maps-control';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AtlasRestAuthenticationInterceptor } from '../interceptors';
-import { PipelineProvider, RouteService, SearchService, TokenCredentialProvider, WeatherService } from "../services";
+import { PipelineProvider, RouteService, SearchService, TokenCredentialProvider, WeatherService } from '../services';
 
 const setAtlasConfiguration = (configuration: AzureMapsConfiguration) => {
   atlas.setAuthenticationOptions(configuration.authOptions);
@@ -31,12 +31,10 @@ const setAtlasConfiguration = (configuration: AzureMapsConfiguration) => {
 };
 
 export function setAtlasOptions(configuration: AzureMapsConfiguration) {
-  return (): Promise<void> => {
-    return new Promise<void>(resolve => {
+  return (): Promise<void> => new Promise<void>(resolve => {
       setAtlasConfiguration(configuration);
       resolve();
     });
-  };
 }
 
 //@dynamic

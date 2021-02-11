@@ -16,7 +16,7 @@ export interface SearchAddressReverseOptionalParams {
    * roadUse
    * returnMatchType
    */
-  entityType?: atlasrest.Models.EntityType
+  entityType?: atlasrest.Models.EntityType;
 
   /**
    * The directional heading of the vehicle in degrees, for travel along a segment of roadway. 0 is North, 90 is East and so on, values range from -360 to 360. The precision can include upto one decimal place
@@ -65,12 +65,12 @@ export interface SearchAddressReverseOptionalParams {
 }
 
 export enum RoadUse {
-  LimitedAccess = "LimitedAccess",
-  Arterial = "Arterial",
-  Terminal = "Terminal",
-  Ramp = "Ramp",
-  Rotary = "Rotary",
-  LocalStreet = "LocalStreet"
+  LimitedAccess = 'LimitedAccess',
+  Arterial = 'Arterial',
+  Terminal = 'Terminal',
+  Ramp = 'Ramp',
+  Rotary = 'Rotary',
+  LocalStreet = 'LocalStreet'
 }
 
 export function searchAddressReverseOptionalParamsToQueryString(options: SearchAddressReverseOptionalParams): string {
@@ -109,7 +109,7 @@ export function searchAddressReverseOptionalParamsToQueryString(options: SearchA
   }
 
   if (options.returnRoadUse !== null && options.returnRoadUse !== undefined) {
-    queryParameters.push(`returnRoadUse=${options.returnRoadUse.toString()}`)
+    queryParameters.push(`returnRoadUse=${options.returnRoadUse.toString()}`);
   }
 
   if (options.returnSpeedLimit !== null && options.returnSpeedLimit !== undefined) {

@@ -29,7 +29,7 @@ export class AtlasRestAuthenticationInterceptor
         const aadClone = req.clone({
           setHeaders: {
             'x-ms-client-id': this.azureMapsConfiguration.authOptions.clientId,
-            'authorization': `Bearer ${this.tokenCredentialProvider.getAtlasToken()}`
+            authorization: `Bearer ${this.tokenCredentialProvider.getAtlasToken()}`
           }
         });
 

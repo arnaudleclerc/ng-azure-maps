@@ -15,22 +15,22 @@ export class HtmlMarkerDirective
 
   private readonly _markerEvents = new Map<any, (e: any) => void>(
     [
-      ["click", e => this.onClick.next(this.toMarkerEvent(e))],
-      ["contextmenu", e => this.onContextMenu.next(this.toMarkerEvent(e))],
-      ["dblclick", e => this.onDblClick.next(this.toMarkerEvent(e))],
-      ["drag", e => this.onDrag.next(this.toMarkerEvent(e))],
-      ["dragstart", e => this.onDragStart.next(this.toMarkerEvent(e))],
-      ["dragend", e => this.onDragEnd.next(this.toMarkerEvent(e))],
-      ["keydown", e => this.onKeyDown.next(this.toMarkerEvent(e))],
-      ["keypress", e => this.onKeyPress.next(this.toMarkerEvent(e))],
-      ["keyup", e => this.onKeyUp.next(this.toMarkerEvent(e))],
-      ["mousedown", e => this.onMouseDown.next(this.toMarkerEvent(e))],
-      ["mouseenter", e => this.onMouseEnter.next(this.toMarkerEvent(e))],
-      ["mouseleave", e => this.onMouseLeave.next(this.toMarkerEvent(e))],
-      ["mousemove", e => this.onMouseMove.next(this.toMarkerEvent(e))],
-      ["mouseout", e => this.onMouseOut.next(this.toMarkerEvent(e))],
-      ["mouseover", e => this.onMouseOver.next(this.toMarkerEvent(e))],
-      ["mouseup", e => this.onMouseUp.next(this.toMarkerEvent(e))]
+      ['click', e => this.onClick.next(this.toMarkerEvent(e))],
+      ['contextmenu', e => this.onContextMenu.next(this.toMarkerEvent(e))],
+      ['dblclick', e => this.onDblClick.next(this.toMarkerEvent(e))],
+      ['drag', e => this.onDrag.next(this.toMarkerEvent(e))],
+      ['dragstart', e => this.onDragStart.next(this.toMarkerEvent(e))],
+      ['dragend', e => this.onDragEnd.next(this.toMarkerEvent(e))],
+      ['keydown', e => this.onKeyDown.next(this.toMarkerEvent(e))],
+      ['keypress', e => this.onKeyPress.next(this.toMarkerEvent(e))],
+      ['keyup', e => this.onKeyUp.next(this.toMarkerEvent(e))],
+      ['mousedown', e => this.onMouseDown.next(this.toMarkerEvent(e))],
+      ['mouseenter', e => this.onMouseEnter.next(this.toMarkerEvent(e))],
+      ['mouseleave', e => this.onMouseLeave.next(this.toMarkerEvent(e))],
+      ['mousemove', e => this.onMouseMove.next(this.toMarkerEvent(e))],
+      ['mouseout', e => this.onMouseOut.next(this.toMarkerEvent(e))],
+      ['mouseover', e => this.onMouseOver.next(this.toMarkerEvent(e))],
+      ['mouseup', e => this.onMouseUp.next(this.toMarkerEvent(e))]
     ]
   );
 

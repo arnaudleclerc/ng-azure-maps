@@ -18,7 +18,7 @@ export class PolygonExtrusionLayerDirective
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
   @Input() public translate: atlas.Pixel;
-  @Input() public translateAnchor: "map" | "viewport";
+  @Input() public translateAnchor: 'map' | 'viewport';
   @Input() public verticalGradient: boolean;
   @Input() public visible: boolean;
 

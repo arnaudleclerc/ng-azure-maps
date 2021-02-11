@@ -14,11 +14,11 @@ export class PopupDirective
 
   private readonly _popupEvents = new Map<any, (e: any) => void>(
     [
-      ["close", e => this.onClose.next(this.toPopupEvent(e))],
-      ["drag", e => this.onDrag.next(this.toPopupEvent(e))],
-      ["dragend", e => this.onDragEnd.next(this.toPopupEvent(e))],
-      ["dragstart", e => this.onDragStart.next(this.toPopupEvent(e))],
-      ["open", e => this.onOpen.next(this.toPopupEvent(e))],
+      ['close', e => this.onClose.next(this.toPopupEvent(e))],
+      ['drag', e => this.onDrag.next(this.toPopupEvent(e))],
+      ['dragend', e => this.onDragEnd.next(this.toPopupEvent(e))],
+      ['dragstart', e => this.onDragStart.next(this.toPopupEvent(e))],
+      ['open', e => this.onOpen.next(this.toPopupEvent(e))],
     ]
   );
 

@@ -11,8 +11,8 @@ export class LineLayerDirective
 
   @Input() public blur: number | atlas.Expression;
   @Input() public filter: atlas.Expression;
-  @Input() public lineCap: "butt" | "round" | "square";
-  @Input() public lineJoin: "bevel" | "round" | "miter";
+  @Input() public lineCap: 'butt' | 'round' | 'square';
+  @Input() public lineJoin: 'bevel' | 'round' | 'miter';
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
   @Input() public offset: number | atlas.Expression;
@@ -22,7 +22,7 @@ export class LineLayerDirective
   @Input() public strokeOpacity: number | atlas.Expression;
   @Input() public strokeWidth: number | atlas.Expression;
   @Input() public translate: atlas.Pixel;
-  @Input() public translateAnchor: "map" | "viewport";
+  @Input() public translateAnchor: 'map' | 'viewport';
   @Input() public visible: boolean;
 
   ngOnChanges(changes: SimpleChanges) {

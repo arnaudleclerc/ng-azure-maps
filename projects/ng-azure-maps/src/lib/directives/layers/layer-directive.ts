@@ -9,23 +9,23 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
 
   private readonly _layerEvents = new Map<any, (e: any) => void>(
     [
-      ["click", e => this.onClick.next(this.toLayerEvent(this.layer, e))],
-      ["contextmenu", e => this.onContextMenu.next(this.toLayerEvent(this.layer, e))],
-      ["dblclick", e => this.onDblClick.next(this.toLayerEvent(this.layer, e))],
-      ["layeradded", e => this.onAdded.next(this.toLayerEvent(this.layer, e))],
-      ["layerremoved", e => this.onRemoved.next(this.toLayerEvent(this.layer, e))],
-      ["mousedown", e => this.onMouseDown.next(this.toLayerEvent(this.layer, e))],
-      ["mouseenter", e => this.onMouseEnter.next(this.toLayerEvent(this.layer, e))],
-      ["mouseleave", e => this.onMouseLeave.next(this.toLayerEvent(this.layer, e))],
-      ["mousemove", e => this.onMouseMove.next(this.toLayerEvent(this.layer, e))],
-      ["mouseout", e => this.onMouseOut.next(this.toLayerEvent(this.layer, e))],
-      ["mouseover", e => this.onMouseOver.next(this.toLayerEvent(this.layer, e))],
-      ["mouseup", e => this.onMouseUp.next(this.toLayerEvent(this.layer, e))],
-      ["touchcancel", e => this.onTouchCancel.next(this.toLayerEvent(this.layer, e))],
-      ["touchend", e => this.onTouchEnd.next(this.toLayerEvent(this.layer, e))],
-      ["touchmove", e => this.onTouchMove.next(this.toLayerEvent(this.layer, e))],
-      ["touchstart", e => this.onTouchStart.next(this.toLayerEvent(this.layer, e))],
-      ["wheel", e => this.onWheel.next(this.toLayerEvent(this.layer, e))],
+      ['click', e => this.onClick.next(this.toLayerEvent(this.layer, e))],
+      ['contextmenu', e => this.onContextMenu.next(this.toLayerEvent(this.layer, e))],
+      ['dblclick', e => this.onDblClick.next(this.toLayerEvent(this.layer, e))],
+      ['layeradded', e => this.onAdded.next(this.toLayerEvent(this.layer, e))],
+      ['layerremoved', e => this.onRemoved.next(this.toLayerEvent(this.layer, e))],
+      ['mousedown', e => this.onMouseDown.next(this.toLayerEvent(this.layer, e))],
+      ['mouseenter', e => this.onMouseEnter.next(this.toLayerEvent(this.layer, e))],
+      ['mouseleave', e => this.onMouseLeave.next(this.toLayerEvent(this.layer, e))],
+      ['mousemove', e => this.onMouseMove.next(this.toLayerEvent(this.layer, e))],
+      ['mouseout', e => this.onMouseOut.next(this.toLayerEvent(this.layer, e))],
+      ['mouseover', e => this.onMouseOver.next(this.toLayerEvent(this.layer, e))],
+      ['mouseup', e => this.onMouseUp.next(this.toLayerEvent(this.layer, e))],
+      ['touchcancel', e => this.onTouchCancel.next(this.toLayerEvent(this.layer, e))],
+      ['touchend', e => this.onTouchEnd.next(this.toLayerEvent(this.layer, e))],
+      ['touchmove', e => this.onTouchMove.next(this.toLayerEvent(this.layer, e))],
+      ['touchstart', e => this.onTouchStart.next(this.toLayerEvent(this.layer, e))],
+      ['wheel', e => this.onWheel.next(this.toLayerEvent(this.layer, e))],
     ]
   );
 
@@ -86,7 +86,7 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
 
   private toLayerEvent(layer: atlas.layer.Layer | atlas.layer.Layer[], e: any): ILayerEvent {
     return {
-      layer: layer,
+      layer,
       event: e
     };
   }

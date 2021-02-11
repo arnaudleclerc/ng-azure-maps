@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 
 export abstract class AtlasHttpService {
 
-  private readonly _rootUrl = "https://atlas.microsoft.com";
-  private readonly _apiVersion = "1.0";
+  private readonly _rootUrl = 'https://atlas.microsoft.com';
+  private readonly _apiVersion = '1.0';
 
   constructor(protected readonly httpClient: HttpClient) {
 

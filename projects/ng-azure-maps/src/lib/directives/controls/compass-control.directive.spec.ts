@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlPosition } from 'azure-maps-control';
 import { CompassControlDirective } from './compass-control.directive';
 
-describe("map-compass-control", () => {
+describe('map-compass-control', () => {
 
   @Component({
     template: '<map-compass-control [position]="mapCompassControlPosition"></map-compass-control>'
@@ -30,7 +30,7 @@ describe("map-compass-control", () => {
     fixture.detectChanges();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(fixture.componentInstance.directive).toBeTruthy();
     expect(fixture.componentInstance.directive.position).toBeUndefined();
   });

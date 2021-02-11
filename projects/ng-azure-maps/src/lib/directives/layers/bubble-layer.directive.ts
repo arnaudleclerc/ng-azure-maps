@@ -15,7 +15,7 @@ export class BubbleLayerDirective
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
   @Input() public opacity: number | atlas.Expression;
-  @Input() public pitchAlignment: "map" | "viewport";
+  @Input() public pitchAlignment: 'map' | 'viewport';
   @Input() public radius: number | atlas.Expression;
   @Input() public strokeColor: string | atlas.Expression;
   @Input() public strokeOpacity: number | atlas.Expression;

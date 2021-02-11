@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlPosition } from 'azure-maps-control';
 import { StyleControlDirective } from './style-control.directive';
 
-describe("map-style-control", () => {
+describe('map-style-control', () => {
 
   @Component({
     template: '<map-style-control [position]="mapCompassControlPosition"></map-style-control>'
@@ -30,7 +30,7 @@ describe("map-style-control", () => {
     fixture.detectChanges();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(fixture.componentInstance.directive).toBeTruthy();
     expect(fixture.componentInstance.directive.position).toBeUndefined();
   });

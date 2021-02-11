@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlPosition } from 'azure-maps-control';
 import { PitchControlDirective } from './pitch-control.directive';
 
-describe("map-pitch-control", () => {
+describe('map-pitch-control', () => {
 
   @Component({
     template: '<map-pitch-control [position]="mapCompassControlPosition"></map-pitch-control>'
@@ -30,7 +30,7 @@ describe("map-pitch-control", () => {
     fixture.detectChanges();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(fixture.componentInstance.directive).toBeTruthy();
     expect(fixture.componentInstance.directive.position).toBeUndefined();
   });

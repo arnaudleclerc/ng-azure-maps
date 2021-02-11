@@ -1,10 +1,10 @@
-import { Component, Input, ViewChild } from "@angular/core";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ControlPosition, HtmlMarkerOptions } from "azure-maps-control";
-import { DrawingToolbarDirective } from "./drawing-toolbar.directive";
+import { Component, Input, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ControlPosition, HtmlMarkerOptions } from 'azure-maps-control';
+import { DrawingToolbarDirective } from './drawing-toolbar.directive';
 import * as atlasdrawing from 'azure-maps-drawing-tools';
 
-describe("map-drawing-toolbar", () => {
+describe('map-drawing-toolbar', () => {
   @Component({
     template: '<map-drawing-toolbar [dragHandleStyle]="dragHandleStyle" '
       + '[freehandInterval]="freehandInterval" '
@@ -62,7 +62,7 @@ describe("map-drawing-toolbar", () => {
     fixture.detectChanges();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(fixture.componentInstance.directive).toBeTruthy();
   });
 
