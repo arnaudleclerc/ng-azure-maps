@@ -35,3 +35,5 @@ jobs:
       run: npm run build-lib-prd
     - name: Unit Tests
       run: npm run test-lib
+    - name: Linting
+      run: npm run lint-lib
