@@ -7,6 +7,7 @@ on:
       - hotfix/**
     paths:
       - projects/ng-azure-maps/**
+      - .github/**
   pull_request:
     branches:
       - develop
@@ -32,4 +33,5 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build-lib-prd
-
+    - name: Unit Tests
+      run: npm run test-lib

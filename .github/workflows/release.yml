@@ -73,6 +73,8 @@ jobs:
       if: ${{ steps.gitversion.outputs.branchName == 'master' || steps.gitversion.outputs.branchName == 'main' }}
     - name: npm custom
       run: npm run build-lib-prd
+    - name: Unit Tests
+      run: npm run test-lib
     - name: Tag Repo Prerelease
       if: ${{ steps.gitversion.outputs.branchName != 'master' && steps.gitversion.outputs.branchName != 'main' }}
       uses: richardsimko/update-tag@v1
