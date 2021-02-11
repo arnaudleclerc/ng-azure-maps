@@ -1,5 +1,4 @@
-[![NPM Version](https://img.shields.io/npm/v/ng-azure-maps.svg?style=flat)](https://www.npmjs.com/package/ng-azure-maps) ![CI](https://github.com/arnaudleclerc/ng-azure-maps/workflows/CI/badge.svg?branch=main)
-![release](https://github.com/arnaudleclerc/ng-azure-maps/workflows/release/badge.svg?branch=main)
+![release](https://github.com/arnaudleclerc/ng-azure-maps/workflows/release/badge.svg?branch=main) [![NPM Version](https://img.shields.io/npm/v/ng-azure-maps.svg?style=flat)](https://www.npmjs.com/package/ng-azure-maps) [![NPM Downloads](https://img.shields.io/npm/dm/ng-azure-maps.svg?style=flat)](https://www.npmjs.com/package/ng-azure-maps) [![license](https://img.shields.io/npm/l/ng-azure-maps.svg?style=flat)](https://github.com/arnaudleclerc/ng-azure-maps/blob/develop/LICENSE)
 
 # ng-azure-maps 
 
