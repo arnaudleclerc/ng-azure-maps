@@ -1,4 +1,4 @@
-import { Directive, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Directive, OnChanges, Input } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 import { LayerDirective } from './layer-directive';
 
@@ -23,7 +23,7 @@ export class ImageLayerDirective
   @Input() public url: string;
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.layer) {
       this.layer.setOptions({
         contrast: this.contrast,

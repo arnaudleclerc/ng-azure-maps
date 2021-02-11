@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { PipelineProvider } from './pipeline-provider';
-import { RouteURL } from 'azure-maps-rest';
 import * as atlas from 'azure-maps-rest';
 
 @Injectable()
 export class RouteService {
 
-  private readonly _routeUrl: RouteURL;
+  private readonly _routeUrl: atlas.RouteURL;
   private readonly _defaultTimeout = 10000;
 
   constructor(pipelineProvider: PipelineProvider) {
-    this._routeUrl = new RouteURL(pipelineProvider.getPipeline());
+    this._routeUrl = new atlas.RouteURL(pipelineProvider.getPipeline());
   }
 
   /**

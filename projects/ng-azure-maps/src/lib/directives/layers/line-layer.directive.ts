@@ -1,6 +1,6 @@
 import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
-import { OnChanges, Input, SimpleChanges, Directive } from '@angular/core';
+import { OnChanges, Input, Directive } from '@angular/core';
 
 @Directive({
   selector: '[map-line-layer], map-line-layer'
@@ -25,7 +25,7 @@ export class LineLayerDirective
   @Input() public translateAnchor: 'map' | 'viewport';
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.layer) {
       this.layer.setOptions({
         blur: this.blur,

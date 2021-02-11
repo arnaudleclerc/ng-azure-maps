@@ -67,7 +67,21 @@
             "leadingUnderscore": "require"
           }
         ],
+        "@typescript-eslint/no-empty-interface": "warn",
         "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-var-requires": "error",
+        "@typescript-eslint/prefer-readonly": "warn",
+        "prefer-arrow/prefer-arrow-functions": [
+          "warn",
+          {
+            "disallowPrototype": true,
+            "singleReturnOnly": false,
+            "classPropertiesAllowed": false,
+            "allowStandaloneDeclarations": false
+          }
+        ],
+        "eqeqeq": "error",
         "import/order": "off",
         "max-len": [
           "warn",
@@ -77,7 +91,14 @@
             "ignoreUrls": true
           }
         ],
+        "no-duplicate-imports": [
+          "warn",
+          {
+            "includeExports": false
+          }
+        ],
         "no-underscore-dangle": "off",
+        "no-unused-vars": "off",
         "no-shadow": "off"
       }
     },

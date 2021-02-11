@@ -1,5 +1,4 @@
 import { ConnectorSet } from './connector-set';
-import { ExtendedPostalCodes } from './extended-postal-codes';
 
 export interface SearchAlongRouteOptionalParams {
   /**

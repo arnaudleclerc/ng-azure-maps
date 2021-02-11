@@ -1,4 +1,4 @@
-import { Directive, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Directive, OnChanges, Input } from '@angular/core';
 import { LayerDirective } from './layer-directive';
 import * as atlas from 'azure-maps-control';
 
@@ -28,7 +28,7 @@ export class TileLayerDirective
   @Input() public tileUrl: string;
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.layer) {
       this.layer.setOptions({
         bounds: this.bounds,

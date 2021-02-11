@@ -1,5 +1,4 @@
 import * as atlas from 'azure-maps-control';
-import { Map } from 'azure-maps-control';
 import { OnDestroy, Input, Directive } from '@angular/core';
 import { LayerDirective } from './layer-directive';
 
@@ -11,7 +10,7 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
   @Input() public dataSourceId: string;
   @Input() public sourceLayer: string;
 
-  public initialize(map: Map, dataSource: atlas.source.Source): void {
+  public initialize(map: atlas.Map, dataSource: atlas.source.Source): void {
     this.layer = this.buildLayer(dataSource);
 
     this.initializeEvents(map);
@@ -19,7 +18,7 @@ export abstract class SourceLayerDirective<T extends atlas.layer.Layer>
     map.layers.add(this.layer, this.before);
   };
 
-  public clear(map: Map) {
+  public clear(map: atlas.Map) {
     map.layers.remove(this.layer);
     this.layer = null;
   }

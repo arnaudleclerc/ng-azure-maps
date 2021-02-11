@@ -1,4 +1,4 @@
-import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Directive, OnChanges, Input } from '@angular/core';
 import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
@@ -19,7 +19,7 @@ export class HeatmapLayerDirective
   @Input() public visible: boolean;
   @Input() public weight: number | atlas.Expression;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.layer) {
       this.layer.setOptions({
         color: this.color,

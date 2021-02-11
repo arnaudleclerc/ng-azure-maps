@@ -1,4 +1,4 @@
-import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Directive, OnChanges, Input } from '@angular/core';
 import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
@@ -17,7 +17,7 @@ export class PolygonLayerDirective
   @Input() public minZoom: number;
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.layer) {
       this.layer.setOptions({
         fillColor: this.fillColor,

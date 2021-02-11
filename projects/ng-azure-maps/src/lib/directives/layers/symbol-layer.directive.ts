@@ -1,5 +1,4 @@
-import { Directive, Input, OnChanges, SimpleChanges, OnDestroy, Output } from '@angular/core';
-import { Expression, IconOptions, TextOptions } from 'azure-maps-control';
+import { Directive, Input, OnChanges } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 import { SourceLayerDirective } from './source-layer-directive';
 
@@ -10,16 +9,16 @@ export class SymbolLayerDirective
   extends SourceLayerDirective<atlas.layer.SymbolLayer>
   implements OnChanges {
 
-  @Input() public filter: Expression;
-  @Input() public iconOptions: IconOptions;
-  @Input() public lineSpacing: Expression | number;
+  @Input() public filter: atlas.Expression;
+  @Input() public iconOptions: atlas.IconOptions;
+  @Input() public lineSpacing: atlas.Expression | number;
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
   @Input() public placement: 'point' | 'line' | 'line-center';
-  @Input() public textOptions: TextOptions;
+  @Input() public textOptions: atlas.TextOptions;
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.layer) {
       this.layer.setOptions({
         filter: this.filter,

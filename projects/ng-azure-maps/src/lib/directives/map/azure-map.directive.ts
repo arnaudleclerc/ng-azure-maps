@@ -13,7 +13,6 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { LightOptions, CameraOptions, CameraBoundsOptions, AnimationOptions, MapMouseEvent } from 'azure-maps-control';
 import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
@@ -125,7 +124,7 @@ export class AzureMapDirective
   @Input() public interactive: boolean;
   @Input() public keyboardInteraction: boolean;
   @Input() public language: string;
-  @Input() public light: LightOptions;
+  @Input() public light: atlas.LightOptions;
   @Input() public maxBounds: atlas.data.BoundingBox;
   @Input() public maxZoom: number;
   @Input() public minZoom: number;
@@ -431,7 +430,7 @@ export class AzureMapDirective
   }
 
   private setOptions(): void {
-    const cameraOptions: (CameraOptions | CameraBoundsOptions) & AnimationOptions = {
+    const cameraOptions: (atlas.CameraOptions | atlas.CameraBoundsOptions) & atlas.AnimationOptions = {
       bearing: this.bearing,
       centerOffset: this.centerOffset,
       duration: this.duration,

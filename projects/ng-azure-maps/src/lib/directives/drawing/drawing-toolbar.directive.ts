@@ -1,4 +1,4 @@
-import { Directive, Input, OnChanges, OnDestroy, SimpleChanges, Output } from '@angular/core';
+import { Directive, Input, OnChanges, OnDestroy, Output } from '@angular/core';
 import { Map, HtmlMarkerOptions, Shape } from 'azure-maps-control';
 import * as atlasdrawing from 'azure-maps-drawing-tools';
 import { Subject } from 'rxjs';
@@ -33,7 +33,7 @@ export class DrawingToolbarDirective
   @Output() public drawingModeChanged = new Subject<atlasdrawing.drawing.DrawingMode>();
   @Output() public drawingStarted = new Subject<Shape>();
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this._toolbar) {
       this._toolbar.setOptions({
         buttons: this.buttons,

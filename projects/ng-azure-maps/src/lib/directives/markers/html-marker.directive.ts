@@ -1,5 +1,4 @@
-import { Input, Directive, OnDestroy, SimpleChanges, OnChanges, Output } from '@angular/core';
-import { Pixel } from 'azure-maps-control';
+import { Input, Directive, OnDestroy, OnChanges, Output } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 import { Subject } from 'rxjs';
 import { IMarkerEvent } from '../../contracts';
@@ -38,7 +37,7 @@ export class HtmlMarkerDirective
   @Input() public color: string;
   @Input() public draggable: boolean;
   @Input() public htmlContent: string | HTMLElement;
-  @Input() public pixelOffset: Pixel;
+  @Input() public pixelOffset: atlas.Pixel;
   @Input() public position: atlas.data.Position;
   @Input() public secondaryColor: string;
   @Input() public text: string;
@@ -65,7 +64,7 @@ export class HtmlMarkerDirective
     return !!this._map;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this._marker) {
       this._marker.setOptions({
         anchor: this.anchor,

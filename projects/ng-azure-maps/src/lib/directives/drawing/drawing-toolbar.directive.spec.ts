@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlPosition, HtmlMarkerOptions } from 'azure-maps-control';
+import { HtmlMarkerOptions } from 'azure-maps-control';
 import { DrawingToolbarDirective } from './drawing-toolbar.directive';
 import * as atlasdrawing from 'azure-maps-drawing-tools';
 
@@ -41,15 +41,6 @@ describe('map-drawing-toolbar', () => {
   }
 
   let fixture: ComponentFixture<TestComponent>;
-  const map: any = {
-    events: {
-      remove: () => { },
-      add: () => { }
-    },
-    controls: {
-      remove: () => { }
-    }
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

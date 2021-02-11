@@ -1,4 +1,4 @@
-import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Directive, OnChanges, Input } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 import { SourceLayerDirective } from './source-layer-directive';
 
@@ -22,7 +22,7 @@ export class PolygonExtrusionLayerDirective
   @Input() public verticalGradient: boolean;
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.layer) {
       this.layer.setOptions({
         base: this.base,

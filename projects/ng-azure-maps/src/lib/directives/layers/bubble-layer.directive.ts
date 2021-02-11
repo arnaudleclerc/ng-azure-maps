@@ -1,4 +1,4 @@
-import { Directive, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Directive, OnChanges, Input } from '@angular/core';
 import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
@@ -22,7 +22,7 @@ export class BubbleLayerDirective
   @Input() public strokeWidth: number | atlas.Expression;
   @Input() public visible: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.layer) {
       this.layer.setOptions({
         blur: this.blur,
