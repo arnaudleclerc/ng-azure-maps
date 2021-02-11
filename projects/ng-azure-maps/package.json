@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "ng": "ng",
-    "build": "ng build"
+    "build": "ng build --prod"
   },
   "peerDependencies": {
     "@angular/common": "~11.0.0",

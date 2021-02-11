@@ -31,5 +31,5 @@ jobs:
     - name: npm install
       run: npm install
     - name: Build
-      run: npm run build ng-azure-maps --prod
+      run: npm run build ng-azure-maps
 
