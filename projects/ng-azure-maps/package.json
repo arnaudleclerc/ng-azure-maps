@@ -1,5 +1,6 @@
 {
   "name": "ng-azure-maps",
+  "description": "Angular wrapper for Azure Maps",
   "version": "0.0.0",
   "license": "MIT",
   "repository": {

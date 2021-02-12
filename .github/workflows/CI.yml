@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - features/**
-      - hotfix/**
+      - feature/**
     paths:
       - projects/ng-azure-maps/**
       - .github/**
