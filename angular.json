@@ -200,7 +200,7 @@
               "projects/sample-map-with-controls/src/styles.scss"
             ],
             "scripts": [
-              "projects/sample-map-with-controls/src/azure-maps-scale-bar-control.js"
+              "projects/sample-map-with-controls/src/azure-maps-scale-bar-control.min.js"
             ]
           },
           "configurations": {
@@ -1124,8 +1124,7 @@
             ],
             "styles": [
               "projects/sample-polygon-extrusion-layer/src/styles.scss"
-            ],
-            "scripts": []
+            ]
           },
           "configurations": {
             "production": {
