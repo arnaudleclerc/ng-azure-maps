@@ -1,5 +1,5 @@
 import { ControlDirective } from './control.directive';
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
@@ -8,8 +8,17 @@ import * as atlas from 'azure-maps-control';
 export class CompassControlDirective
   extends ControlDirective {
 
+  @Input()
+  public rotationDegreesDelta: number;
+
+  @Input()
+  public controlStyle: atlas.ControlStyle;
+
   public initialize(map: atlas.Map): void {
-    map.controls.add(new atlas.control.CompassControl(), {
+    map.controls.add(new atlas.control.CompassControl({
+      rotationDegreesDelta: this.rotationDegreesDelta,
+      style: this.controlStyle
+    }), {
       position: this.position
     });
   }
