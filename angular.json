@@ -199,7 +199,9 @@
             "styles": [
               "projects/sample-map-with-controls/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/sample-map-with-controls/src/azure-maps-scale-bar-control.js"
+            ]
           },
           "configurations": {
             "production": {

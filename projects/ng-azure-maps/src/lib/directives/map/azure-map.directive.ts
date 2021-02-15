@@ -33,6 +33,7 @@ import { ImageLayerDirective } from '../layers/image-layer.directive';
 import { TileLayerDirective } from '../layers/tile-layer.directive';
 import { IMapEvent } from '../../contracts';
 import { PopupDirective } from '../popups/popup.directive';
+import { ScaleBarControlDirective } from '../controls/scalebar-control.directive';
 
 @Directive({
   selector: '[azure-map], azure-map',
@@ -43,6 +44,7 @@ import { PopupDirective } from '../popups/popup.directive';
     styleControl: new ContentChild(StyleControlDirective),
     htmlMarkers: new ContentChildren(HtmlMarkerDirective),
     drawingToolbar: new ContentChild(DrawingToolbarDirective),
+    scaleBarControl: new ContentChild(ScaleBarControlDirective),
     symbolLayers: new ContentChildren(SymbolLayerDirective),
     bubbleLayers: new ContentChildren(BubbleLayerDirective),
     lineLayers: new ContentChildren(LineLayerDirective),
@@ -200,6 +202,7 @@ export class AzureMapDirective
   public pitchControl: PitchControlDirective;
   public compassControl: CompassControlDirective;
   public styleControl: StyleControlDirective;
+  public scaleBarControl: ScaleBarControlDirective;
 
   public htmlMarkers: QueryList<HtmlMarkerDirective>;
 
@@ -288,6 +291,10 @@ export class AzureMapDirective
 
       if (this.drawingToolbar) {
         this.drawingToolbar.initialize(this._map);
+      }
+
+      if (this.scaleBarControl) {
+        this.scaleBarControl.initialize(this._map);
       }
 
       this.updateDataSources();
