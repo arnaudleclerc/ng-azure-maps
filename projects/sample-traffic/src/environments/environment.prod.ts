@@ -1,4 +1,4 @@
 export const environment = {
-  authOptions: null,
+  azureMapsSubscriptionKey: null,
   production: true
 };

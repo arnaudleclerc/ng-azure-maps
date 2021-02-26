@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { AzureMapsModule } from 'ng-azure-maps';
 import { environment } from '../environments/environment';
 
+import { AuthenticationType } from 'azure-maps-control';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +14,10 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AzureMapsModule.forRoot({
-      authOptions: environment.authOptions
+      authOptions: {
+        authType: AuthenticationType.subscriptionKey,
+        subscriptionKey: environment.azureMapsSubscriptionKey,
+      }
     })
   ],
   providers: [],

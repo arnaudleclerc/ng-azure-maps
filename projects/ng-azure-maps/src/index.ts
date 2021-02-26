@@ -5,7 +5,6 @@ export {
   PitchControlDirective,
   CompassControlDirective,
   StyleControlDirective,
-  ScaleBarControlDirective,
   HtmlMarkerDirective,
   DrawingToolbarDirective,
   SymbolLayerDirective,
