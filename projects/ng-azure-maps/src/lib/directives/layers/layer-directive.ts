@@ -58,24 +58,6 @@ export abstract class LayerDirective<T extends atlas.layer.Layer>
 
   ngOnDestroy(): void {
     this.layer.getMap().layers.remove(this.layer);
-
-    this.onAdded.unsubscribe();
-    this.onClick.unsubscribe();
-    this.onContextMenu.unsubscribe();
-    this.onDblClick.unsubscribe();
-    this.onMouseDown.unsubscribe();
-    this.onMouseEnter.unsubscribe();
-    this.onMouseLeave.unsubscribe();
-    this.onMouseMove.unsubscribe();
-    this.onMouseOut.unsubscribe();
-    this.onMouseOver.unsubscribe();
-    this.onMouseUp.unsubscribe();
-    this.onRemoved.unsubscribe();
-    this.onTouchCancel.unsubscribe();
-    this.onTouchEnd.unsubscribe();
-    this.onTouchMove.unsubscribe();
-    this.onTouchStart.unsubscribe();
-    this.onWheel.unsubscribe();
   }
 
   protected initializeEvents(map: atlas.Map): void {

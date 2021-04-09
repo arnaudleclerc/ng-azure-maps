@@ -84,24 +84,6 @@ export class HtmlMarkerDirective
     if (this._map) {
       this._map.markers.remove(this._marker);
     }
-
-    this.onClick.unsubscribe();
-    this.onContextMenu.unsubscribe();
-    this.onDblClick.unsubscribe();
-    this.onDrag.unsubscribe();
-    this.onDragStart.unsubscribe();
-    this.onDragEnd.unsubscribe();
-    this.onKeyDown.unsubscribe();
-    this.onKeyPress.unsubscribe();
-    this.onKeyUp.unsubscribe();
-    this.onMouseDown.unsubscribe();
-    this.onMouseEnter.unsubscribe();
-    this.onMouseLeave.unsubscribe();
-    this.onMouseMove.unsubscribe();
-    this.onMouseOut.unsubscribe();
-    this.onMouseOver.unsubscribe();
-    this.onMouseUp.unsubscribe();
-
   }
 
   public addToMap(map: atlas.Map) {

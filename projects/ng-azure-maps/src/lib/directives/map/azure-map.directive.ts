@@ -5,7 +5,6 @@ import {
   Inject,
   Input,
   Output,
-  OnDestroy,
   ContentChild,
   QueryList,
   AfterContentChecked,
@@ -55,7 +54,7 @@ import { PopupDirective } from '../popups/popup.directive';
   }
 })
 export class AzureMapDirective
-  implements AfterViewInit, OnDestroy, AfterContentChecked, OnChanges {
+  implements AfterViewInit, AfterContentChecked, OnChanges {
 
   private readonly _mapEvents = new Map<any, (e: any) => void>(
     [
@@ -351,56 +350,6 @@ export class AzureMapDirective
         this._map.getCanvasContainer().style.cursor = this.cursor;
       }
     }
-  }
-
-  ngOnDestroy() {
-    this.onBoxZoomEnd.unsubscribe();
-    this.onBoxZoomStart.unsubscribe();
-    this.onClick.unsubscribe();
-    this.onContextMenu.unsubscribe();
-    this.onData.unsubscribe();
-    this.onDblClick.unsubscribe();
-    this.onData.unsubscribe();
-    this.onDrag.unsubscribe();
-    this.onDragEnd.unsubscribe();
-    this.onDragStart.unsubscribe();
-    this.onError.unsubscribe();
-    this.onIdle.unsubscribe();
-    this.onLayerAdded.unsubscribe();
-    this.onLayerRemoved.unsubscribe();
-    this.onLoad.unsubscribe();
-    this.onMouseDown.unsubscribe();
-    this.onMouseLeave.unsubscribe();
-    this.onMouseMove.unsubscribe();
-    this.onMouseOut.unsubscribe();
-    this.onMouseOver.unsubscribe();
-    this.onMouseUp.unsubscribe();
-    this.onMove.unsubscribe();
-    this.onMoveEnd.unsubscribe();
-    this.onMoveStart.unsubscribe();
-    this.onPitch.unsubscribe();
-    this.onPitchEnd.unsubscribe();
-    this.onPitchStart.unsubscribe();
-    this.onReady.unsubscribe();
-    this.onRender.unsubscribe();
-    this.onResize.unsubscribe();
-    this.onRotate.unsubscribe();
-    this.onRotateEnd.unsubscribe();
-    this.onRotateStart.unsubscribe();
-    this.onSourceAdded.unsubscribe();
-    this.onSourceData.unsubscribe();
-    this.onSourceRemoved.unsubscribe();
-    this.onStyleData.unsubscribe();
-    this.onStyleImageMissing.unsubscribe();
-    this.onTokenAcquired.unsubscribe();
-    this.onTouchCancel.unsubscribe();
-    this.onTouchEnd.unsubscribe();
-    this.onTouchMove.unsubscribe();
-    this.onTouchStart.unsubscribe();
-    this.onWheel.unsubscribe();
-    this.onZoom.unsubscribe();
-    this.onZoomEnd.unsubscribe();
-    this.onZoomStart.unsubscribe();
   }
 
   constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,

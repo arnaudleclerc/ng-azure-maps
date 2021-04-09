@@ -69,12 +69,6 @@ export class PopupDirective
     if (this._map) {
       this._map.popups.remove(this._popup);
     }
-
-    this.onClose.unsubscribe();
-    this.onDrag.unsubscribe();
-    this.onDragEnd.unsubscribe();
-    this.onDragStart.unsubscribe();
-    this.onOpen.unsubscribe();
   }
 
   public addToMap(map: atlas.Map) {

@@ -48,15 +48,10 @@ export class DrawingToolbarDirective
 
   ngOnDestroy() {
     this._map.events.remove('drawingchanged', this._drawingManager, null);
-    this.drawingChanged.unsubscribe();
     this._map.events.remove('drawingchanging', this._drawingManager, null);
-    this.drawingChanging.unsubscribe();
     this._map.events.remove('drawingcomplete', this._drawingManager, null);
-    this.drawingComplete.unsubscribe();
     this._map.events.remove('drawingmodechanged', this._drawingManager, null);
-    this.drawingModeChanged.unsubscribe();
     this._map.events.remove('drawingstarted', this._drawingManager, null);
-    this.drawingStarted.unsubscribe();
     this._map.controls.remove(this._toolbar);
   }
 
