@@ -1,4 +1,4 @@
-export { AzureMapsConfiguration } from './lib/configuration';
+export { AzureMapsConfiguration, AZUREMAPS_CONFIG } from './lib/configuration';
 export {
   AzureMapDirective,
   ZoomControlDirective,
@@ -36,5 +36,5 @@ export {
   SearchAlongRouteOptionalParams,
   SearchInsideGeometryOptionalParams
 } from './lib/models';
-export { AzureMapsModule } from './lib/modules';
+export { AzureMapsModule, setAzureMapsConfiguration } from './lib/modules';
 export { SearchService, RouteService, WeatherService } from './lib/services';

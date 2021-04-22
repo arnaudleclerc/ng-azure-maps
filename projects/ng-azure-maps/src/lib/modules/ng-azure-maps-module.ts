@@ -22,15 +22,20 @@ import * as atlas from 'azure-maps-control';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AtlasRestAuthenticationInterceptor } from '../interceptors';
 
-const setAtlasConfiguration = (configuration: AzureMapsConfiguration) => {
+export const setAzureMapsConfiguration = (configuration: AzureMapsConfiguration) => {
+  if (!configuration) {
+    throw Error('No AzureMapsConfiguration was provided');
+  }
   atlas.setAuthenticationOptions(configuration.authOptions);
   if (configuration.domain) {
     atlas.setDomain(configuration.domain);
   }
 };
 
-export const setAtlasOptions = (configuration: AzureMapsConfiguration) => (): Promise<void> => new Promise<void>(resolve => {
-  setAtlasConfiguration(configuration);
+const setAtlasOptions = (configuration: AzureMapsConfiguration) => (): Promise<void> => new Promise<void>(resolve => {
+  if (configuration) {
+    setAzureMapsConfiguration(configuration);
+  }
   resolve();
 });
 
@@ -77,7 +82,7 @@ export const setAtlasOptions = (configuration: AzureMapsConfiguration) => (): Pr
   ]
 })
 export class AzureMapsModule {
-  static forRoot(configuration: AzureMapsConfiguration): ModuleWithProviders<AzureMapsModule> {
+  static forRoot(configuration?: AzureMapsConfiguration): ModuleWithProviders<AzureMapsModule> {
     return {
       ngModule: AzureMapsModule,
       providers: [
@@ -101,7 +106,7 @@ export class AzureMapsModule {
   }
 
   static forChild(configuration: AzureMapsConfiguration): ModuleWithProviders<AzureMapsModule> {
-    setAtlasConfiguration(configuration);
+    setAzureMapsConfiguration(configuration);
     return {
       ngModule: AzureMapsModule,
       providers: [

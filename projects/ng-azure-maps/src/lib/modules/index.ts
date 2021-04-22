@@ -1,1 +1,1 @@
-export { AzureMapsModule } from './ng-azure-maps-module';
+export { AzureMapsModule, setAzureMapsConfiguration } from './ng-azure-maps-module';

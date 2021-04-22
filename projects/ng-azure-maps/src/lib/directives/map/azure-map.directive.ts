@@ -2,7 +2,6 @@ import {
   Directive,
   AfterViewInit,
   ElementRef,
-  Inject,
   Input,
   Output,
   ContentChild,
@@ -12,7 +11,6 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { AZUREMAPS_CONFIG, AzureMapsConfiguration } from '../../configuration';
 import { Subject } from 'rxjs';
 import * as atlas from 'azure-maps-control';
 import { ZoomControlDirective } from '../controls/zoom-control.directive';
@@ -352,8 +350,7 @@ export class AzureMapDirective
     }
   }
 
-  constructor(@Inject(AZUREMAPS_CONFIG) private readonly azureMapsConfiguration: AzureMapsConfiguration,
-    private readonly elementRef: ElementRef) {
+  constructor(private readonly elementRef: ElementRef) {
 
   }
 
