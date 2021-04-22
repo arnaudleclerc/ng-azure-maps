@@ -9,7 +9,7 @@ import { AuthenticationType } from 'azure-maps-control';
 function setAuthentication(httpClient: HttpClient): () => Promise<void> {
   return (): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
-      httpClient.get<{ subscriptionKey: string }>('http://localhost:7071/api/GetAuth').subscribe(auth => {
+      httpClient.get<{ subscriptionKey: string }>('<your-api-endpoint>').subscribe(auth => {
         setAzureMapsConfiguration({
           authOptions: {
             authType: AuthenticationType.subscriptionKey,
