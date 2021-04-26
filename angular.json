@@ -59,7 +59,6 @@
             "main": "projects/sample-simple-map/src/main.ts",
             "polyfills": "projects/sample-simple-map/src/polyfills.ts",
             "tsConfig": "projects/sample-simple-map/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-simple-map/src/favicon.ico",
               "projects/sample-simple-map/src/assets"
@@ -67,7 +66,13 @@
             "styles": [
               "projects/sample-simple-map/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -80,8 +85,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -103,8 +106,7 @@
                   "replace": "projects/sample-simple-map/src/environments/environment.ts",
                   "with": "projects/sample-simple-map/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -191,7 +193,6 @@
             "main": "projects/sample-map-with-controls/src/main.ts",
             "polyfills": "projects/sample-map-with-controls/src/polyfills.ts",
             "tsConfig": "projects/sample-map-with-controls/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-map-with-controls/src/favicon.ico",
               "projects/sample-map-with-controls/src/assets"
@@ -201,7 +202,13 @@
             ],
             "scripts": [
               "projects/sample-map-with-controls/src/azure-maps-scale-bar-control.min.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -214,8 +221,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -237,8 +242,7 @@
                   "replace": "projects/sample-map-with-controls/src/environments/environment.ts",
                   "with": "projects/sample-map-with-controls/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -325,7 +329,6 @@
             "main": "projects/sample-html-markers/src/main.ts",
             "polyfills": "projects/sample-html-markers/src/polyfills.ts",
             "tsConfig": "projects/sample-html-markers/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-html-markers/src/favicon.ico",
               "projects/sample-html-markers/src/assets"
@@ -333,7 +336,13 @@
             "styles": [
               "projects/sample-html-markers/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -346,8 +355,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -369,8 +376,7 @@
                   "replace": "projects/sample-html-markers/src/environments/environment.ts",
                   "with": "projects/sample-html-markers/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -457,7 +463,6 @@
             "main": "projects/sample-drawing-toolbar/src/main.ts",
             "polyfills": "projects/sample-drawing-toolbar/src/polyfills.ts",
             "tsConfig": "projects/sample-drawing-toolbar/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-drawing-toolbar/src/favicon.ico",
               "projects/sample-drawing-toolbar/src/assets"
@@ -465,7 +470,13 @@
             "styles": [
               "projects/sample-drawing-toolbar/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -478,8 +489,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -501,8 +510,7 @@
                   "replace": "projects/sample-drawing-toolbar/src/environments/environment.ts",
                   "with": "projects/sample-drawing-toolbar/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -589,7 +597,6 @@
             "main": "projects/sample-symbol-layer/src/main.ts",
             "polyfills": "projects/sample-symbol-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-symbol-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-symbol-layer/src/favicon.ico",
               "projects/sample-symbol-layer/src/assets"
@@ -597,7 +604,13 @@
             "styles": [
               "projects/sample-symbol-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -610,8 +623,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -633,8 +644,7 @@
                   "replace": "projects/sample-symbol-layer/src/environments/environment.ts",
                   "with": "projects/sample-symbol-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -721,7 +731,6 @@
             "main": "projects/sample-bubble-layer/src/main.ts",
             "polyfills": "projects/sample-bubble-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-bubble-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-bubble-layer/src/favicon.ico",
               "projects/sample-bubble-layer/src/assets"
@@ -729,7 +738,13 @@
             "styles": [
               "projects/sample-bubble-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -742,8 +757,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -765,8 +778,7 @@
                   "replace": "projects/sample-bubble-layer/src/environments/environment.ts",
                   "with": "projects/sample-bubble-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -853,7 +865,6 @@
             "main": "projects/sample-line-layer/src/main.ts",
             "polyfills": "projects/sample-line-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-line-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-line-layer/src/favicon.ico",
               "projects/sample-line-layer/src/assets"
@@ -861,7 +872,13 @@
             "styles": [
               "projects/sample-line-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -874,8 +891,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -897,8 +912,7 @@
                   "replace": "projects/sample-line-layer/src/environments/environment.ts",
                   "with": "projects/sample-line-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -985,7 +999,6 @@
             "main": "projects/sample-polygon-layer/src/main.ts",
             "polyfills": "projects/sample-polygon-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-polygon-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-polygon-layer/src/favicon.ico",
               "projects/sample-polygon-layer/src/assets"
@@ -993,7 +1006,13 @@
             "styles": [
               "projects/sample-polygon-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1006,8 +1025,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1029,8 +1046,7 @@
                   "replace": "projects/sample-polygon-layer/src/environments/environment.ts",
                   "with": "projects/sample-polygon-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1117,14 +1133,19 @@
             "main": "projects/sample-polygon-extrusion-layer/src/main.ts",
             "polyfills": "projects/sample-polygon-extrusion-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-polygon-extrusion-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-polygon-extrusion-layer/src/favicon.ico",
               "projects/sample-polygon-extrusion-layer/src/assets"
             ],
             "styles": [
               "projects/sample-polygon-extrusion-layer/src/styles.scss"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1137,8 +1158,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1160,8 +1179,7 @@
                   "replace": "projects/sample-polygon-extrusion-layer/src/environments/environment.ts",
                   "with": "projects/sample-polygon-extrusion-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1248,7 +1266,6 @@
             "main": "projects/sample-heatmap-layer/src/main.ts",
             "polyfills": "projects/sample-heatmap-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-heatmap-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-heatmap-layer/src/favicon.ico",
               "projects/sample-heatmap-layer/src/assets"
@@ -1256,7 +1273,13 @@
             "styles": [
               "projects/sample-heatmap-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1269,8 +1292,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1292,8 +1313,7 @@
                   "replace": "projects/sample-heatmap-layer/src/environments/environment.ts",
                   "with": "projects/sample-heatmap-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1380,7 +1400,6 @@
             "main": "projects/sample-image-layer/src/main.ts",
             "polyfills": "projects/sample-image-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-image-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-image-layer/src/favicon.ico",
               "projects/sample-image-layer/src/assets"
@@ -1388,7 +1407,13 @@
             "styles": [
               "projects/sample-image-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1401,8 +1426,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1424,8 +1447,7 @@
                   "replace": "projects/sample-image-layer/src/environments/environment.ts",
                   "with": "projects/sample-image-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1512,7 +1534,6 @@
             "main": "projects/sample-tile-layer/src/main.ts",
             "polyfills": "projects/sample-tile-layer/src/polyfills.ts",
             "tsConfig": "projects/sample-tile-layer/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-tile-layer/src/favicon.ico",
               "projects/sample-tile-layer/src/assets"
@@ -1520,7 +1541,13 @@
             "styles": [
               "projects/sample-tile-layer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1533,8 +1560,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1556,8 +1581,7 @@
                   "replace": "projects/sample-tile-layer/src/environments/environment.ts",
                   "with": "projects/sample-tile-layer/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1644,7 +1668,6 @@
             "main": "projects/sample-traffic/src/main.ts",
             "polyfills": "projects/sample-traffic/src/polyfills.ts",
             "tsConfig": "projects/sample-traffic/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-traffic/src/favicon.ico",
               "projects/sample-traffic/src/assets"
@@ -1652,7 +1675,13 @@
             "styles": [
               "projects/sample-traffic/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1665,8 +1694,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1688,8 +1715,7 @@
                   "replace": "projects/sample-traffic/src/environments/environment.ts",
                   "with": "projects/sample-traffic/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1776,7 +1802,6 @@
             "main": "projects/sample-search/src/main.ts",
             "polyfills": "projects/sample-search/src/polyfills.ts",
             "tsConfig": "projects/sample-search/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-search/src/favicon.ico",
               "projects/sample-search/src/assets"
@@ -1784,7 +1809,13 @@
             "styles": [
               "projects/sample-search/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1797,8 +1828,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1820,8 +1849,7 @@
                   "replace": "projects/sample-search/src/environments/environment.ts",
                   "with": "projects/sample-search/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -1908,7 +1936,6 @@
             "main": "projects/sample-route/src/main.ts",
             "polyfills": "projects/sample-route/src/polyfills.ts",
             "tsConfig": "projects/sample-route/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-route/src/favicon.ico",
               "projects/sample-route/src/assets"
@@ -1916,7 +1943,13 @@
             "styles": [
               "projects/sample-route/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -1929,8 +1962,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -1952,8 +1983,7 @@
                   "replace": "projects/sample-route/src/environments/environment.ts",
                   "with": "projects/sample-route/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -2040,7 +2070,6 @@
             "main": "projects/sample-popup/src/main.ts",
             "polyfills": "projects/sample-popup/src/polyfills.ts",
             "tsConfig": "projects/sample-popup/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-popup/src/favicon.ico",
               "projects/sample-popup/src/assets"
@@ -2048,7 +2077,13 @@
             "styles": [
               "projects/sample-popup/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -2061,8 +2096,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -2084,8 +2117,7 @@
                   "replace": "projects/sample-popup/src/environments/environment.ts",
                   "with": "projects/sample-popup/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -2172,7 +2204,6 @@
             "main": "projects/sample-weather-service/src/main.ts",
             "polyfills": "projects/sample-weather-service/src/polyfills.ts",
             "tsConfig": "projects/sample-weather-service/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-weather-service/src/favicon.ico",
               "projects/sample-weather-service/src/assets"
@@ -2180,7 +2211,13 @@
             "styles": [
               "projects/sample-weather-service/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -2193,8 +2230,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -2216,8 +2251,7 @@
                   "replace": "projects/sample-weather-service/src/environments/environment.ts",
                   "with": "projects/sample-weather-service/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -2304,7 +2338,6 @@
             "main": "projects/sample-vector-tile-source/src/main.ts",
             "polyfills": "projects/sample-vector-tile-source/src/polyfills.ts",
             "tsConfig": "projects/sample-vector-tile-source/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-vector-tile-source/src/favicon.ico",
               "projects/sample-vector-tile-source/src/assets"
@@ -2312,7 +2345,13 @@
             "styles": [
               "projects/sample-vector-tile-source/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -2325,8 +2364,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -2348,8 +2385,7 @@
                   "replace": "projects/sample-vector-tile-source/src/environments/environment.ts",
                   "with": "projects/sample-vector-tile-source/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -2432,7 +2468,6 @@
             "main": "projects/sample-lazy-loading/src/main.ts",
             "polyfills": "projects/sample-lazy-loading/src/polyfills.ts",
             "tsConfig": "projects/sample-lazy-loading/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-lazy-loading/src/favicon.ico",
               "projects/sample-lazy-loading/src/assets"
@@ -2440,7 +2475,13 @@
             "styles": [
               "projects/sample-lazy-loading/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -2453,8 +2494,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -2476,8 +2515,7 @@
                   "replace": "projects/sample-lazy-loading/src/environments/environment.ts",
                   "with": "projects/sample-lazy-loading/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -2567,7 +2605,6 @@
             "main": "projects/sample-configuration-injection/src/main.ts",
             "polyfills": "projects/sample-configuration-injection/src/polyfills.ts",
             "tsConfig": "projects/sample-configuration-injection/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-configuration-injection/src/favicon.ico",
               "projects/sample-configuration-injection/src/assets"
@@ -2575,7 +2612,13 @@
             "styles": [
               "projects/sample-configuration-injection/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -2588,8 +2631,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -2611,8 +2652,7 @@
                   "replace": "projects/sample-configuration-injection/src/environments/environment.ts",
                   "with": "projects/sample-configuration-injection/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },
@@ -2699,7 +2739,6 @@
             "main": "projects/sample-dynamic-configuration/src/main.ts",
             "polyfills": "projects/sample-dynamic-configuration/src/polyfills.ts",
             "tsConfig": "projects/sample-dynamic-configuration/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/sample-dynamic-configuration/src/favicon.ico",
               "projects/sample-dynamic-configuration/src/assets"
@@ -2707,7 +2746,13 @@
             "styles": [
               "projects/sample-dynamic-configuration/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": true,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": false
           },
           "configurations": {
             "production": {
@@ -2720,8 +2765,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -2743,8 +2786,7 @@
                   "replace": "projects/sample-dynamic-configuration/src/environments/environment.ts",
                   "with": "projects/sample-dynamic-configuration/src/environments/environment.local.ts"
                 }
-              ],
-              "sourceMap": true
+              ]
             }
           }
         },

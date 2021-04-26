@@ -20,17 +20,17 @@
     "build": "ng build"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
-    "azure-maps-control": "^2.0.31",
+    "@angular/common": "^12.0.0-rc.0",
+    "@angular/core": "^12.0.0-rc.0",
+    "azure-maps-control": "^2.0.32",
     "azure-maps-drawing-tools": "^0.1.6",
     "azure-maps-rest": "^2.0.5"
   },
   "devDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
-    "azure-maps-control": "^2.0.29",
-    "azure-maps-drawing-tools": "^0.1.4",
+    "@angular/common": "^12.0.0-rc.0",
+    "@angular/core": "^12.0.0-rc.0",
+    "azure-maps-control": "^2.0.32",
+    "azure-maps-drawing-tools": "^0.1.6",
     "azure-maps-rest": "^2.0.5"
   }
 }
