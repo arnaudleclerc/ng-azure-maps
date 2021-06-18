@@ -355,17 +355,32 @@ export class AzureMapDirective
   }
 
   private updateDataSources(): void {
-    const mapSources = this._map.sources.getSources().filter(s => s.getId() !== 'vectorTiles' && s.getId() !== 'incidents-source');
+
+    let drawingToolbarSourceId = null;
+    let previewToolbarSourceId = null;
+    if (this.drawingToolbar) {
+      drawingToolbarSourceId = this.drawingToolbar.getDatasource().getId();
+      previewToolbarSourceId = this.drawingToolbar.getPreviewSource().getId();
+    }
+
+    const mapSources = this._map.sources.getSources()
+      .filter(s =>
+        s.getId() !== 'vectorTiles'
+        && s.getId() !== 'incidents-source'
+        && (drawingToolbarSourceId && s.getId() !== drawingToolbarSourceId)
+        && (previewToolbarSourceId && s.getId() !== previewToolbarSourceId))
+      .map(s => s.getId());
+
     if ((!this.dataSources || this.dataSources.length === 0) && (mapSources && mapSources.length > 0)) {
       this._map.sources.clear();
     } else if (this.dataSources) {
       const dataSourcesToAdd = this.dataSources.filter(ds => ds && !this._map.sources.getById(ds.getId()));
-      const dataSourcesToRemove = mapSources.filter(ds => !this.dataSources.find(s => s && s.getId() === ds.getId()));
+      const dataSourcesToRemove = mapSources.filter(id => !this.dataSources.find(s => s && s.getId() === id));
 
       this._map.sources.add(dataSourcesToAdd);
 
-      for (const source of dataSourcesToRemove) {
-        const layer = this.sourceLayers.find(l => source && l.dataSourceId === source.getId());
+      for (const sourceId of dataSourcesToRemove) {
+        const layer = this.sourceLayers.find(l => sourceId && l.dataSourceId === sourceId);
         if (layer) {
           layer.clear(this._map);
         }

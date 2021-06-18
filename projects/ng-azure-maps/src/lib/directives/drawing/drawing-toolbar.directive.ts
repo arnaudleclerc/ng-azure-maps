@@ -1,5 +1,5 @@
 import { Directive, Input, OnChanges, OnDestroy, Output } from '@angular/core';
-import { Map, HtmlMarkerOptions, Shape } from 'azure-maps-control';
+import * as atlas from 'azure-maps-control';
 import * as atlasdrawing from 'azure-maps-drawing-tools';
 import { Subject } from 'rxjs';
 
@@ -11,13 +11,13 @@ export class DrawingToolbarDirective
 
   private _drawingManager: atlasdrawing.drawing.DrawingManager;
   private _toolbar: atlasdrawing.control.DrawingToolbar;
-  private _map: Map;
+  private _map: atlas.Map;
 
-  @Input() public dragHandleStyle: HtmlMarkerOptions;
+  @Input() public dragHandleStyle: atlas.HtmlMarkerOptions;
   @Input() public freehandInterval: number;
   @Input() public interactionType: atlasdrawing.drawing.DrawingInteractionType;
   @Input() public mode: atlasdrawing.drawing.DrawingMode;
-  @Input() public secondaryDragHandleStyle: HtmlMarkerOptions;
+  @Input() public secondaryDragHandleStyle: atlas.HtmlMarkerOptions;
   @Input() public shapeDraggingEnabled: boolean;
 
   @Input() public buttons: string[];
@@ -27,11 +27,11 @@ export class DrawingToolbarDirective
   @Input() public toolbarStyle: string;
   @Input() public visible: boolean;
 
-  @Output() public drawingChanged = new Subject<Shape>();
-  @Output() public drawingChanging = new Subject<Shape>();
-  @Output() public drawingComplete = new Subject<Shape>();
+  @Output() public drawingChanged = new Subject<atlas.Shape>();
+  @Output() public drawingChanging = new Subject<atlas.Shape>();
+  @Output() public drawingComplete = new Subject<atlas.Shape>();
   @Output() public drawingModeChanged = new Subject<atlasdrawing.drawing.DrawingMode>();
-  @Output() public drawingStarted = new Subject<Shape>();
+  @Output() public drawingStarted = new Subject<atlas.Shape>();
 
   ngOnChanges(): void {
     if (this._toolbar) {
@@ -55,7 +55,7 @@ export class DrawingToolbarDirective
     this._map.controls.remove(this._toolbar);
   }
 
-  public initialize(map: Map): void {
+  public initialize(map: atlas.Map): void {
     this._map = map;
     this._toolbar = new atlasdrawing.control.DrawingToolbar({
       buttons: this.buttons,
@@ -94,6 +94,14 @@ export class DrawingToolbarDirective
     this._map.events.add('drawingstarted', this._drawingManager, e => {
       this.drawingStarted.next(e);
     });
+  }
+
+  public getDatasource(): atlas.source.DataSource {
+    return this._drawingManager.getSource();
+  }
+
+  public getPreviewSource(): atlas.source.DataSource {
+    return (this._drawingManager as any).drawingHelper.previewSource;
   }
 
 }
