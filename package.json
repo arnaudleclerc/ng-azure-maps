@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^12.0.0",
     "@angular/router": "^12.0.0",
     "azure-maps-control": "^2.0.31",
-    "azure-maps-drawing-tools": "^0.1.6",
+    "azure-maps-drawing-tools": "^1.0.0",
     "azure-maps-rest": "^2.0.5",
     "ng-packagr": "^12.0.0-rc.0",
     "rxjs": "~6.6.2",
