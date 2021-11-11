@@ -11,6 +11,7 @@ on:
     paths:
       - projects/ng-azure-maps/**
       - .github/**
+      - tsconfig.json
 
 jobs:
   build:
