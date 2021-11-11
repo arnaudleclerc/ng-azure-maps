@@ -65,7 +65,7 @@ export class RouteService {
   public calculateRouteDirections(coordinates: GeoJSON.Position[],
     options?: atlas.CalculateRouteDirectionsOptions,
     timeout: number = this._defaultTimeout):
-    Promise<atlas.Response<atlas.Models.RouteDirectionsResponse, atlas.Models.RouteGetRouteDirectionsResponse, atlas.RouteGeojson>> {
+    Promise<atlas.CalculateRouteDirectionsResponse> {
     return this
       ._routeUrl
       .calculateRouteDirections(atlas.Aborter.timeout(timeout), coordinates, options);
@@ -106,7 +106,7 @@ export class RouteService {
   public calculateRouteMatrix(body: atlas.Models.RouteMatrixRequestBody,
     options?: atlas.Models.RoutePostRouteMatrixPreviewOptionalParams,
     timeout: number = this._defaultTimeout):
-    Promise<atlas.Response<atlas.Models.RouteMatrixResponse, atlas.Models.RoutePostRouteMatrixPreviewResponse, undefined>> {
+    Promise<atlas.CalculateRouteMatrixResponse> {
     return this
       ._routeUrl
       .calculateRouteMatrix(atlas.Aborter.timeout(timeout), body, options);
