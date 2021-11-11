@@ -47,12 +47,14 @@ export class DrawingToolbarDirective
   }
 
   ngOnDestroy() {
-    this._map.events.remove('drawingchanged', this._drawingManager, null);
-    this._map.events.remove('drawingchanging', this._drawingManager, null);
-    this._map.events.remove('drawingcomplete', this._drawingManager, null);
-    this._map.events.remove('drawingmodechanged', this._drawingManager, null);
-    this._map.events.remove('drawingstarted', this._drawingManager, null);
-    this._map.controls.remove(this._toolbar);
+    if (this._map) {
+      this._map.events.remove('drawingchanged', this._drawingManager, null);
+      this._map.events.remove('drawingchanging', this._drawingManager, null);
+      this._map.events.remove('drawingcomplete', this._drawingManager, null);
+      this._map.events.remove('drawingmodechanged', this._drawingManager, null);
+      this._map.events.remove('drawingstarted', this._drawingManager, null);
+      this._map.controls.remove(this._toolbar);
+    }
   }
 
   public initialize(map: atlas.Map): void {
