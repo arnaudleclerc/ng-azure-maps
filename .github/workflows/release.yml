@@ -10,7 +10,6 @@ on:
       - main
     paths:
       - projects/ng-azure-maps/**
-      - .github/**
       - tsconfig.json
 
 jobs:
@@ -29,14 +28,14 @@ jobs:
         node-version: 12
         registry-url: https://registry.npmjs.org/
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.6
+      uses: gittools/actions/gitversion/setup@v0.9.11
       with:
         versionSpec: '5.x'
     - name: npm install
       run: npm install
     - name: Use GitVersion
       id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.9.6
+      uses: gittools/actions/gitversion/execute@v0.9.11
     - run: |
         echo "Major: ${{ steps.gitversion.outputs.major }}"
         echo "Minor: ${{ steps.gitversion.outputs.minor }}"
