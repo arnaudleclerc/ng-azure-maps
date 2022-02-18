@@ -43,6 +43,8 @@ export class HtmlMarkerDirective
   @Input() public text: string;
   @Input() public visible: boolean;
 
+  @Input() public marker: atlas.HtmlMarker;
+
   @Output() public onClick = new Subject<IMarkerEvent>();
   @Output() public onContextMenu = new Subject<IMarkerEvent>();
   @Output() public onDblClick = new Subject<IMarkerEvent>();
@@ -81,14 +83,15 @@ export class HtmlMarkerDirective
   }
 
   ngOnDestroy() {
-    if (this._map) {
+    if (this._map && this._marker) {
       this._map.markers.remove(this._marker);
     }
   }
 
   public addToMap(map: atlas.Map) {
     this._map = map;
-    this._marker = new atlas.HtmlMarker({
+
+    this._marker = this.marker ? this.marker : new atlas.HtmlMarker({
       anchor: this.anchor,
       color: this.color,
       draggable: this.draggable,
