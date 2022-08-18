@@ -8,6 +8,7 @@ on:
     paths:
       - projects/ng-azure-maps/**
       - .github/**
+      - package.json
   pull_request:
     branches:
       - develop
