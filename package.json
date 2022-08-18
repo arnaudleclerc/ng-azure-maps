@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-lib-prd": "ng build ng-azure-maps --prod",
+    "build-lib-prd": "ng build ng-azure-maps --configuration production",
     "test-lib": "ng test ng-azure-maps --watch false --browsers ChromeHeadless",
     "lint-lib": "ng lint ng-azure-maps"
   },
