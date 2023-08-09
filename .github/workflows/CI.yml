@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - features/**
+      - features/** 
       - feature/**
     paths:
       - projects/ng-azure-maps/**
