@@ -22,15 +22,15 @@
   "peerDependencies": {
     "@angular/common": "^16.1.8",
     "@angular/core": "^16.1.8",
-    "azure-maps-control": "^2.0.32",
-    "azure-maps-drawing-tools": "^1.0.0",
-    "azure-maps-rest": "^2.0.5"
+    "azure-maps-control": "^3.0.3",
+    "azure-maps-drawing-tools": "^1.0.3",
+    "azure-maps-rest": "^2.1.1"
   },
   "devDependencies": {
     "@angular/common": "^16.1.8",
     "@angular/core": "^16.1.8",
-    "azure-maps-control": "^2.0.32",
-    "azure-maps-drawing-tools": "^1.0.0",
-    "azure-maps-rest": "^2.0.5"
+    "azure-maps-control": "^3.0.3",
+    "azure-maps-drawing-tools": "^1.0.3",
+    "azure-maps-rest": "^2.1.1"
   }
 }
