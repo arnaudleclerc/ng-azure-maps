@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - features/** 
+      - features/**
       - feature/**
     paths:
       - projects/ng-azure-maps/**
@@ -29,7 +29,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 16
+        node-version: 18
     - name: npm install
       run: npm install
     - name: Build
