@@ -19,7 +19,7 @@ import {
   PopupDirective
 } from '../directives';
 import * as atlas from 'azure-maps-control';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AtlasRestAuthenticationInterceptor } from '../interceptors';
 
 export const setAzureMapsConfiguration = (configuration: AzureMapsConfiguration) => {
@@ -40,47 +40,42 @@ const setAtlasOptions = (configuration: AzureMapsConfiguration) => (): Promise<v
 });
 
 //@dynamic
-@NgModule({
-  declarations: [
-    AzureMapDirective,
-    ZoomControlDirective,
-    PitchControlDirective,
-    CompassControlDirective,
-    StyleControlDirective,
-    HtmlMarkerDirective,
-    DrawingToolbarDirective,
-    SymbolLayerDirective,
-    BubbleLayerDirective,
-    LineLayerDirective,
-    PolygonLayerDirective,
-    PolygonExtrusionLayerDirective,
-    HeatmapLayerDirective,
-    ImageLayerDirective,
-    TileLayerDirective,
-    PopupDirective
-  ],
-  exports: [
-    AzureMapDirective,
-    ZoomControlDirective,
-    PitchControlDirective,
-    CompassControlDirective,
-    StyleControlDirective,
-    HtmlMarkerDirective,
-    DrawingToolbarDirective,
-    SymbolLayerDirective,
-    BubbleLayerDirective,
-    LineLayerDirective,
-    PolygonLayerDirective,
-    PolygonExtrusionLayerDirective,
-    HeatmapLayerDirective,
-    ImageLayerDirective,
-    TileLayerDirective,
-    PopupDirective
-  ],
-  imports: [
-    HttpClientModule
-  ]
-})
+@NgModule({ declarations: [
+        AzureMapDirective,
+        ZoomControlDirective,
+        PitchControlDirective,
+        CompassControlDirective,
+        StyleControlDirective,
+        HtmlMarkerDirective,
+        DrawingToolbarDirective,
+        SymbolLayerDirective,
+        BubbleLayerDirective,
+        LineLayerDirective,
+        PolygonLayerDirective,
+        PolygonExtrusionLayerDirective,
+        HeatmapLayerDirective,
+        ImageLayerDirective,
+        TileLayerDirective,
+        PopupDirective
+    ],
+    exports: [
+        AzureMapDirective,
+        ZoomControlDirective,
+        PitchControlDirective,
+        CompassControlDirective,
+        StyleControlDirective,
+        HtmlMarkerDirective,
+        DrawingToolbarDirective,
+        SymbolLayerDirective,
+        BubbleLayerDirective,
+        LineLayerDirective,
+        PolygonLayerDirective,
+        PolygonExtrusionLayerDirective,
+        HeatmapLayerDirective,
+        ImageLayerDirective,
+        TileLayerDirective,
+        PopupDirective
+    ], imports: [], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AzureMapsModule {
   static forRoot(configuration?: AzureMapsConfiguration): ModuleWithProviders<AzureMapsModule> {
     return {

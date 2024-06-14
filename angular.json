@@ -52,12 +52,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-simple-map",
+            "outputPath": {
+              "base": "dist/sample-simple-map"
+            },
             "index": "projects/sample-simple-map/src/index.html",
-            "main": "projects/sample-simple-map/src/main.ts",
-            "polyfills": "projects/sample-simple-map/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-simple-map/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-simple-map/tsconfig.app.json",
             "assets": [
               "projects/sample-simple-map/src/favicon.ico",
@@ -67,11 +70,10 @@
               "projects/sample-simple-map/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-simple-map/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -84,8 +86,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -185,12 +185,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-map-with-controls",
+            "outputPath": {
+              "base": "dist/sample-map-with-controls"
+            },
             "index": "projects/sample-map-with-controls/src/index.html",
-            "main": "projects/sample-map-with-controls/src/main.ts",
-            "polyfills": "projects/sample-map-with-controls/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-map-with-controls/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-map-with-controls/tsconfig.app.json",
             "assets": [
               "projects/sample-map-with-controls/src/favicon.ico",
@@ -202,11 +205,10 @@
             "scripts": [
               "projects/sample-map-with-controls/src/azure-maps-scale-bar-control.min.js"
             ],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-map-with-controls/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -219,8 +221,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -320,12 +320,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-html-markers",
+            "outputPath": {
+              "base": "dist/sample-html-markers"
+            },
             "index": "projects/sample-html-markers/src/index.html",
-            "main": "projects/sample-html-markers/src/main.ts",
-            "polyfills": "projects/sample-html-markers/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-html-markers/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-html-markers/tsconfig.app.json",
             "assets": [
               "projects/sample-html-markers/src/favicon.ico",
@@ -335,11 +338,10 @@
               "projects/sample-html-markers/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-html-markers/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -352,8 +354,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -453,12 +453,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-drawing-toolbar",
+            "outputPath": {
+              "base": "dist/sample-drawing-toolbar"
+            },
             "index": "projects/sample-drawing-toolbar/src/index.html",
-            "main": "projects/sample-drawing-toolbar/src/main.ts",
-            "polyfills": "projects/sample-drawing-toolbar/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-drawing-toolbar/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-drawing-toolbar/tsconfig.app.json",
             "assets": [
               "projects/sample-drawing-toolbar/src/favicon.ico",
@@ -468,11 +471,10 @@
               "projects/sample-drawing-toolbar/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-drawing-toolbar/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -485,8 +487,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -586,12 +586,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-symbol-layer",
+            "outputPath": {
+              "base": "dist/sample-symbol-layer"
+            },
             "index": "projects/sample-symbol-layer/src/index.html",
-            "main": "projects/sample-symbol-layer/src/main.ts",
-            "polyfills": "projects/sample-symbol-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-symbol-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-symbol-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-symbol-layer/src/favicon.ico",
@@ -601,11 +604,10 @@
               "projects/sample-symbol-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-symbol-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -618,8 +620,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -719,12 +719,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-bubble-layer",
+            "outputPath": {
+              "base": "dist/sample-bubble-layer"
+            },
             "index": "projects/sample-bubble-layer/src/index.html",
-            "main": "projects/sample-bubble-layer/src/main.ts",
-            "polyfills": "projects/sample-bubble-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-bubble-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-bubble-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-bubble-layer/src/favicon.ico",
@@ -734,11 +737,10 @@
               "projects/sample-bubble-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-bubble-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -751,8 +753,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -852,12 +852,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-line-layer",
+            "outputPath": {
+              "base": "dist/sample-line-layer"
+            },
             "index": "projects/sample-line-layer/src/index.html",
-            "main": "projects/sample-line-layer/src/main.ts",
-            "polyfills": "projects/sample-line-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-line-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-line-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-line-layer/src/favicon.ico",
@@ -867,11 +870,10 @@
               "projects/sample-line-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-line-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -884,8 +886,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -985,12 +985,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-polygon-layer",
+            "outputPath": {
+              "base": "dist/sample-polygon-layer"
+            },
             "index": "projects/sample-polygon-layer/src/index.html",
-            "main": "projects/sample-polygon-layer/src/main.ts",
-            "polyfills": "projects/sample-polygon-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-polygon-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-polygon-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-polygon-layer/src/favicon.ico",
@@ -1000,11 +1003,10 @@
               "projects/sample-polygon-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-polygon-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1017,8 +1019,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1118,12 +1118,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-polygon-extrusion-layer",
+            "outputPath": {
+              "base": "dist/sample-polygon-extrusion-layer"
+            },
             "index": "projects/sample-polygon-extrusion-layer/src/index.html",
-            "main": "projects/sample-polygon-extrusion-layer/src/main.ts",
-            "polyfills": "projects/sample-polygon-extrusion-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-polygon-extrusion-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-polygon-extrusion-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-polygon-extrusion-layer/src/favicon.ico",
@@ -1132,11 +1135,10 @@
             "styles": [
               "projects/sample-polygon-extrusion-layer/src/styles.scss"
             ],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-polygon-extrusion-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1149,8 +1151,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1250,12 +1250,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-heatmap-layer",
+            "outputPath": {
+              "base": "dist/sample-heatmap-layer"
+            },
             "index": "projects/sample-heatmap-layer/src/index.html",
-            "main": "projects/sample-heatmap-layer/src/main.ts",
-            "polyfills": "projects/sample-heatmap-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-heatmap-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-heatmap-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-heatmap-layer/src/favicon.ico",
@@ -1265,11 +1268,10 @@
               "projects/sample-heatmap-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-heatmap-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1282,8 +1284,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1383,12 +1383,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-image-layer",
+            "outputPath": {
+              "base": "dist/sample-image-layer"
+            },
             "index": "projects/sample-image-layer/src/index.html",
-            "main": "projects/sample-image-layer/src/main.ts",
-            "polyfills": "projects/sample-image-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-image-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-image-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-image-layer/src/favicon.ico",
@@ -1398,11 +1401,10 @@
               "projects/sample-image-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-image-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1415,8 +1417,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1516,12 +1516,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-tile-layer",
+            "outputPath": {
+              "base": "dist/sample-tile-layer"
+            },
             "index": "projects/sample-tile-layer/src/index.html",
-            "main": "projects/sample-tile-layer/src/main.ts",
-            "polyfills": "projects/sample-tile-layer/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-tile-layer/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-tile-layer/tsconfig.app.json",
             "assets": [
               "projects/sample-tile-layer/src/favicon.ico",
@@ -1531,11 +1534,10 @@
               "projects/sample-tile-layer/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-tile-layer/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1548,8 +1550,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1649,12 +1649,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-traffic",
+            "outputPath": {
+              "base": "dist/sample-traffic"
+            },
             "index": "projects/sample-traffic/src/index.html",
-            "main": "projects/sample-traffic/src/main.ts",
-            "polyfills": "projects/sample-traffic/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-traffic/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-traffic/tsconfig.app.json",
             "assets": [
               "projects/sample-traffic/src/favicon.ico",
@@ -1664,11 +1667,10 @@
               "projects/sample-traffic/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-traffic/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1681,8 +1683,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1782,12 +1782,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-search",
+            "outputPath": {
+              "base": "dist/sample-search"
+            },
             "index": "projects/sample-search/src/index.html",
-            "main": "projects/sample-search/src/main.ts",
-            "polyfills": "projects/sample-search/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-search/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-search/tsconfig.app.json",
             "assets": [
               "projects/sample-search/src/favicon.ico",
@@ -1797,11 +1800,10 @@
               "projects/sample-search/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-search/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1814,8 +1816,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -1915,12 +1915,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-route",
+            "outputPath": {
+              "base": "dist/sample-route"
+            },
             "index": "projects/sample-route/src/index.html",
-            "main": "projects/sample-route/src/main.ts",
-            "polyfills": "projects/sample-route/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-route/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-route/tsconfig.app.json",
             "assets": [
               "projects/sample-route/src/favicon.ico",
@@ -1930,11 +1933,10 @@
               "projects/sample-route/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-route/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -1947,8 +1949,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -2048,12 +2048,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-popup",
+            "outputPath": {
+              "base": "dist/sample-popup"
+            },
             "index": "projects/sample-popup/src/index.html",
-            "main": "projects/sample-popup/src/main.ts",
-            "polyfills": "projects/sample-popup/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-popup/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-popup/tsconfig.app.json",
             "assets": [
               "projects/sample-popup/src/favicon.ico",
@@ -2063,11 +2066,10 @@
               "projects/sample-popup/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-popup/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -2080,8 +2082,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -2181,12 +2181,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-weather-service",
+            "outputPath": {
+              "base": "dist/sample-weather-service"
+            },
             "index": "projects/sample-weather-service/src/index.html",
-            "main": "projects/sample-weather-service/src/main.ts",
-            "polyfills": "projects/sample-weather-service/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-weather-service/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-weather-service/tsconfig.app.json",
             "assets": [
               "projects/sample-weather-service/src/favicon.ico",
@@ -2196,11 +2199,10 @@
               "projects/sample-weather-service/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-weather-service/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -2213,8 +2215,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -2314,12 +2314,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-vector-tile-source",
+            "outputPath": {
+              "base": "dist/sample-vector-tile-source"
+            },
             "index": "projects/sample-vector-tile-source/src/index.html",
-            "main": "projects/sample-vector-tile-source/src/main.ts",
-            "polyfills": "projects/sample-vector-tile-source/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-vector-tile-source/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-vector-tile-source/tsconfig.app.json",
             "assets": [
               "projects/sample-vector-tile-source/src/favicon.ico",
@@ -2329,11 +2332,10 @@
               "projects/sample-vector-tile-source/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-vector-tile-source/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -2346,8 +2348,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -2443,12 +2443,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-lazy-loading",
+            "outputPath": {
+              "base": "dist/sample-lazy-loading"
+            },
             "index": "projects/sample-lazy-loading/src/index.html",
-            "main": "projects/sample-lazy-loading/src/main.ts",
-            "polyfills": "projects/sample-lazy-loading/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-lazy-loading/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-lazy-loading/tsconfig.app.json",
             "assets": [
               "projects/sample-lazy-loading/src/favicon.ico",
@@ -2458,11 +2461,10 @@
               "projects/sample-lazy-loading/src/styles.css"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-lazy-loading/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -2475,8 +2477,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -2579,12 +2579,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-configuration-injection",
+            "outputPath": {
+              "base": "dist/sample-configuration-injection"
+            },
             "index": "projects/sample-configuration-injection/src/index.html",
-            "main": "projects/sample-configuration-injection/src/main.ts",
-            "polyfills": "projects/sample-configuration-injection/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-configuration-injection/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-configuration-injection/tsconfig.app.json",
             "assets": [
               "projects/sample-configuration-injection/src/favicon.ico",
@@ -2594,11 +2597,10 @@
               "projects/sample-configuration-injection/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-configuration-injection/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -2611,8 +2613,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -2712,12 +2712,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sample-dynamic-configuration",
+            "outputPath": {
+              "base": "dist/sample-dynamic-configuration"
+            },
             "index": "projects/sample-dynamic-configuration/src/index.html",
-            "main": "projects/sample-dynamic-configuration/src/main.ts",
-            "polyfills": "projects/sample-dynamic-configuration/src/polyfills.ts",
+            "polyfills": [
+              "projects/sample-dynamic-configuration/src/polyfills.ts"
+            ],
             "tsConfig": "projects/sample-dynamic-configuration/tsconfig.app.json",
             "assets": [
               "projects/sample-dynamic-configuration/src/favicon.ico",
@@ -2727,11 +2730,10 @@
               "projects/sample-dynamic-configuration/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "aot": false
+            "aot": false,
+            "browser": "projects/sample-dynamic-configuration/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -2744,8 +2746,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
