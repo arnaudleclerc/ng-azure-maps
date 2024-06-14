@@ -112,21 +112,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-simple-map:build"
+            "buildTarget": "sample-simple-map:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-simple-map:build:production"
+              "buildTarget": "sample-simple-map:build:production"
             },
             "local": {
-              "browserTarget": "sample-simple-map:build:local"
+              "buildTarget": "sample-simple-map:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-simple-map:build"
+            "buildTarget": "sample-simple-map:build"
           }
         },
         "test": {
@@ -247,21 +247,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-map-with-controls:build"
+            "buildTarget": "sample-map-with-controls:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-map-with-controls:build:production"
+              "buildTarget": "sample-map-with-controls:build:production"
             },
             "local": {
-              "browserTarget": "sample-map-with-controls:build:local"
+              "buildTarget": "sample-map-with-controls:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-map-with-controls:build"
+            "buildTarget": "sample-map-with-controls:build"
           }
         },
         "test": {
@@ -380,21 +380,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-html-markers:build"
+            "buildTarget": "sample-html-markers:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-html-markers:build:production"
+              "buildTarget": "sample-html-markers:build:production"
             },
             "local": {
-              "browserTarget": "sample-html-markers:build:local"
+              "buildTarget": "sample-html-markers:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-html-markers:build"
+            "buildTarget": "sample-html-markers:build"
           }
         },
         "test": {
@@ -513,21 +513,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-drawing-toolbar:build"
+            "buildTarget": "sample-drawing-toolbar:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-drawing-toolbar:build:production"
+              "buildTarget": "sample-drawing-toolbar:build:production"
             },
             "local": {
-              "browserTarget": "sample-drawing-toolbar:build:local"
+              "buildTarget": "sample-drawing-toolbar:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-drawing-toolbar:build"
+            "buildTarget": "sample-drawing-toolbar:build"
           }
         },
         "test": {
@@ -646,21 +646,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-symbol-layer:build"
+            "buildTarget": "sample-symbol-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-symbol-layer:build:production"
+              "buildTarget": "sample-symbol-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-symbol-layer:build:local"
+              "buildTarget": "sample-symbol-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-symbol-layer:build"
+            "buildTarget": "sample-symbol-layer:build"
           }
         },
         "test": {
@@ -779,21 +779,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-bubble-layer:build"
+            "buildTarget": "sample-bubble-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-bubble-layer:build:production"
+              "buildTarget": "sample-bubble-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-bubble-layer:build:local"
+              "buildTarget": "sample-bubble-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-bubble-layer:build"
+            "buildTarget": "sample-bubble-layer:build"
           }
         },
         "test": {
@@ -912,21 +912,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-line-layer:build"
+            "buildTarget": "sample-line-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-line-layer:build:production"
+              "buildTarget": "sample-line-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-line-layer:build:local"
+              "buildTarget": "sample-line-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-line-layer:build"
+            "buildTarget": "sample-line-layer:build"
           }
         },
         "test": {
@@ -1045,21 +1045,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-polygon-layer:build"
+            "buildTarget": "sample-polygon-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-polygon-layer:build:production"
+              "buildTarget": "sample-polygon-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-polygon-layer:build:local"
+              "buildTarget": "sample-polygon-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-polygon-layer:build"
+            "buildTarget": "sample-polygon-layer:build"
           }
         },
         "test": {
@@ -1177,21 +1177,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-polygon-extrusion-layer:build"
+            "buildTarget": "sample-polygon-extrusion-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-polygon-extrusion-layer:build:production"
+              "buildTarget": "sample-polygon-extrusion-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-polygon-extrusion-layer:build:local"
+              "buildTarget": "sample-polygon-extrusion-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-polygon-extrusion-layer:build"
+            "buildTarget": "sample-polygon-extrusion-layer:build"
           }
         },
         "test": {
@@ -1310,21 +1310,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-heatmap-layer:build"
+            "buildTarget": "sample-heatmap-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-heatmap-layer:build:production"
+              "buildTarget": "sample-heatmap-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-heatmap-layer:build:local"
+              "buildTarget": "sample-heatmap-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-heatmap-layer:build"
+            "buildTarget": "sample-heatmap-layer:build"
           }
         },
         "test": {
@@ -1443,21 +1443,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-image-layer:build"
+            "buildTarget": "sample-image-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-image-layer:build:production"
+              "buildTarget": "sample-image-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-image-layer:build:local"
+              "buildTarget": "sample-image-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-image-layer:build"
+            "buildTarget": "sample-image-layer:build"
           }
         },
         "test": {
@@ -1576,21 +1576,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-tile-layer:build"
+            "buildTarget": "sample-tile-layer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-tile-layer:build:production"
+              "buildTarget": "sample-tile-layer:build:production"
             },
             "local": {
-              "browserTarget": "sample-tile-layer:build:local"
+              "buildTarget": "sample-tile-layer:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-tile-layer:build"
+            "buildTarget": "sample-tile-layer:build"
           }
         },
         "test": {
@@ -1709,21 +1709,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-traffic:build"
+            "buildTarget": "sample-traffic:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-traffic:build:production"
+              "buildTarget": "sample-traffic:build:production"
             },
             "local": {
-              "browserTarget": "sample-traffic:build:local"
+              "buildTarget": "sample-traffic:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-traffic:build"
+            "buildTarget": "sample-traffic:build"
           }
         },
         "test": {
@@ -1842,21 +1842,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-search:build"
+            "buildTarget": "sample-search:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-search:build:production"
+              "buildTarget": "sample-search:build:production"
             },
             "local": {
-              "browserTarget": "sample-search:build:local"
+              "buildTarget": "sample-search:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-search:build"
+            "buildTarget": "sample-search:build"
           }
         },
         "test": {
@@ -1975,21 +1975,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-route:build"
+            "buildTarget": "sample-route:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-route:build:production"
+              "buildTarget": "sample-route:build:production"
             },
             "local": {
-              "browserTarget": "sample-route:build:local"
+              "buildTarget": "sample-route:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-route:build"
+            "buildTarget": "sample-route:build"
           }
         },
         "test": {
@@ -2108,21 +2108,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-popup:build"
+            "buildTarget": "sample-popup:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-popup:build:production"
+              "buildTarget": "sample-popup:build:production"
             },
             "local": {
-              "browserTarget": "sample-popup:build:local"
+              "buildTarget": "sample-popup:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-popup:build"
+            "buildTarget": "sample-popup:build"
           }
         },
         "test": {
@@ -2241,21 +2241,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-weather-service:build"
+            "buildTarget": "sample-weather-service:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-weather-service:build:production"
+              "buildTarget": "sample-weather-service:build:production"
             },
             "local": {
-              "browserTarget": "sample-weather-service:build:local"
+              "buildTarget": "sample-weather-service:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-weather-service:build"
+            "buildTarget": "sample-weather-service:build"
           }
         },
         "test": {
@@ -2374,21 +2374,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-vector-tile-source:build"
+            "buildTarget": "sample-vector-tile-source:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-vector-tile-source:build:production"
+              "buildTarget": "sample-vector-tile-source:build:production"
             },
             "local": {
-              "browserTarget": "sample-vector-tile-source:build:local"
+              "buildTarget": "sample-vector-tile-source:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-vector-tile-source:build"
+            "buildTarget": "sample-vector-tile-source:build"
           }
         },
         "test": {
@@ -2503,21 +2503,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-lazy-loading:build"
+            "buildTarget": "sample-lazy-loading:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-lazy-loading:build:production"
+              "buildTarget": "sample-lazy-loading:build:production"
             },
             "local": {
-              "browserTarget": "sample-lazy-loading:build:local"
+              "buildTarget": "sample-lazy-loading:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-lazy-loading:build"
+            "buildTarget": "sample-lazy-loading:build"
           }
         },
         "test": {
@@ -2639,21 +2639,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-configuration-injection:build"
+            "buildTarget": "sample-configuration-injection:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-configuration-injection:build:production"
+              "buildTarget": "sample-configuration-injection:build:production"
             },
             "local": {
-              "browserTarget": "sample-configuration-injection:build:local"
+              "buildTarget": "sample-configuration-injection:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-configuration-injection:build"
+            "buildTarget": "sample-configuration-injection:build"
           }
         },
         "test": {
@@ -2772,21 +2772,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-dynamic-configuration:build"
+            "buildTarget": "sample-dynamic-configuration:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sample-dynamic-configuration:build:production"
+              "buildTarget": "sample-dynamic-configuration:build:production"
             },
             "local": {
-              "browserTarget": "sample-dynamic-configuration:build:local"
+              "buildTarget": "sample-dynamic-configuration:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sample-dynamic-configuration:build"
+            "buildTarget": "sample-dynamic-configuration:build"
           }
         },
         "test": {
