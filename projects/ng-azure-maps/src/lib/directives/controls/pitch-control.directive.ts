@@ -3,7 +3,8 @@ import { ControlDirective } from './control.directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[map-pitch-control], map-pitch-control'
+    selector: '[map-pitch-control], map-pitch-control',
+    standalone: false
 })
 export class PitchControlDirective
   extends ControlDirective {

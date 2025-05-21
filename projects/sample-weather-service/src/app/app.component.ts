@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { WeatherService, CurrentConditions } from 'ng-azure-maps';
 
 @Component({
-  selector: 'app-root',
-  template: '<azure-map [center]="center" [zoom]="10" mapStyle="grayscale_light" (onReady)="getCurrentWeather(center)" (onClick)="getCurrentWeather($event.event.position)">' +
-    '<map-popup [content]="content" [position]="markerPosition" [opened]="!!currentConditions" [closeButton]="false" [pixelOffset]="[0,-36]"></map-popup>' +
-    '<map-html-marker [position]="markerPosition">' +
-    '</map-html-marker>' +
-    '</azure-map>',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: '<azure-map [center]="center" [zoom]="10" mapStyle="grayscale_light" (onReady)="getCurrentWeather(center)" (onClick)="getCurrentWeather($event.event.position)">' +
+        '<map-popup [content]="content" [position]="markerPosition" [opened]="!!currentConditions" [closeButton]="false" [pixelOffset]="[0,-36]"></map-popup>' +
+        '<map-html-marker [position]="markerPosition">' +
+        '</map-html-marker>' +
+        '</azure-map>',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
 

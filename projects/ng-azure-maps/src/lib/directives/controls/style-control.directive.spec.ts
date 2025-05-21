@@ -6,8 +6,9 @@ import { StyleControlDirective } from './style-control.directive';
 describe('map-style-control', () => {
 
   @Component({
-    template: '<map-style-control [position]="mapCompassControlPosition"></map-style-control>'
-  })
+    template: '<map-style-control [position]="mapCompassControlPosition"></map-style-control>',
+    standalone: false
+})
   class TestComponent {
 
     @Input()

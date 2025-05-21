@@ -6,8 +6,9 @@ import { CompassControlDirective } from './compass-control.directive';
 describe('map-compass-control', () => {
 
   @Component({
-    template: '<map-compass-control [position]="mapCompassControlPosition"></map-compass-control>'
-  })
+    template: '<map-compass-control [position]="mapCompassControlPosition"></map-compass-control>',
+    standalone: false
+})
   class TestComponent {
 
     @Input()

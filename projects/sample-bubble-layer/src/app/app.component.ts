@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 
 @Component({
-  selector: 'app-root',
-  template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
-    '<map-bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></map-bubble-layer>' +
-    '</azure-map>',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: '<azure-map zoom="2" [dataSources]="[dataSource]" (onReady)="mapReady()">' +
+        '<map-bubble-layer dataSourceId="source" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [color]="color" [radius]="radius"></map-bubble-layer>' +
+        '</azure-map>',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
 

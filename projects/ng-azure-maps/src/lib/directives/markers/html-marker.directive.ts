@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 import { IMarkerEvent } from '../../contracts';
 
 @Directive({
-  selector: '[map-html-marker], map-html-marker'
+    selector: '[map-html-marker], map-html-marker',
+    standalone: false
 })
 export class HtmlMarkerDirective
   implements OnChanges, OnDestroy {
