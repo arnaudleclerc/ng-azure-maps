@@ -3,7 +3,8 @@ import * as atlas from 'azure-maps-control';
 import { ControlDirective } from './control.directive';
 
 @Directive({
-  selector: '[map-zoom-control], map-zoom-control'
+    selector: '[map-zoom-control], map-zoom-control',
+    standalone: false
 })
 export class ZoomControlDirective
   extends ControlDirective {

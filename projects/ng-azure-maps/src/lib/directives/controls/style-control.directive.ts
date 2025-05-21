@@ -3,7 +3,8 @@ import { ControlDirective } from './control.directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[map-style-control], map-style-control'
+    selector: '[map-style-control], map-style-control',
+    standalone: false
 })
 export class StyleControlDirective
   extends ControlDirective {

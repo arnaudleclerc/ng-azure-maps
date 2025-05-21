@@ -3,7 +3,8 @@ import * as atlas from 'azure-maps-control';
 import { SourceLayerDirective } from './source-layer-directive';
 
 @Directive({
-  selector: '[map-symbol-layer], map-symbol-layer'
+    selector: '[map-symbol-layer], map-symbol-layer',
+    standalone: false
 })
 export class SymbolLayerDirective
   extends SourceLayerDirective<atlas.layer.SymbolLayer>

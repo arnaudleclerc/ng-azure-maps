@@ -3,7 +3,8 @@ import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[map-polygon-layer], map-polygon-layer'
+    selector: '[map-polygon-layer], map-polygon-layer',
+    standalone: false
 })
 export class PolygonLayerDirective
   extends SourceLayerDirective<atlas.layer.PolygonLayer>

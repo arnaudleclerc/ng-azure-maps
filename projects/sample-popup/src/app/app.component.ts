@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { IMapEvent } from 'ng-azure-maps';
 
 @Component({
-  selector: 'app-root',
-  template: '<azure-map (onClick)="clickedMap($event)">' +
-    '<map-popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></map-popup>' +
-    '<map-html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></map-html-marker>' +
-    '<map-popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" ' +
-    '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></map-popup>' +
-    '</azure-map>',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: '<azure-map (onClick)="clickedMap($event)">' +
+        '<map-popup [content]="content" [position]="popupPosition" [opened]="opened" (onClose)="closed()"></map-popup>' +
+        '<map-html-marker [position]="fixedPosition" (onMouseOver)="enterMarker()" (onMouseLeave)="leaveMarker()"></map-html-marker>' +
+        '<map-popup [content]="fixedPopupContent" [position]="fixedPosition" [closeButton]="false" [pixelOffset]="[0,-36]" ' +
+        '[fillColor]="\'rgba(0,0,0,0.8)\'" [opened]="fixedPopupOpened"></map-popup>' +
+        '</azure-map>',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
 

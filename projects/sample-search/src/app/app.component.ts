@@ -3,11 +3,12 @@ import { SearchService, IMapEvent } from 'ng-azure-maps';
 import * as atlas from 'azure-maps-control';
 
 @Component({
-  selector: 'app-root',
-  template: '<azure-map mapStyle="grayscale_dark" (onReady)="mapReady($event)">' +
-    '<map-symbol-layer dataSourceId="search"></map-symbol-layer>' +
-    '</azure-map>',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: '<azure-map mapStyle="grayscale_dark" (onReady)="mapReady($event)">' +
+        '<map-symbol-layer dataSourceId="search"></map-symbol-layer>' +
+        '</azure-map>',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
 

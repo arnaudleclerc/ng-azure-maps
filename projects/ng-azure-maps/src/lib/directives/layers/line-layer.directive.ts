@@ -3,7 +3,8 @@ import * as atlas from 'azure-maps-control';
 import { OnChanges, Input, Directive } from '@angular/core';
 
 @Directive({
-  selector: '[map-line-layer], map-line-layer'
+    selector: '[map-line-layer], map-line-layer',
+    standalone: false
 })
 export class LineLayerDirective
   extends SourceLayerDirective<atlas.layer.LineLayer>

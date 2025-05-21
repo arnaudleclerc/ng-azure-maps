@@ -3,7 +3,8 @@ import { LayerDirective } from './layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[map-tile-layer], map-tile-layer'
+    selector: '[map-tile-layer], map-tile-layer',
+    standalone: false
 })
 export class TileLayerDirective
   extends LayerDirective<atlas.layer.TileLayer>

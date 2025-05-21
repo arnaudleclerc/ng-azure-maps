@@ -6,8 +6,9 @@ import { PitchControlDirective } from './pitch-control.directive';
 describe('map-pitch-control', () => {
 
   @Component({
-    template: '<map-pitch-control [position]="mapCompassControlPosition"></map-pitch-control>'
-  })
+    template: '<map-pitch-control [position]="mapCompassControlPosition"></map-pitch-control>',
+    standalone: false
+})
   class TestComponent {
 
     @Input()

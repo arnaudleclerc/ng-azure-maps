@@ -4,7 +4,8 @@ import { IPopupEvent } from '../../contracts/popup-event';
 import { Subject } from 'rxjs';
 
 @Directive({
-  selector: '[map-popup], map-popup'
+    selector: '[map-popup], map-popup',
+    standalone: false
 })
 export class PopupDirective
   implements OnChanges, OnDestroy {

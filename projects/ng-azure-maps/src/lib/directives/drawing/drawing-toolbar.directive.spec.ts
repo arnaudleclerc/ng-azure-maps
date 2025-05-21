@@ -7,19 +7,20 @@ import * as atlasdrawing from 'azure-maps-drawing-tools';
 describe('map-drawing-toolbar', () => {
   @Component({
     template: '<map-drawing-toolbar [dragHandleStyle]="dragHandleStyle" '
-      + '[freehandInterval]="freehandInterval" '
-      + '[interactionType]="interactionType" '
-      + '[mode]="mode" '
-      + '[secondaryDragHandleStyle]="secondaryDragHandleStyle" '
-      + '[shapeDraggingEnabled]="shapeDraggingEnabled" '
-      + '[buttons]="buttons" '
-      + '[containerId]="containerId" '
-      + '[numColumns]="numColumns" '
-      + '[position]="position" '
-      + '[toolbarStyle]="toolbarStyle" '
-      + '[visible]="visible" '
-      + '></map-drawing-toolbar>'
-  })
+        + '[freehandInterval]="freehandInterval" '
+        + '[interactionType]="interactionType" '
+        + '[mode]="mode" '
+        + '[secondaryDragHandleStyle]="secondaryDragHandleStyle" '
+        + '[shapeDraggingEnabled]="shapeDraggingEnabled" '
+        + '[buttons]="buttons" '
+        + '[containerId]="containerId" '
+        + '[numColumns]="numColumns" '
+        + '[position]="position" '
+        + '[toolbarStyle]="toolbarStyle" '
+        + '[visible]="visible" '
+        + '></map-drawing-toolbar>',
+    standalone: false
+})
   class TestComponent {
 
     @Input() public dragHandleStyle: HtmlMarkerOptions;

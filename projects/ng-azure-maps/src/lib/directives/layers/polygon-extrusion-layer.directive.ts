@@ -3,7 +3,8 @@ import * as atlas from 'azure-maps-control';
 import { SourceLayerDirective } from './source-layer-directive';
 
 @Directive({
-  selector: '[map-polygon-extrusion-layer], map-polygon-extrusion-layer'
+    selector: '[map-polygon-extrusion-layer], map-polygon-extrusion-layer',
+    standalone: false
 })
 export class PolygonExtrusionLayerDirective
   extends SourceLayerDirective<atlas.layer.PolygonExtrusionLayer>

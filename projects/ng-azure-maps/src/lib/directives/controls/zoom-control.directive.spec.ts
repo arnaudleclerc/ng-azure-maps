@@ -6,8 +6,9 @@ import { ZoomControlDirective } from './zoom-control.directive';
 describe('map-zoom-control', () => {
 
   @Component({
-    template: '<map-zoom-control [position]="mapCompassControlPosition"></map-zoom-control>'
-  })
+    template: '<map-zoom-control [position]="mapCompassControlPosition"></map-zoom-control>',
+    standalone: false
+})
   class TestComponent {
 
     @Input()

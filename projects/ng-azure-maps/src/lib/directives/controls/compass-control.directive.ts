@@ -3,7 +3,8 @@ import { Directive, Input } from '@angular/core';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[map-compass-control], map-compass-control'
+    selector: '[map-compass-control], map-compass-control',
+    standalone: false
 })
 export class CompassControlDirective
   extends ControlDirective {

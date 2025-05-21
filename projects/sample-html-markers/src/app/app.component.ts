@@ -5,12 +5,13 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 
 @Component({
-  selector: 'app-root',
-  template: '<azure-map (onReady)="mapReady()">' +
-    '<map-html-marker *ngFor="let peopleMarker of peopleMarkers | async" [marker]="peopleMarker" (onMouseUp)="openPopup($event)">' +
-    '</map-html-marker>' +
-    '</azure-map>',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: '<azure-map (onReady)="mapReady()">' +
+        '<map-html-marker *ngFor="let peopleMarker of peopleMarkers | async" [marker]="peopleMarker" (onMouseUp)="openPopup($event)">' +
+        '</map-html-marker>' +
+        '</azure-map>',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
 

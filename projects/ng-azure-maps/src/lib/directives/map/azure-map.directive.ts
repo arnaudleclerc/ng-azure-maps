@@ -32,24 +32,25 @@ import { IMapEvent } from '../../contracts';
 import { PopupDirective } from '../popups/popup.directive';
 
 @Directive({
-  selector: '[azure-map], azure-map',
-  queries: {
-    zoomControl: new ContentChild(ZoomControlDirective),
-    pitchControl: new ContentChild(PitchControlDirective),
-    compassControl: new ContentChild(CompassControlDirective),
-    styleControl: new ContentChild(StyleControlDirective),
-    htmlMarkers: new ContentChildren(HtmlMarkerDirective),
-    drawingToolbar: new ContentChild(DrawingToolbarDirective),
-    symbolLayers: new ContentChildren(SymbolLayerDirective),
-    bubbleLayers: new ContentChildren(BubbleLayerDirective),
-    lineLayers: new ContentChildren(LineLayerDirective),
-    polygonLayers: new ContentChildren(PolygonLayerDirective),
-    polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective),
-    heatmapLayers: new ContentChildren(HeatmapLayerDirective),
-    imageLayers: new ContentChildren(ImageLayerDirective),
-    tileLayers: new ContentChildren(TileLayerDirective),
-    popups: new ContentChildren(PopupDirective)
-  }
+    selector: '[azure-map], azure-map',
+    queries: {
+        zoomControl: new ContentChild(ZoomControlDirective),
+        pitchControl: new ContentChild(PitchControlDirective),
+        compassControl: new ContentChild(CompassControlDirective),
+        styleControl: new ContentChild(StyleControlDirective),
+        htmlMarkers: new ContentChildren(HtmlMarkerDirective),
+        drawingToolbar: new ContentChild(DrawingToolbarDirective),
+        symbolLayers: new ContentChildren(SymbolLayerDirective),
+        bubbleLayers: new ContentChildren(BubbleLayerDirective),
+        lineLayers: new ContentChildren(LineLayerDirective),
+        polygonLayers: new ContentChildren(PolygonLayerDirective),
+        polygonExtrusionLayers: new ContentChildren(PolygonExtrusionLayerDirective),
+        heatmapLayers: new ContentChildren(HeatmapLayerDirective),
+        imageLayers: new ContentChildren(ImageLayerDirective),
+        tileLayers: new ContentChildren(TileLayerDirective),
+        popups: new ContentChildren(PopupDirective)
+    },
+    standalone: false
 })
 export class AzureMapDirective
   implements AfterViewInit, AfterContentChecked, OnChanges {

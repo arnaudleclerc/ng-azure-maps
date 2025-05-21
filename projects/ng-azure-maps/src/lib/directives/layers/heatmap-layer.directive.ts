@@ -3,7 +3,8 @@ import { SourceLayerDirective } from './source-layer-directive';
 import * as atlas from 'azure-maps-control';
 
 @Directive({
-  selector: '[map-heatmap-layer], map-heatmap-layer'
+    selector: '[map-heatmap-layer], map-heatmap-layer',
+    standalone: false
 })
 export class HeatmapLayerDirective
   extends SourceLayerDirective<atlas.layer.HeatMapLayer>
