@@ -1,0 +1,66 @@
+name: Create Release Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. 11.0.0)'
+        required: true
+        default: '11.0.0'
+      source_branch:
+        description: 'Source branch to create the release from'
+        required: true
+        default: 'develop'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Create release branch from source branch
+      env:
+        VERSION: ${{ github.event.inputs.version }}
+        SOURCE_BRANCH: ${{ github.event.inputs.source_branch }}
+      run: |
+        git fetch origin "$SOURCE_BRANCH"
+        git checkout -b "releases/$VERSION" "origin/$SOURCE_BRANCH"
+        git push origin "releases/$VERSION"
+
+    - name: Create pull request to merge release branch into main
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VERSION: ${{ github.event.inputs.version }}
+      run: |
+        gh pr create \
+          --base main \
+          --head "releases/$VERSION" \
+          --title "Release $VERSION" \
+          --body "Merging releases/$VERSION into main to publish version $VERSION."
+
+    - name: Enable auto-merge for the pull request
+      continue-on-error: true
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VERSION: ${{ github.event.inputs.version }}
+      run: |
+        PR_NUMBER=$(gh pr list --base main --head "releases/$VERSION" --json number --jq '.[0].number')
+        if [ -z "$PR_NUMBER" ]; then
+          echo "No pull request found for releases/$VERSION targeting main. Skipping auto-merge."
+          exit 0
+        fi
+        gh pr merge "$PR_NUMBER" --auto --merge
