@@ -5,6 +5,8 @@ on:
     branches:
       - features/** 
       - feature/**
+      - develop
+      - main
     paths:
       - projects/ng-azure-maps/**
       - .github/**
